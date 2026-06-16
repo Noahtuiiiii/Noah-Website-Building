@@ -7,8 +7,8 @@
 <!-- ============================================================
      EDIT: Page title + meta description (shown in browser tab & search)
      ============================================================ -->
-<title>Noah McGill — PMO &amp; Business Analyst</title>
-<meta name="description" content="Noah McGill — PMO &amp; Business Analyst bringing order to complex delivery in banking operations." />
+<title>Noah McGill — Business Analyst</title>
+<meta name="description" content="Noah McGill — analytically driven business analyst turning complex problems into clear, data-led decisions. Melbourne-based, trilingual, completing an MPM at RMIT." />
 
 <!-- Brand fonts (Google Fonts) — Space Grotesk / Space Mono / Instrument Serif -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -282,7 +282,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .hero { padding-top: calc(var(--space-10) + var(--space-8)); padding-bottom: var(--space-9); }
 .hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--space-9); align-items: center; }
-.hero-statement { margin-top: var(--space-5); margin-bottom: var(--space-6); max-width: 14ch; }
+.hero-statement { margin-top: var(--space-5); margin-bottom: var(--space-6); max-width: 16ch; }
 .hero-sub { max-width: 46ch; margin-bottom: var(--space-7); }
 .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; }
 .hero-availability { display: inline-flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-5);
@@ -321,6 +321,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .do-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); border-top: 1px solid var(--line-1); padding-top: var(--space-4); }
 .do-list li { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
 .do-list svg { width: 14px; height: 14px; color: var(--signal-1); flex-shrink: 0; }
+
+/* Toolkit tag row */
+.toolkit { margin-top: var(--space-7); border-top: 1px solid var(--line-1); padding-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-9); }
+.toolkit-group { display: flex; flex-direction: column; gap: var(--space-3); }
+.toolkit-group .tg-label { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-4); }
+.toolkit-group .tg-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 
 /* ============================================================
    EXPERIENCE TIMELINE
@@ -372,6 +378,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .now-list li { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--size-body-sm); }
 .now-list .now-k { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); min-width: 84px; flex-shrink: 0; padding-top: 2px; }
 .about-tile.ink .now-list .now-k { color: var(--on-ink-2); }
+.lang-row { display: flex; flex-direction: column; gap: var(--space-3); }
+.lang-item { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--on-ink-line); padding-bottom: var(--space-3); }
+.lang-item:last-child { border-bottom: none; padding-bottom: 0; }
+.lang-item .lang-name { font-size: var(--size-body); color: var(--on-ink-1); }
+.lang-item .lang-level { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--on-ink-2); }
 
 /* ============================================================
    BLOG
@@ -522,20 +533,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="hero-availability">
           <span class="pulse"></span>
           <!-- EDIT: availability status line -->
-          Open to select advisory &amp; programme work — FY26
+          Seeking a Business Analyst role — available 2026
         </div>
 
         <span class="eyebrow"><span class="idx">01</span> / Profile</span>
 
         <!-- EDIT: Hero statement. Keep ONE serif-italic accent word. -->
-        <h1 class="h-display hero-statement">I bring <span class="accent accent--signal">order</span> to complex delivery.</h1>
+        <h1 class="h-display hero-statement">I turn complex problems into <span class="accent accent--signal">clear</span> decisions.</h1>
 
         <!-- EDIT: Human-sounding bio / sub-statement -->
         <p class="lead hero-sub">
-          I'm Noah — a PMO &amp; business analyst who helps banking and operations
-          teams turn ambiguous, high-stakes programmes into clear plans, measured
-          governance, and outcomes everyone can actually see. I like the messy
-          middle: the part where strategy meets reality and someone has to make it land.
+          I'm Noah — an analytically driven business analyst who diagnoses messy
+          client scenarios, structures data into insight, and improves the
+          processes underneath. I'm finishing a Master of Project Management at
+          RMIT, I work in regulated banking, and I think in three languages.
         </p>
 
         <div class="hero-actions">
@@ -556,15 +567,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="hero-card reveal">
         <div class="id-card">
           <div class="id-mono">NM</div>
-          <div class="id-role">PMO / Business Analyst</div>
+          <div class="id-role">Business Analyst</div>
           <!-- EDIT: name -->
           <div class="id-name">Noah McGill</div>
           <div class="id-rows">
             <!-- EDIT: identity rows -->
-            <div class="id-row"><span class="k">Sector /</span><span class="v">Banking Operations</span></div>
+            <div class="id-row"><span class="k">Sector /</span><span class="v">Banking &amp; Finance</span></div>
             <div class="id-row"><span class="k">Based /</span><span class="v">Melbourne, AU</span></div>
-            <div class="id-row"><span class="k">Education /</span><span class="v">MPM, RMIT</span></div>
-            <div class="id-row"><span class="k">Focus /</span><span class="v">Delivery &amp; Governance</span></div>
+            <div class="id-row"><span class="k">Education /</span><span class="v">MPM, RMIT '26</span></div>
+            <div class="id-row"><span class="k">Languages /</span><span class="v">EN · ES · DE</span></div>
           </div>
         </div>
       </div>
@@ -580,21 +591,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <div class="container">
     <div class="metrics reveal">
       <div class="metric">
-        <div class="value">120<span class="unit">+</span></div>
-        <div class="label">Programmes shaped</div>
+        <div class="value">45<span class="unit">+</span></div>
+        <div class="label">Client cases / day</div>
+        <div class="delta">Peak 60</div>
       </div>
       <div class="metric">
-        <div class="value">98<span class="unit">%</span></div>
-        <div class="label">On-time delivery</div>
-        <div class="delta">+12 pts vs FY23</div>
+        <div class="value">50<span class="unit">%</span></div>
+        <div class="label">Throughput gain</div>
+        <div class="delta">vs 30-case benchmark</div>
       </div>
       <div class="metric">
-        <div class="value">$120<span class="unit">M</span></div>
-        <div class="label">Portfolio governed</div>
+        <div class="value">2<span class="unit">×</span></div>
+        <div class="label">Top grade-band lift</div>
+        <div class="delta">30% → 60%</div>
       </div>
       <div class="metric">
-        <div class="value">40<span class="unit">wks</span></div>
-        <div class="label">Avg. programme</div>
+        <div class="value">3<span class="unit">·</span></div>
+        <div class="label">Languages — EN ES DE</div>
       </div>
     </div>
   </div>
@@ -610,8 +623,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <span class="eyebrow"><span class="idx">02</span> / Capabilities</span>
       <h2 class="h2">Not a tag cloud — three things I do <span class="accent accent--signal">deeply</span>.</h2>
       <p class="lead muted" style="margin-top: var(--space-4);">
-        Most of my work lives where ambiguity is highest and the cost of getting it
-        wrong is real. Here's where I add the most leverage.
+        My work sits where ambiguity is highest: taking a vague problem, finding
+        the real cause in the data, and turning it into something a team can act on.
       </p>
     </div>
 
@@ -619,14 +632,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Capability 1 -->
       <div class="card do-card card--interactive reveal">
         <div class="do-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
-        <h3 class="h4">Programme &amp; PMO leadership</h3>
-        <p>Standing up the structure that makes delivery legible — planning, governance cadence, and reporting people actually read.</p>
+        <h3 class="h4">Analysis &amp; requirements</h3>
+        <p>Eliciting what's actually needed, tracing problems to their root cause, and writing it down so the right thing gets built once.</p>
         <ul class="do-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Roadmaps &amp; dependency mapping</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Steering &amp; governance design</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Risk, RAID &amp; assurance</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Requirements elicitation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Root cause analysis</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>User story writing</li>
         </ul>
       </div>
 
@@ -635,12 +648,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="do-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg>
         </div>
-        <h3 class="h4">Business analysis</h3>
-        <p>Turning vague intent into precise requirements, process maps, and decisions — so the right thing gets built once.</p>
+        <h3 class="h4">Data &amp; insight</h3>
+        <p>Turning raw operational and outcome data into the clear story that tells leaders what to do next — and why.</p>
         <ul class="do-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Process &amp; current-state mapping</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Requirements &amp; user stories</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Data-led decision support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Excel, Power BI &amp; SQL</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Insight development</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Stakeholder-ready reporting</li>
         </ul>
       </div>
 
@@ -649,13 +662,36 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="do-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3 class="h4">Stakeholder &amp; change</h3>
-        <p>Getting executives, engineers, and operators rowing the same direction — and keeping them there when things get hard.</p>
+        <h3 class="h4">Stakeholders &amp; process</h3>
+        <p>Mapping how work really flows, engaging diverse stakeholders across three languages, and keeping documentation audit-ready.</p>
         <ul class="do-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Executive communication</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Change &amp; adoption planning</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Facilitation &amp; workshops</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Process mapping &amp; documentation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Stakeholder engagement</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Agile · Waterfall · PRINCE2</li>
         </ul>
+      </div>
+    </div>
+
+    <!-- Toolkit — full skills & tools from CV -->
+    <div class="toolkit reveal">
+      <div class="toolkit-group">
+        <span class="tg-label">Analysis &amp; tooling</span>
+        <div class="tg-tags">
+          <span class="tag tag--solid">Microsoft Excel</span>
+          <span class="tag tag--solid">Power BI</span>
+          <span class="tag tag--solid">SQL</span>
+          <span class="tag tag--solid">Confluence</span>
+          <span class="tag tag--solid">SharePoint</span>
+          <span class="tag tag--solid">Microsoft 365</span>
+        </div>
+      </div>
+      <div class="toolkit-group">
+        <span class="tg-label">Methodologies</span>
+        <div class="tg-tags">
+          <span class="tag">Agile</span>
+          <span class="tag">Waterfall</span>
+          <span class="tag">PRINCE2</span>
+        </div>
       </div>
     </div>
   </div>
@@ -669,29 +705,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <div class="container">
     <div class="section-head measure reveal">
       <span class="eyebrow"><span class="idx">03</span> / Experience</span>
-      <h2 class="h2">A decade of making delivery <span class="accent accent--signal">land</span>.</h2>
+      <h2 class="h2">Where I've made the numbers <span class="accent accent--signal">move</span>.</h2>
     </div>
 
     <div class="timeline">
       <!-- Experience entry -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">2022 — Present</span>
-          <span class="exp-org">ANZ / Banking Operations</span>
-          <span class="badge badge--positive"><span class="dot"></span>Current</span>
+          <span class="exp-period">May 2025 — Feb 2026</span>
+          <span class="exp-org">ANZ / Melbourne</span>
         </div>
         <div class="exp-body">
-          <h3 class="h4">Senior PMO &amp; Business Analyst</h3>
-          <p>Leading governance and analysis across a multi-stream operations transformation portfolio.</p>
+          <h3 class="h4">Small Business Consultant</h3>
+          <p>Resolving complex client cases in a regulated banking environment, against rising KPI targets.</p>
           <ul class="exp-points">
-            <li>Rebuilt the portfolio reporting model, lifting on-time delivery from 86% to 98% across 14 streams.</li>
-            <li>Designed the steering cadence now used as the operating standard across the division.</li>
-            <li>Translated three ambiguous regulatory mandates into deliverable, costed plans.</li>
+            <li>Managed 45+ client cases daily (peaking at 60) — a ~50% increase on the initial 30-case benchmark after targets rose four months in.</li>
+            <li>Built a working reference set of policy and process notes that cut per-case handling time and sharpened call targeting — the main driver behind the higher throughput.</li>
+            <li>Held one of the lowest case-escalation rates on the team, independently resolving complex policy scenarios while sustaining accuracy as volume rose.</li>
+            <li>Engaged cross-functional stakeholders on compliant resolutions and produced audit-ready documentation of resolution workflows.</li>
           </ul>
           <div class="exp-tags">
             <span class="tag"><span class="tag-label">SECTOR /</span>Banking</span>
-            <span class="tag tag--solid">Governance</span>
-            <span class="tag tag--solid">Transformation</span>
+            <span class="tag tag--solid">Process improvement</span>
+            <span class="tag tag--solid">Compliance</span>
           </div>
         </div>
       </article>
@@ -699,21 +735,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Experience entry -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">2019 — 2022</span>
-          <span class="exp-org">Confidential / Financial Services</span>
+          <span class="exp-period">Mar 2024 — Dec 2024</span>
+          <span class="exp-org">IBT Education / Remote</span>
         </div>
         <div class="exp-body">
-          <h3 class="h4">Business Analyst, Change Delivery</h3>
-          <p>Embedded in change teams delivering core operational and customer process improvements.</p>
+          <h3 class="h4">Academic Program Coordinator</h3>
+          <p>Owning student-outcome analysis and turning it into program-level recommendations.</p>
           <ul class="exp-points">
-            <li>Mapped and re-engineered a 40-step onboarding process, cutting cycle time by a third.</li>
-            <li>Authored the requirements for a payments exceptions tool adopted by 300+ users.</li>
-            <li>Ran the discovery that killed a $4M initiative before build — saving the spend.</li>
+            <li>Analysed outcome data across 50+ subjects and traced underperformance to tutor-to-student ratios rather than student ability — unprompted — recommending tutor reallocation and material refreshes for the three weakest subjects.</li>
+            <li>After implementation, top grade-band attainment in the targeted subjects rose from ~30% to ~60%, and the work prompted a recurring program-wide data-review process.</li>
+            <li>Produced structured reports and stakeholder-ready summaries translating cohort trends into clear recommendations for management.</li>
           </ul>
           <div class="exp-tags">
-            <span class="tag"><span class="tag-label">FOCUS /</span>Process</span>
-            <span class="tag tag--solid">Requirements</span>
-            <span class="tag tag--solid">Discovery</span>
+            <span class="tag"><span class="tag-label">FOCUS /</span>Data analysis</span>
+            <span class="tag tag--solid">Reporting</span>
+            <span class="tag tag--solid">Insight</span>
           </div>
         </div>
       </article>
@@ -721,19 +757,40 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Experience entry -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">2016 — 2019</span>
-          <span class="exp-org">Consulting / Cross-industry</span>
+          <span class="exp-period">Jan 2022 — Mar 2024</span>
+          <span class="exp-org">IBT Education / Sydney</span>
         </div>
         <div class="exp-body">
-          <h3 class="h4">Project Coordinator → Analyst</h3>
-          <p>Cut my teeth across delivery roles in consulting before specialising in banking operations.</p>
+          <h3 class="h4">Private Tutor (IB)</h3>
+          <p>Tailoring instruction to measurable outcomes across five IB subject areas.</p>
           <ul class="exp-points">
-            <li>Coordinated delivery for engagements spanning retail, logistics, and public sector.</li>
-            <li>Built the planning &amp; tracking toolkit later reused across the practice.</li>
+            <li>Assessed individual learning needs across 5 IB subjects and designed tailored instruction plans tied to measurable performance outcomes.</li>
+            <li>Maintained ongoing feedback loops with students and parents to refine delivery — client-focused problem solving and adaptability.</li>
           </ul>
           <div class="exp-tags">
-            <span class="tag"><span class="tag-label">ROLE /</span>Delivery</span>
-            <span class="tag tag--solid">Coordination</span>
+            <span class="tag"><span class="tag-label">ROLE /</span>Tutoring</span>
+            <span class="tag tag--solid">Adaptability</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Education entry -->
+      <article class="exp reveal">
+        <div class="exp-meta">
+          <span class="exp-period">2024 — Jun 2026</span>
+          <span class="exp-org">RMIT · University of Sydney</span>
+          <span class="badge badge--info"><span class="dot"></span>Education</span>
+        </div>
+        <div class="exp-body">
+          <h3 class="h4">Master of Project Management — RMIT</h3>
+          <p>GPA 3.2, with High Distinctions in Project Risk, Project Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods.</p>
+          <ul class="exp-points">
+            <li>Bachelor of Arts, International Business &amp; Germanic Studies — University of Sydney (2023).</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag"><span class="tag-label">DEGREE /</span>MPM</span>
+            <span class="tag tag--solid">Risk</span>
+            <span class="tag tag--solid">Research methods</span>
           </div>
         </div>
       </article>
@@ -751,7 +808,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="measure">
         <span class="eyebrow"><span class="idx">04</span> / Selected work</span>
         <h2 class="h2" style="margin-top:var(--space-4);">Case studies, <span class="accent accent--signal">incoming</span>.</h2>
-        <p class="lead muted" style="margin-top:var(--space-4);">A handful of programmes are being written up properly. Placeholders below — swap each for a real case study card.</p>
+        <p class="lead muted" style="margin-top:var(--space-4);">Write-ups of the work behind the numbers above. Placeholders for now — each will become a full case study.</p>
       </div>
       <span class="badge badge--caution"><span class="dot"></span>Coming soon</span>
     </div>
@@ -760,26 +817,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Project placeholder (repeat / replace) -->
       <a href="#" class="work-card reveal">
         <span class="work-motif"><span class="m1"></span><span class="m2"></span></span>
-        <span class="work-no">PROJECT / 01</span>
+        <span class="work-no">CASE / 01</span>
         <span class="work-title">
-          <h3 class="h4">Portfolio reporting rebuild</h3>
-          <p>Case study coming soon</p>
+          <h3 class="h4">The policy reference set</h3>
+          <p>How a self-built knowledge base lifted case throughput ~50%</p>
         </span>
       </a>
       <a href="#" class="work-card reveal">
         <span class="work-motif"><span class="m1"></span><span class="m2"></span></span>
-        <span class="work-no">PROJECT / 02</span>
+        <span class="work-no">CASE / 02</span>
         <span class="work-title">
-          <h3 class="h4">Onboarding re-engineering</h3>
-          <p>Case study coming soon</p>
+          <h3 class="h4">Finding the real variable</h3>
+          <p>Tracing student underperformance to ratios, not ability</p>
         </span>
       </a>
       <a href="#" class="work-card reveal">
         <span class="work-motif"><span class="m1"></span><span class="m2"></span></span>
-        <span class="work-no">PROJECT / 03</span>
+        <span class="work-no">CASE / 03</span>
         <span class="work-title">
-          <h3 class="h4">Regulatory delivery programme</h3>
-          <p>Case study coming soon</p>
+          <h3 class="h4">A recurring review process</h3>
+          <p>Turning a one-off analysis into a standing program practice</p>
         </span>
       </a>
     </div>
@@ -793,48 +850,48 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <section class="section" id="about">
   <div class="container">
     <div class="section-head measure reveal">
-      <span class="eyebrow"><span class="idx">05</span> / Off the clock</span>
-      <h2 class="h2">The person behind the <span class="accent accent--signal">plans</span>.</h2>
+      <span class="eyebrow"><span class="idx">05</span> / A bit about me</span>
+      <h2 class="h2">The person behind the <span class="accent accent--signal">analysis</span>.</h2>
     </div>
 
     <div class="about-grid">
       <!-- Tall lead tile -->
       <div class="about-tile about-tall reveal">
         <span class="about-eyebrow">Operating principle</span>
-        <h3 class="h4">I'm suspicious of complexity that doesn't earn its keep.</h3>
-        <p>The best plan is the simplest one that still survives contact with reality. I'd rather cut a slide than add one, and I think most status meetings could be a well-written paragraph. Clarity is a kindness — to the team, and to whoever has to read the report at 9pm.</p>
-        <p>Outside work that instinct shows up everywhere: I keep a too-long list of books, a too-short list of finished side projects, and strong opinions about both.</p>
+        <h3 class="h4">I'd rather find the real variable than be busy.</h3>
+        <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data — but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit (look first, act second) is the through-line in everything I do.</p>
+        <p>I came to analysis from an unusual direction: a degree in international business and Germanic studies, then a master's in project management. Languages and structure, basically — which is more related than it sounds.</p>
       </div>
 
       <!-- Small stat tile -->
       <div class="about-tile stone reveal">
-        <span class="about-eyebrow">Currently reading</span>
-        <h3 class="h4">~30 books / yr</h3>
-        <p>Mostly non-fiction on systems, decision-making, and how organisations actually behave. Recommendations always welcome.</p>
-      </div>
-
-      <!-- Small tile -->
-      <div class="about-tile reveal">
-        <span class="about-eyebrow">Away from the desk</span>
-        <h3 class="h4">Trails &amp; long coffees</h3>
-        <p>Weekend hikes around the Dandenongs, and an ongoing quest for the city's most underrated flat white.</p>
-      </div>
-
-      <!-- "Now" ink tile -->
-      <div class="about-tile ink reveal">
-        <span class="about-eyebrow">/ Now</span>
-        <ul class="now-list">
-          <li><span class="now-k">Learning</span><span>SQL fluency &amp; a bit of Python for analysis.</span></li>
-          <li><span class="now-k">Building</span><span>This site — and a writing habit to go with it.</span></li>
-          <li><span class="now-k">Listening</span><span>Long-form interviews on craft &amp; management.</span></li>
-        </ul>
-      </div>
-
-      <!-- Small tile -->
-      <div class="about-tile reveal">
         <span class="about-eyebrow">Quietly proud of</span>
-        <h3 class="h4">Mentoring 6 analysts</h3>
-        <p>Watching people I've coached outgrow the advice is the most satisfying part of the job.</p>
+        <h3 class="h4">30% → 60%</h3>
+        <p>The jump in top-grade attainment after my analysis reshaped how three subjects were tutored. Numbers moving because of a question I asked is the best feeling in the job.</p>
+      </div>
+
+      <!-- Small tile -->
+      <div class="about-tile reveal">
+        <span class="about-eyebrow">Currently learning</span>
+        <h3 class="h4">Deeper SQL &amp; BI</h3>
+        <p>Pushing my data toolkit further so the analysis can stand on its own — less spreadsheet wrangling, more reusable models.</p>
+      </div>
+
+      <!-- Languages ink tile -->
+      <div class="about-tile ink reveal">
+        <span class="about-eyebrow">/ Languages</span>
+        <div class="lang-row">
+          <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Native</span></div>
+          <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">Native</span></div>
+          <div class="lang-item"><span class="lang-name">German</span><span class="lang-level">Professional</span></div>
+        </div>
+      </div>
+
+      <!-- Small tile -->
+      <div class="about-tile reveal">
+        <span class="about-eyebrow">What I'm after</span>
+        <h3 class="h4">A team that teaches</h3>
+        <p>I'm looking for a business analyst role with a lively team and real learning — somewhere the bar is high and feedback is honest.</p>
       </div>
     </div>
   </div>
@@ -850,8 +907,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="blog-head reveal">
       <div class="measure">
         <span class="eyebrow"><span class="idx">06</span> / Writing</span>
-        <h2 class="h2" style="margin-top:var(--space-4);">Notes on delivery, in <span class="accent accent--signal">progress</span>.</h2>
-        <p class="lead muted" style="margin-top:var(--space-4);">Short essays on governance, analysis, and the human side of getting things done. Add new posts via the JS array — the grid builds itself.</p>
+        <h2 class="h2" style="margin-top:var(--space-4);">Notes on analysis, in <span class="accent accent--signal">progress</span>.</h2>
+        <p class="lead muted" style="margin-top:var(--space-4);">Short pieces on data, requirements, and the human side of getting things done. Add new posts via the JS array — the grid builds itself.</p>
       </div>
       <span class="badge badge--info"><span class="dot"></span>New posts soon</span>
     </div>
@@ -871,8 +928,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="contact-grid">
         <div class="contact-intro">
           <span class="eyebrow"><span class="idx">07</span> / Contact</span>
-          <h2 class="h2">Have a programme that needs <span class="accent accent--signal">steadying?</span></h2>
-          <p class="lead">Whether it's a stalled delivery, a governance reset, or a discovery you want done properly — I'm happy to talk it through. No pitch, just a conversation.</p>
+          <h2 class="h2">Have a problem that needs <span class="accent accent--signal">untangling?</span></h2>
+          <p class="lead">I'm open to business analyst roles and happy to talk through a project, a process that isn't working, or a dataset that's hiding something. No pitch — just a conversation.</p>
 
           <div class="contact-actions">
             <div class="contact-line">
@@ -880,7 +937,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <span>
                 <span class="ck" style="display:block;">Email</span>
                 <!-- EDIT: email address -->
-                <a class="cv" href="mailto:hello@noahmcgill.com">hello@noahmcgill.com</a>
+                <a class="cv" href="mailto:noahtui@gmail.com">noahtui@gmail.com</a>
+              </span>
+            </div>
+            <div class="contact-line">
+              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span>
+                <span class="ck" style="display:block;">Phone</span>
+                <!-- EDIT: phone -->
+                <a class="cv" href="tel:+61448084678">0448 084 678</a>
               </span>
             </div>
             <div class="contact-line">
@@ -888,7 +953,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <span>
                 <span class="ck" style="display:block;">LinkedIn</span>
                 <!-- EDIT: LinkedIn URL -->
-                <a class="cv" href="#">/in/noahmcgill</a>
+                <a class="cv" href="#">linkedin.com/in/noahmcgill</a>
               </span>
             </div>
             <div class="contact-line">
@@ -896,7 +961,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               <span>
                 <span class="ck" style="display:block;">Location</span>
                 <!-- EDIT: location -->
-                <span class="cv">Melbourne, Australia</span>
+                <span class="cv">Melbourne, VIC</span>
               </span>
             </div>
           </div>
@@ -914,7 +979,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           </div>
           <div class="form-field">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" placeholder="Tell me about the programme…" required></textarea>
+            <textarea id="cf-message" name="message" placeholder="Tell me about the role or project…" required></textarea>
           </div>
           <button type="submit" class="btn btn--signal" style="width:100%;">
             Send message
@@ -939,7 +1004,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="nav-monogram">NM</span>
-        <p class="muted" style="font-size:var(--size-body-sm);">Bringing order to complex delivery — one clear plan at a time.</p>
+        <p class="muted" style="font-size:var(--size-body-sm);">Turning complex problems into clear, data-led decisions.</p>
       </div>
       <div class="footer-meta">
         <div class="footer-col">
@@ -953,7 +1018,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <span class="fk">Elsewhere</span>
           <!-- EDIT: social links -->
           <a href="#">LinkedIn</a>
-          <a href="#">Email</a>
+          <a href="mailto:noahtui@gmail.com">Email</a>
           <a href="#">CV / PDF</a>
         </div>
         <div class="footer-col">
@@ -981,29 +1046,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 const BLOG_POSTS = [
   {
-    title: "Why your status report is a strategy document in disguise",
+    title: "The variable nobody asked me to check",
     date: "2026-05-28",
     readTime: "6 min",
-    tag: "Governance",
-    excerpt: "Reporting isn't admin. The way you frame status quietly decides what the steering committee believes is possible — here's how to use that on purpose.",
+    tag: "Analysis",
+    excerpt: "Underperformance looked like a student problem. The data said otherwise. A short story about looking before you act — and what changed when I did.",
     link: "#", // EDIT: replace with real post URL
     soon: false
   },
   {
-    title: "The requirement behind the requirement",
+    title: "Why your reference notes are a process improvement",
     date: "2026-04-15",
     readTime: "5 min",
-    tag: "Analysis",
-    excerpt: "Stakeholders rarely ask for what they actually need. A short field guide to the questions that surface the real problem before you build the wrong thing.",
+    tag: "Process",
+    excerpt: "The unglamorous knowledge base I built to handle banking cases quietly became the biggest driver of my throughput. On documentation as leverage.",
     link: "#",
     soon: false
   },
   {
-    title: "On cutting the slide",
+    title: "On asking better questions",
     date: "",
     readTime: "",
     tag: "Craft",
-    excerpt: "An upcoming piece on simplicity as a discipline — and why removing things is the hardest part of good delivery.",
+    excerpt: "An upcoming piece on requirements elicitation — and why the first thing a stakeholder asks for is rarely the thing they need.",
     link: "#",
     soon: true // teaser card — shows a "coming soon" state
   }
