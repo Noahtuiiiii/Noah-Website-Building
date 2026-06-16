@@ -7,17 +7,17 @@
 <!-- ============================================================
      EDIT: Page title + meta description (shown in browser tab & search)
      ============================================================ -->
-<title>Noah McGill — Business Analyst</title>
-<meta name="description" content="Noah McGill — analytically driven business analyst turning complex problems into clear, data-led decisions. Melbourne-based, trilingual, completing an MPM at RMIT." />
+<title>Noah McGill, Business Analyst &amp; Delivery PMO</title>
+<meta name="description" content="Noah McGill, Business Analyst and delivery-focused PMO. I find the real cause of a problem before anyone asks. Melbourne-based, trilingual EN/ES/DE, completing an MPM at RMIT." />
 
-<!-- Brand fonts (Google Fonts) — Space Grotesk / Space Mono / Instrument Serif -->
+<!-- Brand fonts (Google Fonts): Space Grotesk / Space Mono / Instrument Serif -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
 <style>
 /* ============================================================
-   DESIGN TOKENS — Noah McGill Design System
+   DESIGN TOKENS: Noah McGill Design System
    Warm-paper, ink-on-light editorial. Edit values here to
    re-theme the entire site in one place.
    ============================================================ */
@@ -160,7 +160,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .h3 { font-size: var(--size-h3); line-height: var(--lh-snug); letter-spacing: var(--track-snug); font-weight: 500; color: var(--ink-1); }
 .h4 { font-size: var(--size-h4); line-height: var(--lh-snug); font-weight: 600; color: var(--ink-1); }
 
-/* Editorial serif-italic accent — one word per statement, maximum */
+/* Editorial serif-italic accent: one word per statement, maximum */
 .accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
 .accent--signal { color: var(--signal-1); }
 
@@ -172,7 +172,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .section-head .h2 { margin-top: var(--space-4); }
 
 /* ============================================================
-   BUTTONS — pill, mono uppercase label
+   BUTTONS: pill, mono uppercase label
    ============================================================ */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
@@ -197,6 +197,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .btn--secondary:hover { background: var(--stone-2); }
 .btn--ghost { color: var(--ink-1); padding-inline: var(--space-3); }
 .btn--ghost:hover { color: var(--signal-2); }
+/* Bordered button for use on dark ink panels */
+.btn--on-ink { background: var(--ink-surface-2); color: var(--on-ink-1); border: 1px solid var(--on-ink-line); }
+.btn--on-ink:hover { background: #322d22; color: var(--on-ink-1); }
 
 /* ============================================================
    TAGS & BADGES
@@ -236,6 +239,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .card--interactive { transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
 .card--interactive:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* ============================================================
+   SIGNATURE LINE (lead differentiator)
+   ============================================================ */
+.signature {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: var(--size-h1); line-height: var(--lh-snug);
+  color: var(--ink-1); max-width: 24ch;
+  padding-left: var(--space-5); border-left: 3px solid var(--signal-1);
+}
+
+/* ============================================================
+   CASE STUDY CARD
+   ============================================================ */
+.case { padding: var(--space-7); }
+.case-head { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); }
+.case-body { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+.case-block { display: flex; flex-direction: column; gap: var(--space-2); }
+.case-k { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
+.case-block p { color: var(--ink-2); font-size: var(--size-body-sm); }
+.more-writeups { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); }
 
 /* ============================================================
    FLOATING GLASS PILL NAV
@@ -283,7 +307,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero { padding-top: calc(var(--space-10) + var(--space-8)); padding-bottom: var(--space-9); }
 .hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--space-9); align-items: center; }
 .hero-statement { margin-top: var(--space-5); margin-bottom: var(--space-6); max-width: 16ch; }
-.hero-sub { max-width: 46ch; margin-bottom: var(--space-7); }
+.hero-sub { max-width: 50ch; margin-bottom: var(--space-7); }
 .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; }
 .hero-availability { display: inline-flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-5);
   font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
@@ -291,7 +315,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--positive-1); opacity: 0.5; animation: pulse-ring 2.4s var(--ease-out) infinite; }
 @keyframes pulse-ring { 0% { transform: scale(0.7); opacity: 0.6; } 100% { transform: scale(1.8); opacity: 0; } }
 
-/* Hero side card — typographic identity panel (no photo, per system) */
+/* Hero side card: typographic identity panel (no photo, per system) */
 .hero-card { position: relative; }
 .id-card { background: var(--ink-surface-1); color: var(--on-ink-1); border-radius: var(--radius-xl); padding: var(--space-7); box-shadow: var(--shadow-lg); overflow: hidden; }
 .id-card .id-mono { width: 64px; height: 64px; border-radius: var(--radius-lg); background: var(--signal-1); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 24px; letter-spacing: var(--track-snug); margin-bottom: var(--space-5); }
@@ -339,26 +363,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .exp-org { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
 .exp-body h3 { margin-bottom: var(--space-2); }
 .exp-body p { color: var(--ink-2); margin-bottom: var(--space-4); }
+.exp-body p:last-child { margin-bottom: 0; }
 .exp-points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); }
 .exp-points li { display: flex; gap: var(--space-3); color: var(--ink-2); font-size: var(--size-body-sm); }
 .exp-points li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--signal-1); margin-top: 9px; flex-shrink: 0; }
 .exp-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-
-/* ============================================================
-   WORK / PROJECTS SHOWCASE (coming soon)
-   ============================================================ */
-.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-.work-card { position: relative; aspect-ratio: 4/3.2; border: 1px dashed var(--line-2); border-radius: var(--radius-lg); background: var(--paper-0); padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out); }
-.work-card:hover { border-color: var(--signal-1); transform: translateY(-2px); }
-/* Pure-CSS abstract motif (no images) */
-.work-motif { position: absolute; inset: 0; opacity: 0.5; pointer-events: none; }
-.work-motif span { position: absolute; border: 1px solid var(--line-2); border-radius: var(--radius-md); }
-.work-motif .m1 { width: 90px; height: 90px; right: -20px; top: -20px; transform: rotate(12deg); }
-.work-motif .m2 { width: 56px; height: 56px; right: 40px; top: 40px; border-radius: 50%; border-color: var(--signal-3); opacity: 0.5; }
-.work-card .work-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-4); position: relative; }
-.work-card .work-title { position: relative; }
-.work-card .work-title h3 { font-size: var(--size-h4); margin-bottom: var(--space-2); }
-.work-card .work-title p { font-size: var(--size-body-sm); color: var(--ink-3); }
 
 /* ============================================================
    INTERESTS / A BIT ABOUT ME
@@ -374,10 +383,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-tile p { font-size: var(--size-body-sm); color: var(--ink-2); }
 .about-tile.ink p { color: var(--on-ink-2); }
 .about-stat { font-size: var(--size-h3); font-weight: 600; letter-spacing: var(--track-snug); }
-.now-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
-.now-list li { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--size-body-sm); }
-.now-list .now-k { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); min-width: 84px; flex-shrink: 0; padding-top: 2px; }
-.about-tile.ink .now-list .now-k { color: var(--on-ink-2); }
 .lang-row { display: flex; flex-direction: column; gap: var(--space-3); }
 .lang-item { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--on-ink-line); padding-bottom: var(--space-3); }
 .lang-item:last-child { border-bottom: none; padding-bottom: 0; }
@@ -385,50 +390,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .lang-item .lang-level { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--on-ink-2); }
 
 /* ============================================================
-   BLOG
-   ============================================================ */
-.blog-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-5); flex-wrap: wrap; margin-bottom: var(--space-8); }
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-.post-card { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--line-1); border-radius: var(--radius-lg); background: var(--paper-0); transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); height: 100%; }
-.post-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.post-meta { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
-.post-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-4); }
-.post-card h3 { font-size: var(--size-h4); line-height: var(--lh-snug); }
-.post-card p { font-size: var(--size-body-sm); color: var(--ink-2); flex-grow: 1; }
-.post-readmore { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); margin-top: auto; }
-.post-readmore svg { width: 14px; height: 14px; transition: transform var(--dur-base) var(--ease-out); }
-.post-card:hover .post-readmore svg { transform: translateX(3px); }
-.post-card.is-soon { border-style: dashed; align-items: flex-start; justify-content: center; min-height: 220px; }
-.post-card.is-soon .post-soon { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-4); }
-
-/* ============================================================
    CONTACT (ink panel)
    ============================================================ */
 .contact-panel { background: var(--ink-surface-1); color: var(--on-ink-1); border-radius: var(--radius-xl); padding: var(--space-9); box-shadow: var(--shadow-lg); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-9); align-items: center; }
-.contact-panel .eyebrow { color: var(--on-ink-2); }
+.contact-center { max-width: 640px; margin-inline: auto; text-align: center; }
+.contact-panel .eyebrow { color: var(--on-ink-2); justify-content: center; }
 .contact-panel .eyebrow .idx { color: var(--signal-3); }
 .contact-panel h2 { color: var(--on-ink-1); margin-block: var(--space-4) var(--space-5); }
-.contact-panel .lead { color: var(--on-ink-2); margin-bottom: var(--space-6); }
-.contact-actions { display: flex; flex-direction: column; gap: var(--space-4); }
-.contact-line { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: 1px solid var(--on-ink-line); }
-.contact-line:last-child { border-bottom: none; }
-.contact-line .ci { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--ink-surface-2); display: grid; place-items: center; color: var(--on-ink-1); flex-shrink: 0; }
-.contact-line .ci svg { width: 18px; height: 18px; }
-.contact-line .ck { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--on-ink-2); }
-.contact-line .cv { color: var(--on-ink-1); font-size: var(--size-body); }
-.contact-line a.cv:hover { color: var(--signal-3); }
-
-/* Contact form */
-.form-field { margin-bottom: var(--space-5); }
-.form-field label { display: block; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--on-ink-2); margin-bottom: var(--space-3); }
-.form-field input, .form-field textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--on-ink-line); color: var(--on-ink-1); font-family: var(--font-sans); font-size: var(--size-body); padding: var(--space-3) 0; transition: border-color var(--dur-base) var(--ease-out); }
-.form-field input::placeholder, .form-field textarea::placeholder { color: #6c6657; }
-.form-field input:focus, .form-field textarea:focus { outline: none; border-color: var(--signal-3); }
-.form-field textarea { resize: vertical; min-height: 80px; }
-.form-success { display: none; align-items: center; gap: var(--space-3); margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: #7fd6a3; }
-.form-success.show { display: flex; }
-.form-success svg { width: 16px; height: 16px; }
+.contact-panel .lead { color: var(--on-ink-2); margin-bottom: var(--space-2); }
+.contact-buttons { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
+.contact-loc { margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--on-ink-2); }
 
 /* ============================================================
    FOOTER (mono metadata)
@@ -457,8 +428,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   :root { --size-display: 4.25rem; --size-h1: 3rem; --size-h2: 2.25rem; }
   .hero-grid { grid-template-columns: 1fr; gap: var(--space-7); }
   .hero-card { max-width: 420px; }
-  .do-grid, .work-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); }
-  .contact-grid { grid-template-columns: 1fr; gap: var(--space-7); }
+  .do-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
   :root { --size-display: 3.25rem; --size-h1: 2.5rem; --size-h2: 2rem; --space-10: 5rem; --space-9: 4rem; }
@@ -473,7 +443,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .nav-cta { display: none; }
   .nav-toggle { display: flex; }
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-5); }
-  .do-grid, .work-grid, .blog-grid, .about-grid { grid-template-columns: 1fr; }
+  .do-grid, .about-grid { grid-template-columns: 1fr; }
+  .case-body { grid-template-columns: 1fr; }
   .about-tall { grid-row: auto; }
   .exp { grid-template-columns: 1fr; gap: var(--space-4); }
   .contact-panel { padding: var(--space-6); }
@@ -510,7 +481,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#projects" class="nav-link">Work</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#blog" class="nav-link">Writing</a>
       <a href="#contact" class="nav-link">Contact</a>
     </div>
     <a href="#contact" class="btn btn--signal nav-cta">Let's talk</a>
@@ -523,7 +493,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <span id="top"></span>
 
 <!-- ============================================================
-     SECTION 1 — HERO / INTRODUCTION
+     SECTION 1: HERO / INTRODUCTION
      EDIT: name, tagline, bio, availability
      ============================================================ -->
 <header class="hero section" id="hero">
@@ -533,7 +503,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="hero-availability">
           <span class="pulse"></span>
           <!-- EDIT: availability status line -->
-          Seeking a Business Analyst role — available 2026
+          Open to BA &amp; delivery PMO roles, available mid-2026
         </div>
 
         <span class="eyebrow"><span class="idx">01</span> / Profile</span>
@@ -543,10 +513,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
         <!-- EDIT: Human-sounding bio / sub-statement -->
         <p class="lead hero-sub">
-          I'm Noah — an analytically driven business analyst who diagnoses messy
-          client scenarios, structures data into insight, and improves the
-          processes underneath. I'm finishing a Master of Project Management at
-          RMIT, I work in regulated banking, and I think in three languages.
+          I'm Noah. I find the real cause of a problem before anyone asks me to.
+          At ANZ I did it across 45+ regulated client cases a day; at IBT I traced
+          a drop in student outcomes to tutor ratios, not ability, and the fix
+          moved top-grade attainment from 30% to 60%. I'm finishing a Master of
+          Project Management at RMIT, I work in regulated banking, and I think in
+          three languages. Business Analyst and delivery-focused PMO roles, Melbourne.
         </p>
 
         <div class="hero-actions">
@@ -555,19 +527,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
           <a href="#contact" class="btn btn--secondary">Let's talk</a>
-          <!-- EDIT: link to a real CV/PDF when available -->
-          <a href="#" class="btn btn--ghost">
+          <!-- CV: hosted PDF at the static root. Drop Noah_McGill_CV.pdf into the
+               public/static root and this works immediately. -->
+          <a href="/Noah_McGill_CV.pdf" class="btn btn--ghost" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download CV
           </a>
         </div>
       </div>
 
-      <!-- Typographic identity card (no photo — brand is typographic) -->
+      <!-- Typographic identity card (no photo, brand is typographic) -->
       <div class="hero-card reveal">
         <div class="id-card">
           <div class="id-mono">NM</div>
-          <div class="id-role">Business Analyst</div>
+          <div class="id-role">Business Analyst &amp; Delivery PMO</div>
           <!-- EDIT: name -->
           <div class="id-name">Noah McGill</div>
           <div class="id-rows">
@@ -584,7 +557,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </header>
 
 <!-- ============================================================
-     METRIC STRIP — quantified outcomes (metrics as content)
+     METRIC STRIP: quantified outcomes (metrics as content)
      EDIT: values, units, labels, deltas
      ============================================================ -->
 <section class="section" style="padding-block: 0;">
@@ -603,25 +576,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="metric">
         <div class="value">2<span class="unit">×</span></div>
         <div class="label">Top grade-band lift</div>
-        <div class="delta">30% → 60%</div>
+        <div class="delta">30% to 60%</div>
       </div>
       <div class="metric">
-        <div class="value">3<span class="unit">·</span></div>
-        <div class="label">Languages — EN ES DE</div>
+        <div class="value">3</div>
+        <div class="label">Languages: EN · ES · DE</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     SECTION 2 — WHAT I DO / SKILLS
+     SIGNATURE LINE: lead differentiator
+     ============================================================ -->
+<section class="section" style="padding-block: var(--space-9) 0;">
+  <div class="container">
+    <p class="signature reveal">"I'd rather find the real <span class="accent accent--signal">variable</span> than be busy."</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2: WHAT I DO / SKILLS
      EDIT: each capability card (icon, title, description, list)
      ============================================================ -->
 <section class="section" id="work-do">
   <div class="container">
     <div class="section-head measure reveal">
       <span class="eyebrow"><span class="idx">02</span> / Capabilities</span>
-      <h2 class="h2">Not a tag cloud — three things I do <span class="accent accent--signal">deeply</span>.</h2>
+      <h2 class="h2">Not a tag cloud, three things I do <span class="accent accent--signal">deeply</span>.</h2>
       <p class="lead muted" style="margin-top: var(--space-4);">
         My work sits where ambiguity is highest: taking a vague problem, finding
         the real cause in the data, and turning it into something a team can act on.
@@ -649,7 +631,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg>
         </div>
         <h3 class="h4">Data &amp; insight</h3>
-        <p>Turning raw operational and outcome data into the clear story that tells leaders what to do next — and why.</p>
+        <p>Turning raw operational and outcome data into the clear story that tells leaders what to do next, and why.</p>
         <ul class="do-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Excel, Power BI &amp; SQL</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Insight development</li>
@@ -662,7 +644,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="do-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3 class="h4">Stakeholders &amp; process</h3>
+        <h3 class="h4">Stakeholders &amp; delivery</h3>
         <p>Mapping how work really flows, engaging diverse stakeholders across three languages, and keeping documentation audit-ready.</p>
         <ul class="do-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Process mapping &amp; documentation</li>
@@ -672,7 +654,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </div>
 
-    <!-- Toolkit — full skills & tools from CV -->
+    <!-- Toolkit: full skills & tools from CV -->
     <div class="toolkit reveal">
       <div class="toolkit-group">
         <span class="tg-label">Analysis &amp; tooling</span>
@@ -698,7 +680,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </section>
 
 <!-- ============================================================
-     SECTION 3 — EXPERIENCE / WHAT I'VE BUILT (timeline)
+     SECTION 3: EXPERIENCE / WHAT I'VE BUILT (timeline)
      EDIT: each .exp block (period, org, role, summary, points, tags)
      ============================================================ -->
 <section class="section" id="experience">
@@ -709,18 +691,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     </div>
 
     <div class="timeline">
-      <!-- Experience entry -->
+      <!-- Experience entry: ANZ (anchored) -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">May 2025 — Feb 2026</span>
+          <span class="exp-period">May 2025 – Feb 2026</span>
           <span class="exp-org">ANZ / Melbourne</span>
         </div>
         <div class="exp-body">
           <h3 class="h4">Small Business Consultant</h3>
           <p>Resolving complex client cases in a regulated banking environment, against rising KPI targets.</p>
           <ul class="exp-points">
-            <li>Managed 45+ client cases daily (peaking at 60) — a ~50% increase on the initial 30-case benchmark after targets rose four months in.</li>
-            <li>Built a working reference set of policy and process notes that cut per-case handling time and sharpened call targeting — the main driver behind the higher throughput.</li>
+            <li>Managed 45+ client cases daily (peaking at 60), a ~50% increase on the initial 30-case benchmark after targets rose four months in.</li>
+            <li>Built a working reference set of policy and process notes that cut per-case handling time and sharpened call targeting, the main driver behind the higher throughput.</li>
             <li>Held one of the lowest case-escalation rates on the team, independently resolving complex policy scenarios while sustaining accuracy as volume rose.</li>
             <li>Engaged cross-functional stakeholders on compliant resolutions and produced audit-ready documentation of resolution workflows.</li>
           </ul>
@@ -732,17 +714,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </article>
 
-      <!-- Experience entry -->
+      <!-- Experience entry: IBT Coordinator (anchored) -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">Mar 2024 — Dec 2024</span>
+          <span class="exp-period">Mar 2024 – Dec 2024</span>
           <span class="exp-org">IBT Education / Remote</span>
         </div>
         <div class="exp-body">
           <h3 class="h4">Academic Program Coordinator</h3>
           <p>Owning student-outcome analysis and turning it into program-level recommendations.</p>
           <ul class="exp-points">
-            <li>Analysed outcome data across 50+ subjects and traced underperformance to tutor-to-student ratios rather than student ability — unprompted — recommending tutor reallocation and material refreshes for the three weakest subjects.</li>
+            <li>Analysed outcome data across 50+ subjects and traced underperformance to tutor-to-student ratios rather than student ability. Unprompted, I recommended tutor reallocation and material refreshes for the three weakest subjects.</li>
             <li>After implementation, top grade-band attainment in the targeted subjects rose from ~30% to ~60%, and the work prompted a recurring program-wide data-review process.</li>
             <li>Produced structured reports and stakeholder-ready summaries translating cohort trends into clear recommendations for management.</li>
           </ul>
@@ -754,43 +736,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </article>
 
-      <!-- Experience entry -->
+      <!-- Experience entry: Private Tutor (condensed to a single line) -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">Jan 2022 — Mar 2024</span>
+          <span class="exp-period">Jan 2022 – Mar 2024</span>
           <span class="exp-org">IBT Education / Sydney</span>
         </div>
         <div class="exp-body">
           <h3 class="h4">Private Tutor (IB)</h3>
-          <p>Tailoring instruction to measurable outcomes across five IB subject areas.</p>
-          <ul class="exp-points">
-            <li>Assessed individual learning needs across 5 IB subjects and designed tailored instruction plans tied to measurable performance outcomes.</li>
-            <li>Maintained ongoing feedback loops with students and parents to refine delivery — client-focused problem solving and adaptability.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag"><span class="tag-label">ROLE /</span>Tutoring</span>
-            <span class="tag tag--solid">Adaptability</span>
-          </div>
+          <p>Tailored instruction to measurable outcomes across five IB subjects, with feedback loops kept tight with students and parents.</p>
         </div>
       </article>
 
-      <!-- Education entry -->
+      <!-- Education entry (trimmed) -->
       <article class="exp reveal">
         <div class="exp-meta">
-          <span class="exp-period">2024 — Jun 2026</span>
+          <span class="exp-period">2024 – Jun 2026</span>
           <span class="exp-org">RMIT · University of Sydney</span>
           <span class="badge badge--info"><span class="dot"></span>Education</span>
         </div>
         <div class="exp-body">
-          <h3 class="h4">Master of Project Management — RMIT</h3>
-          <p>GPA 3.2, with High Distinctions in Project Risk, Project Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods.</p>
-          <ul class="exp-points">
-            <li>Bachelor of Arts, International Business &amp; Germanic Studies — University of Sydney (2023).</li>
-          </ul>
+          <h3 class="h4">Education</h3>
+          <p>MPM, RMIT (June 2026): GPA 3.2, High Distinctions in Project Risk, Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods. BA International Business &amp; Germanic Studies, University of Sydney.</p>
           <div class="exp-tags">
             <span class="tag"><span class="tag-label">DEGREE /</span>MPM</span>
-            <span class="tag tag--solid">Risk</span>
-            <span class="tag tag--solid">Research methods</span>
+            <span class="tag tag--solid">RMIT</span>
+            <span class="tag tag--solid">USyd</span>
           </div>
         </div>
       </article>
@@ -799,53 +770,50 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </section>
 
 <!-- ============================================================
-     SECTION 4 — WORK / PROJECTS SHOWCASE (coming soon)
-     EDIT: replace placeholder tiles with real case studies
+     SECTION 4: WORK / SELECTED WORK
+     One real case study (IBT). Add more <article class="card case"> blocks
+     as further write-ups are ready.
      ============================================================ -->
 <section class="section" id="projects">
   <div class="container">
-    <div class="section-head reveal" style="display:flex; align-items:flex-end; justify-content:space-between; gap:var(--space-5); flex-wrap:wrap;">
-      <div class="measure">
-        <span class="eyebrow"><span class="idx">04</span> / Selected work</span>
-        <h2 class="h2" style="margin-top:var(--space-4);">Case studies, <span class="accent accent--signal">incoming</span>.</h2>
-        <p class="lead muted" style="margin-top:var(--space-4);">Write-ups of the work behind the numbers above. Placeholders for now — each will become a full case study.</p>
-      </div>
-      <span class="badge badge--caution"><span class="dot"></span>Coming soon</span>
+    <div class="section-head measure reveal">
+      <span class="eyebrow"><span class="idx">04</span> / Selected work</span>
+      <h2 class="h2">The work behind the <span class="accent accent--signal">numbers</span>.</h2>
     </div>
 
-    <div class="work-grid">
-      <!-- Project placeholder (repeat / replace) -->
-      <a href="#" class="work-card reveal">
-        <span class="work-motif"><span class="m1"></span><span class="m2"></span></span>
-        <span class="work-no">CASE / 01</span>
-        <span class="work-title">
-          <h3 class="h4">The policy reference set</h3>
-          <p>How a self-built knowledge base lifted case throughput ~50%</p>
-        </span>
-      </a>
-      <a href="#" class="work-card reveal">
-        <span class="work-motif"><span class="m1"></span><span class="m2"></span></span>
-        <span class="work-no">CASE / 02</span>
-        <span class="work-title">
-          <h3 class="h4">Finding the real variable</h3>
-          <p>Tracing student underperformance to ratios, not ability</p>
-        </span>
-      </a>
-      <a href="#" class="work-card reveal">
-        <span class="work-motif"><span class="m1"></span><span class="m2"></span></span>
-        <span class="work-no">CASE / 03</span>
-        <span class="work-title">
-          <h3 class="h4">A recurring review process</h3>
-          <p>Turning a one-off analysis into a standing program practice</p>
-        </span>
-      </a>
-    </div>
+    <!-- Real case study: IBT -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
+        <h3 class="h3">Finding the real variable</h3>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>As Academic Program Coordinator at IBT, I owned student-outcome analysis across 50+ subjects.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <p>No one asked me to dig in, but a pattern in the outcome data bothered me. I traced underperformance in the three weakest subjects to tutor-to-student ratios rather than student ability, and recommended tutor reallocation plus material refreshes.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>Top grade-band attainment in those subjects rose from ~30% to ~60%, and the one-off analysis became a recurring program-wide data-review process.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>It's how I work everywhere: ask why before deciding what to do, and let the data point to the real lever.</p>
+        </div>
+      </div>
+    </article>
+
+    <p class="more-writeups muted reveal">More write-ups in progress.</p>
   </div>
 </section>
 
 <!-- ============================================================
-     SECTION 5 — INTERESTS / A BIT ABOUT ME
-     EDIT: tiles below — keep them specific and human
+     SECTION 5: INTERESTS / A BIT ABOUT ME
+     EDIT: tiles below, keep them specific and human
      ============================================================ -->
 <section class="section" id="about">
   <div class="container">
@@ -858,15 +826,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Tall lead tile -->
       <div class="about-tile about-tall reveal">
         <span class="about-eyebrow">Operating principle</span>
-        <h3 class="h4">I'd rather find the real variable than be busy.</h3>
-        <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data — but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit (look first, act second) is the through-line in everything I do.</p>
-        <p>I came to analysis from an unusual direction: a degree in international business and Germanic studies, then a master's in project management. Languages and structure, basically — which is more related than it sounds.</p>
+        <h3 class="h4">Look first, act second.</h3>
+        <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data, but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit is the through-line in everything I do.</p>
+        <p>I came to analysis from an unusual direction: a degree in international business and Germanic studies, then a master's in project management. Languages and structure, basically, which is more related than it sounds.</p>
       </div>
 
       <!-- Small stat tile -->
       <div class="about-tile stone reveal">
         <span class="about-eyebrow">Quietly proud of</span>
-        <h3 class="h4">30% → 60%</h3>
+        <h3 class="h4">30% to 60%</h3>
         <p>The jump in top-grade attainment after my analysis reshaped how three subjects were tutored. Numbers moving because of a question I asked is the best feeling in the job.</p>
       </div>
 
@@ -874,10 +842,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="about-tile reveal">
         <span class="about-eyebrow">Currently learning</span>
         <h3 class="h4">Deeper SQL &amp; BI</h3>
-        <p>Pushing my data toolkit further so the analysis can stand on its own — less spreadsheet wrangling, more reusable models.</p>
+        <p>Pushing my data toolkit further so the analysis can stand on its own: less spreadsheet wrangling, more reusable models.</p>
       </div>
 
-      <!-- Languages ink tile -->
+      <!-- Languages ink tile (trilingual differentiator) -->
       <div class="about-tile ink reveal">
         <span class="about-eyebrow">/ Languages</span>
         <div class="lang-row">
@@ -885,118 +853,52 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">Native</span></div>
           <div class="lang-item"><span class="lang-name">German</span><span class="lang-level">Professional</span></div>
         </div>
+        <p>Native English and Spanish, professional German. In practice that means I can run stakeholder conversations and delivery across cultures and language barriers, and it's a genuine edge for organisations with Spanish or European parent companies.</p>
       </div>
 
       <!-- Small tile -->
       <div class="about-tile reveal">
         <span class="about-eyebrow">What I'm after</span>
         <h3 class="h4">A team that teaches</h3>
-        <p>I'm looking for a business analyst role with a lively team and real learning — somewhere the bar is high and feedback is honest.</p>
+        <p>I'm looking for a Business Analyst or delivery PMO role with a lively team and real learning, somewhere the bar is high and feedback is honest.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     SECTION 7 — BLOG / WRITING (extensible, data-driven)
-     >>> TO ADD A POST: scroll to the BLOG_POSTS array in the
-     <script> at the bottom and add an object. No HTML edits needed. <<<
-     ============================================================ -->
-<section class="section" id="blog">
-  <div class="container">
-    <div class="blog-head reveal">
-      <div class="measure">
-        <span class="eyebrow"><span class="idx">06</span> / Writing</span>
-        <h2 class="h2" style="margin-top:var(--space-4);">Notes on analysis, in <span class="accent accent--signal">progress</span>.</h2>
-        <p class="lead muted" style="margin-top:var(--space-4);">Short pieces on data, requirements, and the human side of getting things done. Add new posts via the JS array — the grid builds itself.</p>
-      </div>
-      <span class="badge badge--info"><span class="dot"></span>New posts soon</span>
-    </div>
-
-    <!-- Blog grid is rendered by JS from the BLOG_POSTS array -->
-    <div class="blog-grid" id="blogGrid" aria-live="polite"></div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 6 — CONTACT / CTA (ink panel)
-     EDIT: email, links, contact details
+     SECTION 6: CONTACT / CTA (ink panel)
+     EDIT: email, LinkedIn, location
      ============================================================ -->
 <section class="section" id="contact">
   <div class="container">
     <div class="contact-panel reveal">
-      <div class="contact-grid">
-        <div class="contact-intro">
-          <span class="eyebrow"><span class="idx">07</span> / Contact</span>
-          <h2 class="h2">Have a problem that needs <span class="accent accent--signal">untangling?</span></h2>
-          <p class="lead">I'm open to business analyst roles and happy to talk through a project, a process that isn't working, or a dataset that's hiding something. No pitch — just a conversation.</p>
+      <div class="contact-center">
+        <span class="eyebrow"><span class="idx">06</span> / Contact</span>
+        <h2 class="h2">Let's talk.</h2>
+        <p class="lead">Hiring, looking to connect, or happy to refer me on, all welcome. The fastest way to reach me is below.</p>
 
-          <div class="contact-actions">
-            <div class="contact-line">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
-              <span>
-                <span class="ck" style="display:block;">Email</span>
-                <!-- EDIT: email address -->
-                <a class="cv" href="mailto:noahtui@gmail.com">noahtui@gmail.com</a>
-              </span>
-            </div>
-            <div class="contact-line">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-              <span>
-                <span class="ck" style="display:block;">Phone</span>
-                <!-- EDIT: phone -->
-                <a class="cv" href="tel:+61448084678">0448 084 678</a>
-              </span>
-            </div>
-            <div class="contact-line">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
-              <span>
-                <span class="ck" style="display:block;">LinkedIn</span>
-                <!-- EDIT: LinkedIn URL -->
-                <a class="cv" href="#">linkedin.com/in/noahmcgill</a>
-              </span>
-            </div>
-            <div class="contact-line">
-              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-              <span>
-                <span class="ck" style="display:block;">Location</span>
-                <!-- EDIT: location -->
-                <span class="cv">Melbourne, VIC</span>
-              </span>
-            </div>
-          </div>
+        <div class="contact-buttons">
+          <!-- EDIT: email address -->
+          <a class="btn btn--signal" href="mailto:noahtui@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email me
+          </a>
+          <!-- EDIT: LinkedIn URL -->
+          <a class="btn btn--on-ink" href="https://www.linkedin.com/in/noah-mcgill-5a022b172/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
         </div>
 
-        <!-- Contact form (front-end only — wire to a backend/Formspree when ready) -->
-        <form class="contact-form" id="contactForm" novalidate>
-          <div class="form-field">
-            <label for="cf-name">Your name</label>
-            <input type="text" id="cf-name" name="name" placeholder="Jane Doe" required />
-          </div>
-          <div class="form-field">
-            <label for="cf-email">Email address</label>
-            <input type="email" id="cf-email" name="email" placeholder="you@company.com" required />
-          </div>
-          <div class="form-field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" placeholder="Tell me about the role or project…" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--signal" style="width:100%;">
-            Send message
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-          <div class="form-success" id="formSuccess">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Thanks — I'll be in touch shortly.
-          </div>
-        </form>
+        <p class="contact-loc">Melbourne, VIC</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     FOOTER — mono metadata
+     FOOTER: mono metadata
      EDIT: name, links, location
      ============================================================ -->
 <footer class="footer">
@@ -1012,14 +914,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <a href="#work-do">What I do</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Work</a>
-          <a href="#blog">Writing</a>
+          <a href="#about">About</a>
         </div>
         <div class="footer-col">
           <span class="fk">Elsewhere</span>
           <!-- EDIT: social links -->
-          <a href="#">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/noah-mcgill-5a022b172/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:noahtui@gmail.com">Email</a>
-          <a href="#">CV / PDF</a>
+          <a href="/Noah_McGill_CV.pdf" target="_blank" rel="noopener">CV / PDF</a>
         </div>
         <div class="footer-col">
           <span class="fk">Location</span>
@@ -1031,93 +933,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="footer-bottom">
       <!-- EDIT: name + year (year auto-updates via JS) -->
       <span>© <span id="year"></span> Noah McGill</span>
-      <span>Built by hand — no templates</span>
+      <span>Built by hand, no templates</span>
     </div>
   </div>
 </footer>
 
 <script>
-/* ============================================================
-   BLOG DATA — single source of truth.
-   >>> TO ADD A POST: copy one object and add it to the top of
-       this array. Set "soon": true for an unpublished teaser
-       card, or give it a real "link". Nothing else to edit. <<<
-   Fields: title, date (ISO YYYY-MM-DD), readTime, tag, excerpt, link, soon
-   ============================================================ */
-const BLOG_POSTS = [
-  {
-    title: "The variable nobody asked me to check",
-    date: "2026-05-28",
-    readTime: "6 min",
-    tag: "Analysis",
-    excerpt: "Underperformance looked like a student problem. The data said otherwise. A short story about looking before you act — and what changed when I did.",
-    link: "#", // EDIT: replace with real post URL
-    soon: false
-  },
-  {
-    title: "Why your reference notes are a process improvement",
-    date: "2026-04-15",
-    readTime: "5 min",
-    tag: "Process",
-    excerpt: "The unglamorous knowledge base I built to handle banking cases quietly became the biggest driver of my throughput. On documentation as leverage.",
-    link: "#",
-    soon: false
-  },
-  {
-    title: "On asking better questions",
-    date: "",
-    readTime: "",
-    tag: "Craft",
-    excerpt: "An upcoming piece on requirements elicitation — and why the first thing a stakeholder asks for is rarely the thing they need.",
-    link: "#",
-    soon: true // teaser card — shows a "coming soon" state
-  }
-];
-
-/* ---- Render the blog grid from BLOG_POSTS ---- */
-(function renderBlog() {
-  const grid = document.getElementById('blogGrid');
-  if (!grid) return;
-
-  const fmtDate = (iso) => {
-    if (!iso) return '';
-    const d = new Date(iso + 'T00:00:00');
-    if (isNaN(d)) return iso;
-    return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
-  };
-
-  grid.innerHTML = BLOG_POSTS.map((p) => {
-    if (p.soon) {
-      return `
-        <a href="${p.link || '#'}" class="post-card is-soon reveal">
-          <div class="post-meta"><span>${p.tag || 'Soon'}</span></div>
-          <h3>${p.title}</h3>
-          <p>${p.excerpt}</p>
-          <span class="post-soon">Coming soon</span>
-        </a>`;
-    }
-    return `
-      <a href="${p.link || '#'}" class="post-card reveal">
-        <div class="post-meta">
-          <span>${fmtDate(p.date)}</span>
-          <span class="dot-sep"></span>
-          <span>${p.readTime}</span>
-          <span class="dot-sep"></span>
-          <span>${p.tag}</span>
-        </div>
-        <h3>${p.title}</h3>
-        <p>${p.excerpt}</p>
-        <span class="post-readmore">
-          Read
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </span>
-      </a>`;
-  }).join('');
-
-  // Re-observe freshly injected reveal elements (see observer below)
-  if (window.__observeReveals) window.__observeReveals();
-})();
-
 /* ============================================================
    MOBILE NAV TOGGLE
    ============================================================ */
@@ -1144,7 +965,7 @@ const BLOG_POSTS = [
 (function scrollSpy() {
   const map = [
     ['work-do', 'What I do'], ['experience', 'Experience'], ['projects', 'Work'],
-    ['about', 'About'], ['blog', 'Writing'], ['contact', 'Contact']
+    ['about', 'About'], ['contact', 'Contact']
   ];
   const links = Array.from(document.querySelectorAll('.nav-link'));
   const byHref = (id) => links.find((l) => l.getAttribute('href') === '#' + id);
@@ -1166,7 +987,7 @@ const BLOG_POSTS = [
 })();
 
 /* ============================================================
-   SCROLL REVEAL — fade & rise on enter
+   SCROLL REVEAL: fade & rise on enter
    ============================================================ */
 (function reveals() {
   const obs = new IntersectionObserver((entries) => {
@@ -1177,31 +998,7 @@ const BLOG_POSTS = [
       }
     });
   }, { threshold: 0.12 });
-
-  // Exposed so dynamically-added cards (blog) can be observed too
-  window.__observeReveals = function () {
-    document.querySelectorAll('.reveal:not(.is-in)').forEach((el) => obs.observe(el));
-  };
-  window.__observeReveals();
-})();
-
-/* ============================================================
-   CONTACT FORM — front-end demo (no backend).
-   EDIT: wire this to your provider (e.g. Formspree, a serverless
-   function) by replacing the e.preventDefault() block with a fetch.
-   ============================================================ */
-(function contactForm() {
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-  if (!form) return;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    // TODO: send `new FormData(form)` to your endpoint here.
-    success.classList.add('show');
-    form.reset();
-    setTimeout(() => success.classList.remove('show'), 6000);
-  });
+  document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
 })();
 
 /* ---- Footer year auto-update ---- */
