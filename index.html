@@ -400,6 +400,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .built-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
 .built-card p { color: var(--ink-2); font-size: var(--size-body-sm); }
 .built-photo { margin-bottom: var(--space-2); }
+.hero-photo { margin-bottom: var(--space-5); }
+.case-photo { margin-bottom: var(--space-6); }
+.about-headshot { margin-bottom: var(--space-2); }
+.photo--portrait { aspect-ratio: 4 / 5; }
 
 /* ============================================================
    JOURNEY MAP TIMELINE (horizontal stepper)
@@ -580,8 +584,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </div>
 
-      <!-- Typographic identity card (no photo, brand is typographic) -->
       <div class="hero-card reveal">
+        <!-- PLACEHOLDER: replace with your own calm/editorial hero photo, ~1600x1000 (16:10) -->
+        <figure class="photo hero-photo">
+          <img src="/images/hero.jpg" alt="Calm, editorial image introducing Noah McGill" loading="lazy" onerror="this.classList.add('is-missing')" />
+          <figcaption>Hero image</figcaption>
+        </figure>
         <div class="id-card">
           <div class="id-mono">NM</div>
           <div class="id-role">Business Analyst &amp; Delivery PMO</div>
@@ -872,6 +880,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     <!-- Real case study: IBT -->
     <article class="card case reveal">
+      <!-- PLACEHOLDER: replace with a relevant case-study image, ~1600x1000 (16:10) -->
+      <figure class="photo case-photo">
+        <img src="/images/case-finding-the-real-variable.jpg" alt="Illustrative image for the IBT student-outcomes analysis case study" loading="lazy" onerror="this.classList.add('is-missing')" />
+        <figcaption>Case study image</figcaption>
+      </figure>
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
         <h3 class="h3">Finding the real variable</h3>
@@ -905,7 +918,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="built-grid">
         <article class="card built-card reveal">
           <span class="built-no">BUILD / 01</span>
-          <!-- Arcade photo. Drop the file at /images/arcade-machine.jpg to replace the placeholder. -->
+          <!-- PLACEHOLDER: replace with your arcade build photo, ~1600x1000 (16:10) -->
           <figure class="photo built-photo">
             <img src="/images/arcade-machine.jpg" alt="Custom retro arcade machine I designed and built" loading="lazy" onerror="this.classList.add('is-missing')" />
             <figcaption>Built from scratch</figcaption>
@@ -915,11 +928,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </article>
         <article class="card built-card reveal">
           <span class="built-no">BUILD / 02</span>
+          <!-- PLACEHOLDER: replace with a screenshot of this website, ~1600x1000 (16:10) -->
+          <figure class="photo built-photo">
+            <img src="/images/build-website.jpg" alt="Screenshot of Noah McGill's website" loading="lazy" onerror="this.classList.add('is-missing')" />
+            <figcaption>This website</figcaption>
+          </figure>
           <h3 class="h4">This website</h3>
           <p>Built from scratch with Claude.</p>
         </article>
         <article class="card built-card reveal">
           <span class="built-no">BUILD / 03</span>
+          <!-- PLACEHOLDER: replace with an image of your reference notes / process docs, ~1600x1000 (16:10) -->
+          <figure class="photo built-photo">
+            <img src="/images/build-anz-reference-set.jpg" alt="Illustrative image for the ANZ policy and process reference set" loading="lazy" onerror="this.classList.add('is-missing')" />
+            <figcaption>Reference set</figcaption>
+          </figure>
           <h3 class="h4">The ANZ policy reference set</h3>
           <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
         </article>
@@ -951,6 +974,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="about-grid">
       <!-- Tall lead tile: operating principle -->
       <div class="about-tile about-tall reveal">
+        <!-- PLACEHOLDER: replace with your headshot, neutral portrait, ~1200x1500 (4:5) -->
+        <figure class="photo photo--portrait about-headshot">
+          <img src="/images/about-headshot.jpg" alt="Portrait of Noah McGill" loading="lazy" onerror="this.classList.add('is-missing')" />
+          <figcaption>Headshot</figcaption>
+        </figure>
         <span class="about-eyebrow">Operating principle</span>
         <h3 class="h4">Look first, act second.</h3>
         <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data, but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit is the through-line in everything I do.</p>
@@ -962,7 +990,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="about-eyebrow">Since I was two</span>
         <h3 class="h4">Skiing is the through-line.</h3>
         <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
-        <!-- Ski photo. Drop the file at /images/niseko-ski.jpg to replace the placeholder. -->
+        <!-- PLACEHOLDER: replace with your Niseko ski/instructing photo, ~1600x1000 (16:10) -->
         <figure class="photo">
           <img src="/images/niseko-ski.jpg" alt="Noah instructing/skiing in Niseko, Japan" loading="lazy" onerror="this.classList.add('is-missing')" />
           <figcaption>Niseko, Japan</figcaption>
