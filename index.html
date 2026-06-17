@@ -399,6 +399,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .built-card { display: flex; flex-direction: column; gap: var(--space-3); }
 .built-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
 .built-card p { color: var(--ink-2); font-size: var(--size-body-sm); }
+.built-photo { margin-bottom: var(--space-2); }
+
+/* ============================================================
+   JOURNEY MAP TIMELINE (horizontal stepper)
+   ============================================================ */
+.journey-track { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-5); position: relative; margin-top: var(--space-8); }
+/* the spine line + onward arrow */
+.journey-track::before { content: ""; position: absolute; top: 5px; left: 0; right: 16px; height: 2px; background: var(--line-2); }
+.journey-track::after { content: ""; position: absolute; top: 0; right: 0; width: 11px; height: 11px; border-top: 2px solid var(--line-2); border-right: 2px solid var(--line-2); transform: rotate(45deg); }
+.journey-stop { position: relative; padding-top: var(--space-6); }
+.journey-dot { position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--signal-1); box-shadow: 0 0 0 4px var(--paper-1); }
+.journey-dot--open { background: var(--paper-1); border: 2px solid var(--signal-1); }
+.journey-place { display: block; font-family: var(--font-mono); font-size: var(--size-label); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-1); }
+.journey-stop--next .journey-place { color: var(--signal-2); }
+.journey-text { margin-top: var(--space-2); font-size: var(--size-body-sm); color: var(--ink-3); line-height: var(--lh-normal); }
+
+/* ============================================================
+   IMAGE SLOT (placeholder until the file is supplied)
+   ============================================================ */
+.photo { position: relative; border-radius: var(--radius-lg); overflow: hidden; background: var(--paper-2); border: 1px solid var(--line-1); aspect-ratio: 16 / 10; display: flex; align-items: flex-end; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo img.is-missing { display: none; }
+.photo figcaption { position: relative; z-index: 1; display: none; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); padding: var(--space-4); }
+/* show the caption only while the real image is absent */
+.photo img.is-missing ~ figcaption { display: block; }
 
 /* ============================================================
    CONTACT (ink panel)
@@ -457,6 +482,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .do-grid, .about-grid { grid-template-columns: 1fr; }
   .case-body { grid-template-columns: 1fr; }
   .built-grid { grid-template-columns: 1fr; }
+  /* Journey map becomes a vertical spine on small screens */
+  .journey-track { grid-template-columns: 1fr; gap: 0; margin-top: var(--space-6); }
+  .journey-track::before { top: 6px; bottom: 30px; left: 5px; right: auto; width: 2px; height: auto; }
+  .journey-track::after { top: auto; bottom: 6px; right: auto; left: 0; transform: rotate(135deg); }
+  .journey-stop { padding: 0 0 var(--space-6) var(--space-6); }
+  .journey-stop:last-child { padding-bottom: 0; }
+  .journey-dot { top: 2px; left: 0; }
   .about-tall { grid-row: auto; }
   .exp { grid-template-columns: 1fr; gap: var(--space-4); }
   .contact-panel { padding: var(--space-6); }
@@ -595,6 +627,51 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="label">Languages: EN · ES · DE</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     JOURNEY MAP: the path that got me here
+     EDIT: each .journey-stop (place label + one line)
+     ============================================================ -->
+<section class="section" id="journey" style="padding-block: var(--space-9);">
+  <div class="container">
+    <div class="section-head measure reveal">
+      <span class="eyebrow">/ The journey</span>
+      <h2 class="h2" style="margin-top: var(--space-3);">The path that got me <span class="accent accent--signal">here</span>.</h2>
+    </div>
+    <ol class="journey-track reveal">
+      <li class="journey-stop">
+        <span class="journey-dot"></span>
+        <span class="journey-place">Sydney</span>
+        <p class="journey-text">Home, and where I learned to surf. The baseline I keep coming back to.</p>
+      </li>
+      <li class="journey-stop">
+        <span class="journey-dot"></span>
+        <span class="journey-place">Bariloche, Argentina</span>
+        <p class="journey-text">At 18 I trained for an Austrian Level 2 ski instructor qualification, a long way from anyone I knew.</p>
+      </li>
+      <li class="journey-stop">
+        <span class="journey-dot"></span>
+        <span class="journey-place">Niseko, Japan</span>
+        <p class="journey-text">Four months instructing international clients across language barriers. The best year of my life, and proof I back myself in unfamiliar places.</p>
+      </li>
+      <li class="journey-stop">
+        <span class="journey-dot"></span>
+        <span class="journey-place">Sydney, undergrad</span>
+        <p class="journey-text">Home three weeks before Covid lockdown. A blurry, formative stretch where I learned to manage myself: time, money, relationships.</p>
+      </li>
+      <li class="journey-stop">
+        <span class="journey-dot"></span>
+        <span class="journey-place">Melbourne, master's</span>
+        <p class="journey-text">A deliberate move out of my comfort zone. I put the full weight of adult life on myself on purpose, and came out clearer and steadier.</p>
+      </li>
+      <li class="journey-stop journey-stop--next">
+        <span class="journey-dot journey-dot--open"></span>
+        <span class="journey-place">Next</span>
+        <p class="journey-text">A Business Analyst or delivery PMO role with a team that teaches.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -819,6 +896,36 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </article>
 
+    <!-- Things I've built (moved here so the page closes on "a team that teaches") -->
+    <div class="built reveal">
+      <div class="built-head measure">
+        <span class="about-eyebrow">A pattern in how I work</span>
+        <h3 class="h3" style="margin-top: var(--space-3);">When something I want doesn't exist or isn't good enough, I <span class="accent accent--signal">build</span> it.</h3>
+      </div>
+      <div class="built-grid">
+        <article class="card built-card reveal">
+          <span class="built-no">BUILD / 01</span>
+          <!-- Arcade photo. Drop the file at /images/arcade-machine.jpg to replace the placeholder. -->
+          <figure class="photo built-photo">
+            <img src="/images/arcade-machine.jpg" alt="Custom retro arcade machine I designed and built" loading="lazy" onerror="this.classList.add('is-missing')" />
+            <figcaption>Built from scratch</figcaption>
+          </figure>
+          <h3 class="h4">A custom retro arcade machine</h3>
+          <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
+        </article>
+        <article class="card built-card reveal">
+          <span class="built-no">BUILD / 02</span>
+          <h3 class="h4">This website</h3>
+          <p>Built from scratch with Claude.</p>
+        </article>
+        <article class="card built-card reveal">
+          <span class="built-no">BUILD / 03</span>
+          <h3 class="h4">The ANZ policy reference set</h3>
+          <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
+        </article>
+      </div>
+    </div>
+
     <p class="more-writeups muted reveal">More write-ups in progress.</p>
   </div>
 </section>
@@ -855,6 +962,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="about-eyebrow">Since I was two</span>
         <h3 class="h4">Skiing is the through-line.</h3>
         <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
+        <!-- Ski photo. Drop the file at /images/niseko-ski.jpg to replace the placeholder. -->
+        <figure class="photo">
+          <img src="/images/niseko-ski.jpg" alt="Noah instructing/skiing in Niseko, Japan" loading="lazy" onerror="this.classList.add('is-missing')" />
+          <figcaption>Niseko, Japan</figcaption>
+        </figure>
       </div>
 
       <!-- 30 to 60 highlight -->
@@ -881,36 +993,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
       </div>
 
-      <!-- What I'm after -->
+      <!-- What I'm after (page closes on this before Contact) -->
       <div class="about-tile reveal">
         <span class="about-eyebrow">What I'm after</span>
         <h3 class="h4">A team that teaches</h3>
         <p>I'm looking for a Business Analyst or delivery PMO role with a lively team and real learning, somewhere the bar is high and feedback is honest.</p>
-      </div>
-    </div>
-
-    <!-- Things I've built -->
-    <div class="built reveal">
-      <div class="built-head measure">
-        <span class="about-eyebrow">A pattern in how I work</span>
-        <h3 class="h3" style="margin-top: var(--space-3);">When something I want doesn't exist or isn't good enough, I <span class="accent accent--signal">build</span> it.</h3>
-      </div>
-      <div class="built-grid">
-        <article class="card built-card reveal">
-          <span class="built-no">BUILD / 01</span>
-          <h3 class="h4">A custom retro arcade machine</h3>
-          <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
-        </article>
-        <article class="card built-card reveal">
-          <span class="built-no">BUILD / 02</span>
-          <h3 class="h4">This website</h3>
-          <p>Built from scratch with Claude.</p>
-        </article>
-        <article class="card built-card reveal">
-          <span class="built-no">BUILD / 03</span>
-          <h3 class="h4">The ANZ policy reference set</h3>
-          <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
-        </article>
       </div>
     </div>
   </div>
