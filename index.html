@@ -389,6 +389,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .lang-item .lang-name { font-size: var(--size-body); color: var(--on-ink-1); }
 .lang-item .lang-level { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--on-ink-2); }
 
+/* About narrative (the real story) */
+.about-narrative { max-width: var(--container-text); display: flex; flex-direction: column; gap: var(--space-5); margin-bottom: var(--space-8); }
+.about-narrative p { font-size: var(--size-body-lg); color: var(--ink-2); line-height: var(--lh-relaxed); }
+
+/* Things I've built */
+.built { margin-top: var(--space-9); border-top: 1px solid var(--line-1); padding-top: var(--space-8); }
+.built-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-6); }
+.built-card { display: flex; flex-direction: column; gap: var(--space-3); }
+.built-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
+.built-card p { color: var(--ink-2); font-size: var(--size-body-sm); }
+
 /* ============================================================
    CONTACT (ink panel)
    ============================================================ */
@@ -445,6 +456,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-5); }
   .do-grid, .about-grid { grid-template-columns: 1fr; }
   .case-body { grid-template-columns: 1fr; }
+  .built-grid { grid-template-columns: 1fr; }
   .about-tall { grid-row: auto; }
   .exp { grid-template-columns: 1fr; gap: var(--space-4); }
   .contact-panel { padding: var(--space-6); }
@@ -822,27 +834,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <h2 class="h2">The person behind the <span class="accent accent--signal">analysis</span>.</h2>
     </div>
 
+    <!-- Narrative: the real story -->
+    <div class="about-narrative reveal">
+      <p>I came to analysis from an unusual direction. At 18 I flew to Bariloche, Argentina to train for an Austrian Level 2 ski instructor qualification, then spent four months teaching and living in Niseko, Japan. It was the best year of my life, and three weeks after I got home to start university, Australia went into full Covid lockdown. The whiplash taught me something I've leaned on ever since: I'm at my best when I'm stepping into something unfamiliar and giving it structure. I find that genuinely satisfying.</p>
+      <p>That's also why I love languages. I think the fastest way to understand a place is to try to speak its language, even badly, and actually talk to people. It changes how you see your own place in the world and what you think you're capable of. English and Spanish are native, German is professional.</p>
+      <p>Moving from Sydney to Melbourne for my master's was deliberate. I wanted out of my comfort zone, so I put the full weight of adult life on myself at once: bills, budgeting, a household, the job search. It was hard and I learned things I didn't know I needed to. It made me more honest, clearer, and steadier.</p>
+    </div>
+
     <div class="about-grid">
-      <!-- Tall lead tile -->
+      <!-- Tall lead tile: operating principle -->
       <div class="about-tile about-tall reveal">
         <span class="about-eyebrow">Operating principle</span>
         <h3 class="h4">Look first, act second.</h3>
         <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data, but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit is the through-line in everything I do.</p>
-        <p>I came to analysis from an unusual direction: a degree in international business and Germanic studies, then a master's in project management. Languages and structure, basically, which is more related than it sounds.</p>
+        <p>It's the same instinct that takes me to new places and makes me want to build things: find the shape of something unfamiliar, then give it structure.</p>
       </div>
 
-      <!-- Small stat tile -->
+      <!-- Skiing / adventure tile -->
       <div class="about-tile stone reveal">
+        <span class="about-eyebrow">Since I was two</span>
+        <h3 class="h4">Skiing is the through-line.</h3>
+        <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
+      </div>
+
+      <!-- 30 to 60 highlight -->
+      <div class="about-tile reveal">
         <span class="about-eyebrow">Quietly proud of</span>
         <h3 class="h4">30% to 60%</h3>
         <p>The jump in top-grade attainment after my analysis reshaped how three subjects were tutored. Numbers moving because of a question I asked is the best feeling in the job.</p>
-      </div>
-
-      <!-- Small tile -->
-      <div class="about-tile reveal">
-        <span class="about-eyebrow">Currently learning</span>
-        <h3 class="h4">Deeper SQL &amp; BI</h3>
-        <p>Pushing my data toolkit further so the analysis can stand on its own: less spreadsheet wrangling, more reusable models.</p>
       </div>
 
       <!-- Languages ink tile (trilingual differentiator) -->
@@ -853,14 +872,45 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">Native</span></div>
           <div class="lang-item"><span class="lang-name">German</span><span class="lang-level">Professional</span></div>
         </div>
-        <p>Native English and Spanish, professional German. In practice that means I can run stakeholder conversations and delivery across cultures and language barriers, and it's a genuine edge for organisations with Spanish or European parent companies.</p>
+        <p>The fastest way to understand a place is to speak its language, even badly. It's also a genuine edge for organisations with Spanish or European parent companies.</p>
       </div>
 
-      <!-- Small tile -->
+      <!-- Personality line -->
+      <div class="about-tile reveal">
+        <span class="about-eyebrow">For the record</span>
+        <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
+      </div>
+
+      <!-- What I'm after -->
       <div class="about-tile reveal">
         <span class="about-eyebrow">What I'm after</span>
         <h3 class="h4">A team that teaches</h3>
         <p>I'm looking for a Business Analyst or delivery PMO role with a lively team and real learning, somewhere the bar is high and feedback is honest.</p>
+      </div>
+    </div>
+
+    <!-- Things I've built -->
+    <div class="built reveal">
+      <div class="built-head measure">
+        <span class="about-eyebrow">A pattern in how I work</span>
+        <h3 class="h3" style="margin-top: var(--space-3);">When something I want doesn't exist or isn't good enough, I <span class="accent accent--signal">build</span> it.</h3>
+      </div>
+      <div class="built-grid">
+        <article class="card built-card reveal">
+          <span class="built-no">BUILD / 01</span>
+          <h3 class="h4">A custom retro arcade machine</h3>
+          <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
+        </article>
+        <article class="card built-card reveal">
+          <span class="built-no">BUILD / 02</span>
+          <h3 class="h4">This website</h3>
+          <p>Built from scratch with Claude.</p>
+        </article>
+        <article class="card built-card reveal">
+          <span class="built-no">BUILD / 03</span>
+          <h3 class="h4">The ANZ policy reference set</h3>
+          <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
+        </article>
       </div>
     </div>
   </div>
