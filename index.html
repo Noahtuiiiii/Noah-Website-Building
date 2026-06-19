@@ -304,7 +304,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    HERO
    ============================================================ */
-.hero { padding-top: calc(var(--space-10) + var(--space-8)); padding-bottom: var(--space-9); }
+.hero { padding-top: calc(var(--space-10) + var(--space-8)); padding-bottom: var(--space-9); position: relative; isolation: isolate; }
+/* Feathered powder-snow backdrop: image melts into the paper background at all edges.
+   Swap /images/hero.jpg for your powder-skiing photo and it takes over automatically. */
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: url("/images/hero.jpg") center 30% / cover no-repeat;
+  opacity: 0.30;
+  -webkit-mask-image: radial-gradient(135% 92% at 50% 22%, #000 30%, transparent 72%);
+  mask-image: radial-gradient(135% 92% at 50% 22%, #000 30%, transparent 72%);
+  pointer-events: none;
+}
+.hero > .container { position: relative; z-index: 1; }
 .hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--space-9); align-items: center; }
 .hero-statement { margin-top: var(--space-5); margin-bottom: var(--space-6); max-width: 16ch; }
 .hero-sub { max-width: 50ch; margin-bottom: var(--space-7); }
@@ -404,6 +415,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-photo { margin-bottom: var(--space-6); }
 .about-headshot { margin-bottom: var(--space-2); }
 .photo--portrait { aspect-ratio: 4 / 5; }
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-top: var(--space-6); }
+.gallery figure { display: flex; flex-direction: column; gap: var(--space-3); }
+.gallery-cap { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
 
 /* ============================================================
    JOURNEY MAP TIMELINE (horizontal stepper)
@@ -486,6 +500,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .do-grid, .about-grid { grid-template-columns: 1fr; }
   .case-body { grid-template-columns: 1fr; }
   .built-grid { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; }
   /* Journey map becomes a vertical spine on small screens */
   .journey-track { grid-template-columns: 1fr; gap: 0; margin-top: var(--space-6); }
   .journey-track::before { top: 6px; bottom: 30px; left: 5px; right: auto; width: 2px; height: auto; }
@@ -585,11 +600,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
 
       <div class="hero-card reveal">
-        <!-- PLACEHOLDER: replace with your own calm/editorial hero photo, ~1600x1000 (16:10) -->
-        <figure class="photo hero-photo">
-          <img src="/images/hero.jpg" alt="Calm, editorial image introducing Noah McGill" loading="lazy" onerror="this.classList.add('is-missing')" />
-          <figcaption>Hero image</figcaption>
-        </figure>
         <div class="id-card">
           <div class="id-mono">NM</div>
           <div class="id-role">Business Analyst &amp; Delivery PMO</div>
@@ -880,9 +890,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
     <!-- Real case study: IBT -->
     <article class="card case reveal">
-      <!-- PLACEHOLDER: replace with a relevant case-study image, ~1600x1000 (16:10) -->
+      <!-- PHOTO (add file): business newspaper with market / share-price data. ~1600x1000 (16:10) -->
       <figure class="photo case-photo">
-        <img src="/images/case-finding-the-real-variable.jpg" alt="Illustrative image for the IBT student-outcomes analysis case study" loading="lazy" onerror="this.classList.add('is-missing')" />
+        <img src="/images/case-finding-the-real-variable.jpg" alt="A business newspaper open to market and share-price data" loading="lazy" onerror="this.classList.add('is-missing')" />
         <figcaption>Case study image</figcaption>
       </figure>
       <div class="case-head">
@@ -928,9 +938,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </article>
         <article class="card built-card reveal">
           <span class="built-no">BUILD / 02</span>
-          <!-- PLACEHOLDER: replace with a screenshot of this website, ~1600x1000 (16:10) -->
+          <!-- PHOTO (add file): black-and-white angular glass architecture. ~1600x1000 (16:10) -->
           <figure class="photo built-photo">
-            <img src="/images/build-website.jpg" alt="Screenshot of Noah McGill's website" loading="lazy" onerror="this.classList.add('is-missing')" />
+            <img src="/images/build-website.jpg" alt="Black-and-white photograph looking up at angular glass architecture" loading="lazy" onerror="this.classList.add('is-missing')" />
             <figcaption>This website</figcaption>
           </figure>
           <h3 class="h4">This website</h3>
@@ -938,9 +948,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </article>
         <article class="card built-card reveal">
           <span class="built-no">BUILD / 03</span>
-          <!-- PLACEHOLDER: replace with an image of your reference notes / process docs, ~1600x1000 (16:10) -->
+          <!-- PHOTO (add file): calm modern office interior. ~1600x1000 (16:10) -->
           <figure class="photo built-photo">
-            <img src="/images/build-anz-reference-set.jpg" alt="Illustrative image for the ANZ policy and process reference set" loading="lazy" onerror="this.classList.add('is-missing')" />
+            <img src="/images/build-anz-reference-set.jpg" alt="A calm, modern office interior with glass-partitioned rooms" loading="lazy" onerror="this.classList.add('is-missing')" />
             <figcaption>Reference set</figcaption>
           </figure>
           <h3 class="h4">The ANZ policy reference set</h3>
@@ -974,9 +984,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="about-grid">
       <!-- Tall lead tile: operating principle -->
       <div class="about-tile about-tall reveal">
-        <!-- PLACEHOLDER: replace with your headshot, neutral portrait, ~1200x1500 (4:5) -->
+        <!-- PHOTO (add file): Noah's headshot. ~1200x1500 (4:5) -->
         <figure class="photo photo--portrait about-headshot">
-          <img src="/images/about-headshot.jpg" alt="Portrait of Noah McGill" loading="lazy" onerror="this.classList.add('is-missing')" />
+          <img src="/images/about-headshot.jpg" alt="Portrait of Noah McGill in ski gear" loading="lazy" onerror="this.classList.add('is-missing')" />
           <figcaption>Headshot</figcaption>
         </figure>
         <span class="about-eyebrow">Operating principle</span>
@@ -990,9 +1000,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="about-eyebrow">Since I was two</span>
         <h3 class="h4">Skiing is the through-line.</h3>
         <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
-        <!-- PLACEHOLDER: replace with your Niseko ski/instructing photo, ~1600x1000 (16:10) -->
+        <!-- PHOTO (add file): Noah with the GoSnow ski-school cohort in Niseko. ~1600x1000 (16:10) -->
         <figure class="photo">
-          <img src="/images/niseko-ski.jpg" alt="Noah instructing/skiing in Niseko, Japan" loading="lazy" onerror="this.classList.add('is-missing')" />
+          <img src="/images/niseko-ski.jpg" alt="Noah with the full GoSnow ski-school team gathered on the snow in Niseko, Japan" loading="lazy" onerror="this.classList.add('is-missing')" />
           <figcaption>Niseko, Japan</figcaption>
         </figure>
       </div>
@@ -1027,6 +1037,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <h3 class="h4">A team that teaches</h3>
         <p>I'm looking for a Business Analyst or delivery PMO role with a lively team and real learning, somewhere the bar is high and feedback is honest.</p>
       </div>
+    </div>
+
+    <!-- Niseko gallery: two of Noah's own photos -->
+    <div class="gallery reveal">
+      <figure>
+        <!-- PHOTO (add file): Noah instructing two clients in Niseko with Mt Yotei behind. ~1200x1500 (4:5) -->
+        <div class="photo photo--portrait">
+          <img src="/images/niseko-instructing.jpg" alt="Noah guiding two clients on a Niseko slope, Mt Yotei in the background" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <figcaption class="gallery-cap">Instructing, Niseko</figcaption>
+      </figure>
+      <figure>
+        <!-- PHOTO (add file): Noah buried in deep Niseko powder after a fall, skis upright. ~1200x1500 (4:5) -->
+        <div class="photo photo--portrait">
+          <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <figcaption class="gallery-cap">A proper powder day</figcaption>
+      </figure>
     </div>
   </div>
 </section>
