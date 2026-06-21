@@ -418,6 +418,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-top: var(--space-6); }
 .gallery figure { display: flex; flex-direction: column; gap: var(--space-3); }
 .gallery-cap { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
+.band-photo { aspect-ratio: 21 / 9; }
+@media (max-width: 760px) { .band-photo { aspect-ratio: 16 / 10; } }
 
 /* ============================================================
    JOURNEY MAP TIMELINE (horizontal stepper)
@@ -873,6 +875,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EDITORIAL BAND: full-width structural image (breather between sections)
+     ============================================================ -->
+<section class="section" style="padding-block: var(--space-7);">
+  <div class="container">
+    <!-- PHOTO (add file): warm, golden-hour architectural / structural detail. ~2000x860 (21:9) -->
+    <figure class="photo band-photo">
+      <img src="/images/structure-band.jpg" alt="Warm, golden-hour architectural detail of curved metal railings and beams" loading="lazy" onerror="this.classList.add('is-missing')" />
+      <figcaption>Structure</figcaption>
+    </figure>
   </div>
 </section>
 
