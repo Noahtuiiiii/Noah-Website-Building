@@ -87,8 +87,8 @@
   /* --- Spacing (8px grid) --- */
   --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem;
   --space-4: 1rem;     --space-5: 1.5rem;  --space-6: 2rem;
-  --space-7: 3rem;     --space-8: 4rem;    --space-9: 6rem;
-  --space-10: 8rem;
+  --space-7: 2.25rem;  --space-8: 3rem;    --space-9: 4.25rem;
+  --space-10: 5.5rem;
 
   /* --- Layout --- */
   --container-max: 1240px;
@@ -168,7 +168,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .muted { color: var(--ink-3); }
 
 /* Section header block */
-.section-head { margin-bottom: var(--space-8); }
+.section-head { margin-bottom: var(--space-6); }
 .section-head .h2 { margin-top: var(--space-4); }
 
 /* ============================================================
@@ -235,7 +235,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .card {
   background: var(--paper-0); border: 1px solid var(--line-1);
   border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
-  padding: var(--space-6);
+  padding: var(--space-5);
 }
 .card--interactive { transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
 .card--interactive:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
@@ -304,7 +304,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    HERO
    ============================================================ */
-.hero { padding-top: calc(var(--space-10) + var(--space-8)); padding-bottom: var(--space-9); position: relative; isolation: isolate; }
+.hero { padding-top: 7rem; padding-bottom: var(--space-7); position: relative; isolation: isolate; }
 /* Feathered powder-snow backdrop: image melts into the paper background at all edges.
    Swap /images/hero.jpg for your powder-skiing photo and it takes over automatically. */
 .hero::before {
@@ -339,7 +339,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    METRIC STRIP
    ============================================================ */
-.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); padding-block: var(--space-7); }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); padding-block: var(--space-6); }
 .metric .value { font-size: var(--size-h2); font-weight: 600; color: var(--ink-1); letter-spacing: var(--track-tight); line-height: 1; display: flex; align-items: baseline; gap: 2px; }
 .metric .unit { font-family: var(--font-serif); font-style: italic; font-size: var(--size-h4); color: var(--signal-1); }
 .metric .label { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); margin-top: var(--space-3); }
@@ -348,7 +348,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    WHAT I DO
    ============================================================ */
-.do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
 .do-card .do-icon { width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--paper-2); display: grid; place-items: center; color: var(--ink-1); margin-bottom: var(--space-5); }
 .do-card .do-icon svg { width: 22px; height: 22px; }
 .do-card h3 { margin-bottom: var(--space-3); }
@@ -366,8 +366,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    EXPERIENCE TIMELINE
    ============================================================ */
-.timeline { position: relative; display: flex; flex-direction: column; gap: var(--space-5); }
-.exp { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-6); padding: var(--space-6); border: 1px solid var(--line-1); border-radius: var(--radius-lg); background: var(--paper-0); transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
+.timeline { position: relative; display: flex; flex-direction: column; gap: var(--space-4); }
+.exp { display: grid; grid-template-columns: 200px 1fr; gap: var(--space-6); padding: var(--space-5); border: 1px solid var(--line-1); border-radius: var(--radius-lg); background: var(--paper-0); transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
 .exp:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .exp-meta { display: flex; flex-direction: column; gap: var(--space-2); }
 .exp-period { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
@@ -383,7 +383,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    INTERESTS / A BIT ABOUT ME
    ============================================================ */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
 .about-tall { grid-row: span 2; }
 .about-tile { border: 1px solid var(--line-1); border-radius: var(--radius-lg); padding: var(--space-6); background: var(--paper-0); display: flex; flex-direction: column; gap: var(--space-4); }
 .about-tile.stone { background: var(--stone-1); border-color: transparent; }
@@ -406,7 +406,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Things I've built */
 .built { margin-top: var(--space-9); border-top: 1px solid var(--line-1); padding-top: var(--space-8); }
-.built-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-6); }
+.built-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
 .built-card { display: flex; flex-direction: column; gap: var(--space-3); }
 .built-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
 .built-card p { color: var(--ink-2); font-size: var(--size-body-sm); }
@@ -415,7 +415,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-photo { margin-bottom: var(--space-6); }
 .about-headshot { margin-bottom: var(--space-2); }
 .photo--portrait { aspect-ratio: 4 / 5; }
-.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-top: var(--space-6); }
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
 .gallery figure { display: flex; flex-direction: column; gap: var(--space-3); }
 .gallery-cap { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
 .band-photo { aspect-ratio: 21 / 9; }
@@ -498,7 +498,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .nav-link { padding: var(--space-3) var(--space-4); }
   .nav-cta { display: none; }
   .nav-toggle { display: flex; }
-  .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-5); }
+  .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-4); }
   .do-grid, .about-grid { grid-template-columns: 1fr; }
   .case-body { grid-template-columns: 1fr; }
   .built-grid { grid-template-columns: 1fr; }
@@ -514,6 +514,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .exp { grid-template-columns: 1fr; gap: var(--space-4); }
   .contact-panel { padding: var(--space-6); }
   .section { padding-block: var(--space-9); }
+  .hero { padding-top: 6rem; }
 }
 @media (max-width: 420px) {
   .hero-actions { flex-direction: column; align-items: stretch; }
