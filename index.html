@@ -320,7 +320,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Gentle white halo behind the hero bio so it stays readable over the powder image */
 .hero-sub::before { content: ""; position: absolute; z-index: -1; inset: -0.6em -1.1em; background: var(--paper-1); opacity: 0.72; filter: blur(22px); border-radius: 60px; }
 .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; }
-.hero-availability { display: inline-flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-5);
+.hero-availability { display: flex; width: fit-content; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4);
   font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
 .pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--positive-1); }
 .pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--positive-1); opacity: 0.5; animation: pulse-ring 2.4s var(--ease-out) infinite; }
