@@ -1235,20 +1235,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   if (reduce || !items.length) return;
   const metrics = document.querySelector('.metrics');
   if (!metrics) return;
-  let run = false;
+  const dur = 1800;            // slower tick-up
+  let raf = null;
+  function animate() {
+    if (raf) cancelAnimationFrame(raf);
+    const t0 = performance.now();
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);       // easeOutCubic
+      items.forEach((it) => { it.node.textContent = Math.round(ease * it.target); });
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else { raf = null; items.forEach((it) => { it.node.textContent = it.target; }); }
+    })(t0);
+  }
+  function reset() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    items.forEach((it) => { it.node.textContent = '0'; });
+  }
+  // Replay every time the strip scrolls into view; reset to 0 when it leaves.
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting || run) return;
-      run = true; obs.disconnect();
-      const dur = 1100, t0 = performance.now();
-      (function tick(now) {
-        const p = Math.min((now - t0) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 3);     // easeOutCubic
-        items.forEach((it) => { it.node.textContent = Math.round(ease * it.target); });
-        if (p < 1) requestAnimationFrame(tick);
-        else items.forEach((it) => { it.node.textContent = it.target; });
-      })(t0);
-    });
+    entries.forEach((e) => { e.isIntersecting ? animate() : reset(); });
   }, { threshold: 0.4 });
   obs.observe(metrics);
 })();
