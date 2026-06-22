@@ -434,6 +434,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .journey-stop { position: relative; padding-top: var(--space-6); }
 .journey-dot { position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--signal-1); box-shadow: 0 0 0 4px var(--paper-1); }
 .journey-dot--open { background: var(--paper-1); border: 2px solid var(--signal-1); }
+.journey-dot--open { position: absolute; }
+.journey-dot--open::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--signal-1); opacity: 0.55; animation: pulse-ring 2.4s var(--ease-out) infinite; }
 .journey-place { display: block; font-family: var(--font-mono); font-size: var(--size-label); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-1); }
 .journey-stop--next .journey-place { color: var(--signal-2); }
 .journey-text { margin-top: var(--space-2); font-size: var(--size-body-sm); color: var(--ink-3); line-height: var(--lh-normal); }
