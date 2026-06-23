@@ -382,6 +382,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .exp-points li { display: flex; gap: var(--space-3); color: var(--ink-2); font-size: var(--size-body-sm); }
 .exp-points li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--signal-1); margin-top: 9px; flex-shrink: 0; }
 .exp-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* Niseko photo breaking the experience timeline */
+.timeline-photo { display: flex; flex-direction: column; gap: var(--space-3); max-width: 380px; align-self: center; }
+/* Education sub-section (elevated, distinct from experience entries) */
+.edu { border-left: 3px solid var(--signal-1); background: var(--stone-1); border-radius: var(--radius-md); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-5); }
+.edu-title { margin-bottom: var(--space-1); }
+.edu-item { display: grid; grid-template-columns: 300px 1fr; gap: var(--space-6); align-items: start; }
+.edu-deg { display: flex; flex-direction: column; gap: var(--space-2); }
+.edu-copy p { color: var(--ink-2); font-size: var(--size-body-sm); }
+@media (max-width: 760px) { .edu-item { grid-template-columns: 1fr; gap: var(--space-3); } .timeline-photo { max-width: 100%; } }
 
 /* ============================================================
    INTERESTS / A BIT ABOUT ME
@@ -439,6 +448,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .journey-place { display: block; font-family: var(--font-mono); font-size: var(--size-label); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-1); }
 .journey-stop--next .journey-place { color: var(--signal-2); }
 .journey-text { margin-top: var(--space-2); font-size: var(--size-body-sm); color: var(--ink-3); line-height: var(--lh-normal); }
+.journey-note { margin-top: var(--space-2); font-size: var(--size-body-sm); color: var(--ink-4); }
 
 /* ============================================================
    IMAGE SLOT (placeholder until the file is supplied)
@@ -674,6 +684,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="journey-dot"></span>
         <span class="journey-place">Sydney</span>
         <p class="journey-text">Home, and where I learned to surf. The baseline I keep coming back to.</p>
+        <p class="journey-note">Via Scotland and the US.</p>
       </li>
       <li class="journey-stop">
         <span class="journey-dot"></span>
@@ -798,6 +809,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </section>
 
 <!-- ============================================================
+     EDITORIAL BAND: full-width structural image (breather between Capabilities and Experience)
+     ============================================================ -->
+<section class="section" style="padding-block: var(--space-7);">
+  <div class="container">
+    <!-- Stairs / structural detail image (between Capabilities and Experience). -->
+    <figure class="photo band-photo">
+      <img src="/images/stairs-background.jpg" alt="Warm, golden-hour architectural detail of curved metal railings and beams" loading="lazy" onerror="this.classList.add('is-missing')" />
+      <figcaption>Structure</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================
      SECTION 3: EXPERIENCE / WHAT I'VE BUILT (timeline)
      EDIT: each .exp block (period, org, role, summary, points, tags)
      ============================================================ -->
@@ -831,6 +855,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           </div>
         </div>
       </article>
+
+      <!-- Niseko photo: breaks the timeline between ANZ and IBT -->
+      <figure class="timeline-photo reveal">
+        <div class="photo photo--portrait">
+          <img src="/images/niseko-instructing.jpg" alt="Noah guiding two clients on a Niseko slope, Mt Yotei in the background" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <figcaption class="gallery-cap">Niseko, Japan</figcaption>
+      </figure>
 
       <!-- Experience entry: IBT Coordinator (anchored) -->
       <article class="exp reveal">
@@ -866,37 +898,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </article>
 
-      <!-- Education entry (trimmed) -->
-      <article class="exp reveal">
-        <div class="exp-meta">
-          <span class="exp-period">2024 – Jun 2026</span>
-          <span class="exp-org">RMIT · University of Sydney</span>
-          <span class="badge badge--info"><span class="dot"></span>Education</span>
-        </div>
-        <div class="exp-body">
-          <h3 class="h4">Education</h3>
-          <p>MPM, RMIT (June 2026): GPA 3.2, High Distinctions in Project Risk, Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods. BA International Business &amp; Germanic Studies, University of Sydney.</p>
-          <div class="exp-tags">
-            <span class="tag"><span class="tag-label">DEGREE /</span>MPM</span>
-            <span class="tag tag--solid">RMIT</span>
-            <span class="tag tag--solid">USyd</span>
+      <!-- Education sub-section (elevated) -->
+      <div class="edu reveal">
+        <h3 class="h3 edu-title">Education</h3>
+        <div class="edu-item">
+          <div class="edu-deg">
+            <span class="exp-period">June 2026</span>
+            <h4 class="h4">Master of Project Management</h4>
+            <span class="exp-org">RMIT University</span>
+          </div>
+          <div class="edu-copy">
+            <p>GPA 3.2. High Distinctions in Project Risk, Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods. I chose this degree deliberately, and moved from Sydney to Melbourne to do it.</p>
           </div>
         </div>
-      </article>
+        <div class="edu-item">
+          <div class="edu-deg">
+            <span class="exp-period">2023</span>
+            <h4 class="h4">Bachelor of Arts, International Business &amp; Germanic Studies</h4>
+            <span class="exp-org">University of Sydney</span>
+          </div>
+          <div class="edu-copy"></div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     EDITORIAL BAND: full-width structural image (breather between sections)
-     ============================================================ -->
-<section class="section" style="padding-block: var(--space-7);">
-  <div class="container">
-    <!-- Stairs / structural detail image (between Experience and Selected work). -->
-    <figure class="photo band-photo">
-      <img src="/images/stairs-background.jpg" alt="Warm, golden-hour architectural detail of curved metal railings and beams" loading="lazy" onerror="this.classList.add('is-missing')" />
-      <figcaption>Structure</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -1001,8 +1025,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <!-- Narrative: the real story -->
     <div class="about-narrative reveal">
       <p>I came to analysis from an unusual direction. At 19 I flew to Bariloche, Argentina to train for an Austrian Level 2 ski instructor qualification, then spent four months teaching and living in Niseko, Japan. It was the best year of my life, and three weeks after I got home to start university, Australia went into full Covid lockdown. The whiplash taught me something I've leaned on ever since: I'm at my best when I'm stepping into something unfamiliar and giving it structure. I find that genuinely satisfying.</p>
-      <p>That's also why I love languages. I think the fastest way to understand a place is to try to speak its language, even badly, and actually talk to people. It changes how you see your own place in the world and what you think you're capable of. English and Spanish are native, German is professional.</p>
-      <p>Moving from Sydney to Melbourne for my master's was deliberate. I wanted out of my comfort zone, so I put the full weight of adult life on myself at once: bills, budgeting, a household, the job search. It was hard and I learned things I didn't know I needed to. It made me more honest, clearer, and steadier.</p>
+      <p>Growing up across Houston, Chicago, and eight years in and around New York City before moving to Australia at 13 taught me early that places operate differently, and that paying attention to that difference is an advantage. That's also why I love languages. I think the fastest way to understand a place is to try to speak its language, even badly, and actually talk to people. It changes how you see your own place in the world and what you think you're capable of. English and Spanish are native, German is professional.</p>
+      <p>Moving from Sydney to Melbourne for my master's was deliberate. I wanted out of my comfort zone, so I put the full weight of adult life on myself at once: bills, budgeting, a household, the job search. It was hard and I learned things I didn't know I needed to. It made me more honest, clearer, and steadier. Skiing and surfing feel like the same sport to me now: read the environment, commit to the line, adjust in real time. That instinct, and the curiosity that comes from moving a lot, keeps pulling me toward the intersection of business, language, and culture, and eventually toward strategy consulting at a global level.</p>
     </div>
 
     <div class="about-grid">
@@ -1063,15 +1087,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </div>
 
-    <!-- Niseko gallery: two of Noah's own photos -->
+    <!-- Niseko gallery: one of Noah's own photos -->
     <div class="gallery reveal">
-      <figure>
-        <!-- PHOTO (add file): Noah instructing two clients in Niseko with Mt Yotei behind. ~1200x1500 (4:5) -->
-        <div class="photo photo--portrait">
-          <img src="/images/niseko-instructing.jpg" alt="Noah guiding two clients on a Niseko slope, Mt Yotei in the background" loading="lazy" onerror="this.classList.add('is-missing')" />
-        </div>
-        <figcaption class="gallery-cap">Instructing, Niseko</figcaption>
-      </figure>
       <figure>
         <!-- PHOTO (add file): Noah buried in deep Niseko powder after a fall, skis upright. ~1200x1500 (4:5) -->
         <div class="photo photo--portrait">
