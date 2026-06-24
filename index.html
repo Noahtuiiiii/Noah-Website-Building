@@ -434,7 +434,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-tile--surf p { color: var(--on-ink-1); }
 /* Arcade photo as a background card on BUILD / 01 (same treatment as the surfer tile) */
 .built-card--bg { position: relative; overflow: hidden; border-color: transparent; background: var(--ink-surface-1); }
-.built-card--bg::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,24,19,0.58), rgba(26,24,19,0.85)), url("/images/arcade-machine.jpg"); background-size: cover; background-position: center; }
+.built-card--bg::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,24,19,0.58), rgba(26,24,19,0.85)), var(--card-bg); background-size: cover; background-position: center; }
 .built-card--bg > * { position: relative; z-index: 1; }
 .built-card--bg .built-no { color: var(--on-ink-2); }
 .built-card--bg h3 { color: var(--on-ink-1); }
@@ -981,7 +981,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <h3 class="h3" style="margin-top: var(--space-3);">When something I want doesn't exist or isn't good enough, I <span class="accent accent--signal">build</span> it.</h3>
       </div>
       <div class="built-grid">
-        <article class="card built-card built-card--bg reveal">
+        <article class="card built-card built-card--bg reveal" style="--card-bg: url('/images/arcade-machine.jpg');">
           <span class="built-no">BUILD / 01</span>
           <h3 class="h4">A custom retro arcade machine</h3>
           <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
@@ -991,13 +991,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <h3 class="h4">This website</h3>
           <p>Built from scratch with Claude.</p>
         </article>
-        <article class="card built-card reveal">
+        <article class="card built-card built-card--bg reveal" style="--card-bg: url('/images/anz-office.jpg');">
           <span class="built-no">BUILD / 03</span>
-          <!-- ANZ office interior photo -->
-          <figure class="photo built-photo">
-            <img src="/images/anz-office.jpg" alt="Interior atrium of the ANZ office" loading="lazy" onerror="this.classList.add('is-missing')" />
-            <figcaption>ANZ office</figcaption>
-          </figure>
           <h3 class="h4">The ANZ policy reference set</h3>
           <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
         </article>
