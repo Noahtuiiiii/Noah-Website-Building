@@ -395,9 +395,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    INTERESTS / A BIT ABOUT ME
    ============================================================ */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); align-items: start; }
+.about-grid { column-count: 2; column-gap: var(--space-4); }
 .about-tall { grid-row: auto; }
-.about-tile { border: 1px solid var(--line-1); border-radius: var(--radius-lg); padding: var(--space-6); background: var(--paper-0); display: flex; flex-direction: column; gap: var(--space-4); }
+.about-tile { border: 1px solid var(--line-1); border-radius: var(--radius-lg); padding: var(--space-6); background: var(--paper-0); display: flex; flex-direction: column; gap: var(--space-4); break-inside: avoid; margin-bottom: var(--space-4); }
 .about-tile.stone { background: var(--stone-1); border-color: transparent; }
 .about-tile.ink { background: var(--ink-surface-1); color: var(--on-ink-1); border-color: transparent; }
 .about-tile.ink .about-eyebrow { color: var(--on-ink-2); }
@@ -427,7 +427,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-photo { margin-bottom: var(--space-6); }
 .about-headshot { margin-bottom: var(--space-2); }
 /* Surfer photo background for the "For the record" tile */
-.about-tile--surf { position: relative; overflow: hidden; border-color: transparent; background: var(--ink-surface-1); }
+.about-tile--surf { position: relative; overflow: hidden; border-color: transparent; background: var(--ink-surface-1); min-height: 260px; justify-content: flex-end; }
 .about-tile--surf::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,24,19,0.45), rgba(26,24,19,0.7)), url("/images/surfer-bg.jpg"); background-size: cover; background-position: center; }
 .about-tile--surf > * { position: relative; z-index: 1; }
 .about-tile--surf .about-eyebrow { color: var(--on-ink-2); }
@@ -520,7 +520,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .nav-cta { display: none; }
   .nav-toggle { display: flex; }
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-4); }
-  .do-grid, .about-grid { grid-template-columns: 1fr; }
+  .do-grid { grid-template-columns: 1fr; }
+  .about-grid { column-count: 1; }
   .case-body { grid-template-columns: 1fr; }
   .built-grid { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; }
