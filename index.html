@@ -419,7 +419,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Things I've built */
 .built { margin-top: var(--space-9); border-top: 1px solid var(--line-1); padding-top: var(--space-8); }
 .built-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
-.built-card { display: flex; flex-direction: column; gap: var(--space-3); }
+.built-card { display: flex; flex-direction: column; gap: var(--space-3); justify-content: center; }
 .built-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
 .built-card p { color: var(--ink-2); font-size: var(--size-body-sm); }
 .built-photo { margin-bottom: var(--space-2); }
@@ -433,12 +433,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-tile--surf .about-eyebrow { color: var(--on-ink-2); }
 .about-tile--surf p { color: var(--on-ink-1); }
 /* Arcade photo as a background card on BUILD / 01 (same treatment as the surfer tile) */
-.built-card--bg { position: relative; overflow: hidden; border-color: transparent; background: var(--ink-surface-1); }
-.built-card--bg::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,24,19,0.58), rgba(26,24,19,0.85)), var(--card-bg); background-size: cover; background-position: center; }
+.built-card--bg { position: relative; overflow: hidden; border-color: transparent; background: var(--ink-surface-1); min-height: 460px; justify-content: flex-end; }
+.built-card--bg::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(to bottom, rgba(26,24,19,0.10), rgba(26,24,19,0.16) 30%, rgba(26,24,19,0.52) 62%, rgba(26,24,19,0.86)), var(--card-bg); background-size: cover; background-position: center; }
 .built-card--bg > * { position: relative; z-index: 1; }
-.built-card--bg .built-no { color: var(--on-ink-2); }
-.built-card--bg h3 { color: var(--on-ink-1); }
-.built-card--bg p { color: var(--on-ink-2); }
+.built-card--bg .built-no { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
+.built-card--bg h3 { color: var(--on-ink-1); text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
+.built-card--bg p { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.65); }
 .photo--portrait { aspect-ratio: 4 / 5; }
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
 .gallery figure { display: flex; flex-direction: column; gap: var(--space-3); }
