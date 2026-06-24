@@ -446,6 +446,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* About narrative (the real story) */
 .about-narrative { max-width: var(--container-text); display: flex; flex-direction: column; gap: var(--space-5); margin-bottom: var(--space-8); }
 .about-narrative p { font-size: var(--size-body-lg); color: var(--ink-2); line-height: var(--lh-relaxed); }
+/* About intro: paragraphs left, feature photo right (photo moves above paragraphs on mobile) */
+.about-intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); }
+.about-intro .about-narrative { max-width: none; margin-bottom: 0; }
+.about-intro-img { aspect-ratio: 3 / 4; }
 
 /* Things I've built */
 .built { margin-top: var(--space-9); border-top: 1px solid var(--line-1); padding-top: var(--space-8); }
@@ -560,6 +564,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-4); }
   .do-grid { grid-template-columns: 1fr; }
   .cap-head { grid-template-columns: 1fr; gap: var(--space-5); }
+  .about-intro { grid-template-columns: 1fr; gap: var(--space-5); }
+  .about-intro-photo { order: -1; }
+  .about-intro-img { aspect-ratio: 4 / 5; }
   .cap-head-photo { margin-top: 0; }
   .cap-img { height: auto; aspect-ratio: 4 / 3; }
   .about-grid { column-count: 1; }
@@ -1045,21 +1052,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <h2 class="h2">The person behind the <span class="accent accent--signal">analysis</span>.</h2>
     </div>
 
-    <!-- Narrative: the real story -->
-    <div class="about-narrative reveal">
+    <!-- Narrative + feature photo (two columns; photo moves above the paragraphs on mobile) -->
+    <div class="about-intro">
+      <div class="about-narrative reveal">
       <p>I came to analysis from an unusual direction. At 19 I flew to Bariloche, Argentina to train for an Austrian Level 2 ski instructor qualification, then spent four months teaching and living in Niseko, Japan. It was the best year of my life, and three weeks after I got home to start university, Australia went into full Covid lockdown. The whiplash taught me something I've leaned on ever since: I'm at my best when I'm stepping into something unfamiliar and giving it structure. I find that genuinely satisfying.</p>
       <p>Growing up across Houston, Chicago, and eight years in and around New York City before moving to Australia at 13 taught me early that places operate differently, and that paying attention to that difference is an advantage. That's also why I love languages. I think the fastest way to understand a place is to try to speak its language, even badly, and actually talk to people. It changes how you see your own place in the world and what you think you're capable of. English and Spanish are native, German is professional.</p>
       <p>Moving from Sydney to Melbourne for my master's was deliberate. I wanted out of my comfort zone, so I put the full weight of adult life on myself at once: bills, budgeting, a household, the job search. It was hard and I learned things I didn't know I needed to. It made me more honest, clearer, and steadier. Skiing and surfing feel like the same sport to me now: read the environment, commit to the line, adjust in real time. That instinct, and the curiosity that comes from moving a lot, keeps pulling me toward the intersection of business, language, and culture, and eventually toward strategy consulting at a global level.</p>
+      </div>
+      <figure class="about-intro-photo reveal">
+        <div class="photo about-intro-img">
+          <img src="/images/about-feature.jpg" alt="Noah with a colleague at a work celebration, cutting a cake in the office" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+      </figure>
     </div>
 
     <div class="about-grid">
       <!-- Tall lead tile: operating principle -->
       <div class="about-tile about-tall reveal">
-        <!-- PHOTO (add file): Noah's headshot. ~1200x1500 (4:5) -->
-        <figure class="photo photo--portrait about-headshot">
-          <img src="/images/about-headshot.jpg" alt="Portrait of Noah McGill in ski gear" loading="lazy" onerror="this.classList.add('is-missing')" />
-          <figcaption>Headshot</figcaption>
-        </figure>
         <span class="about-eyebrow">Operating principle</span>
         <h3 class="h4">Look first, act second.</h3>
         <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data, but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit is the through-line in everything I do.</p>
