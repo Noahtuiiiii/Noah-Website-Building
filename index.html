@@ -352,6 +352,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    WHAT I DO
    ============================================================ */
 .do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+/* Capabilities two-column opener (text left, colleagues photo right) */
+.cap-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); }
+.cap-head-text { max-width: 38rem; }
+.cap-head-photo { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+.cap-img { aspect-ratio: auto; height: 300px; }
+.cap-head-cap { font-family: var(--font-serif); font-style: italic; font-size: var(--size-body); color: var(--ink-3); }
 .do-card .do-icon { width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--paper-2); display: grid; place-items: center; color: var(--ink-1); margin-bottom: var(--space-5); }
 .do-card .do-icon svg { width: 22px; height: 22px; }
 .do-card h3 { margin-bottom: var(--space-3); }
@@ -528,6 +534,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .nav-toggle { display: flex; }
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-4); }
   .do-grid { grid-template-columns: 1fr; }
+  .cap-head { grid-template-columns: 1fr; gap: var(--space-5); }
+  .cap-head-photo { margin-top: 0; }
+  .cap-img { height: auto; aspect-ratio: 16 / 9; }
   .about-grid { column-count: 1; }
   .case-body { grid-template-columns: 1fr; }
   .built-grid { grid-template-columns: 1fr; }
@@ -744,13 +753,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
      ============================================================ -->
 <section class="section" id="work-do">
   <div class="container">
-    <div class="section-head measure reveal">
-      <span class="eyebrow"><span class="idx">02</span> / Capabilities</span>
-      <h2 class="h2">Not a tag cloud, three things I do <span class="accent accent--signal">deeply</span>.</h2>
-      <p class="lead muted" style="margin-top: var(--space-4);">
-        My work sits where ambiguity is highest: taking a vague problem, finding
-        the real cause in the data, and turning it into something a team can act on.
-      </p>
+    <div class="cap-head reveal">
+      <div class="cap-head-text">
+        <span class="eyebrow"><span class="idx">02</span> / Capabilities</span>
+        <h2 class="h2">Not a tag cloud, three things I do <span class="accent accent--signal">deeply</span>.</h2>
+        <p class="lead muted" style="margin-top: var(--space-4);">
+          My work sits where ambiguity is highest: taking a vague problem, finding
+          the real cause in the data, and turning it into something a team can act on.
+        </p>
+      </div>
+      <figure class="cap-head-photo">
+        <div class="photo cap-img">
+          <img src="/images/anz-colleagues.jpg" alt="Noah working through a problem with colleagues" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <figcaption class="cap-head-cap">In the room</figcaption>
+      </figure>
     </div>
 
     <div class="do-grid">
@@ -819,12 +836,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </div>
     </div>
-
-    <!-- ANZ colleagues photo -->
-    <figure class="photo photo--portrait" style="max-width: 360px; margin: var(--space-7) auto 0;">
-      <img src="/images/anz-colleagues.jpg" alt="Noah working through a problem with colleagues at ANZ" loading="lazy" onerror="this.classList.add('is-missing')" />
-      <figcaption>At ANZ</figcaption>
-    </figure>
   </div>
 </section>
 
