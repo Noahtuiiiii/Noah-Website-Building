@@ -426,6 +426,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero-photo { margin-bottom: var(--space-5); }
 .case-photo { margin-bottom: var(--space-6); }
 .about-headshot { margin-bottom: var(--space-2); }
+/* Surfer photo background for the "For the record" tile */
+.about-tile--surf { position: relative; overflow: hidden; border-color: transparent; }
+.about-tile--surf::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,24,19,0.45), rgba(26,24,19,0.7)), url("/images/surfer-bg.jpg"); background-size: cover; background-position: center; }
+.about-tile--surf > * { position: relative; z-index: 1; }
+.about-tile--surf .about-eyebrow { color: var(--on-ink-2); }
+.about-tile--surf p { color: var(--on-ink-1); }
 .photo--portrait { aspect-ratio: 4 / 5; }
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
 .gallery figure { display: flex; flex-direction: column; gap: var(--space-3); }
@@ -805,6 +811,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </div>
     </div>
+
+    <!-- ANZ colleagues photo -->
+    <figure class="photo photo--portrait" style="max-width: 360px; margin: var(--space-7) auto 0;">
+      <img src="/images/anz-colleagues.jpg" alt="Noah working through a problem with colleagues at ANZ" loading="lazy" onerror="this.classList.add('is-missing')" />
+      <figcaption>At ANZ</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -978,6 +990,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </article>
         <article class="card built-card reveal">
           <span class="built-no">BUILD / 03</span>
+          <!-- ANZ office interior photo -->
+          <figure class="photo built-photo">
+            <img src="/images/anz-office.jpg" alt="Interior atrium of the ANZ office" loading="lazy" onerror="this.classList.add('is-missing')" />
+            <figcaption>ANZ office</figcaption>
+          </figure>
           <h3 class="h4">The ANZ policy reference set</h3>
           <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
         </article>
@@ -1055,8 +1072,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <p>The fastest way to understand a place is to speak its language, even badly. It's also a genuine edge for organisations with Spanish or European parent companies.</p>
       </div>
 
-      <!-- Personality line -->
-      <div class="about-tile reveal">
+      <!-- Personality line (surfer photo background) -->
+      <div class="about-tile about-tile--surf reveal">
         <span class="about-eyebrow">For the record</span>
         <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
       </div>
