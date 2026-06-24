@@ -356,8 +356,33 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cap-head { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); }
 .cap-head-text { max-width: 38rem; }
 .cap-head-photo { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
-.cap-img { aspect-ratio: auto; height: 420px; border: 0; border-radius: 0; background: transparent; -webkit-mask-image: radial-gradient(ellipse closest-side at center, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse closest-side at center, #000 70%, transparent 100%); }
+.cap-img { aspect-ratio: auto; height: 460px; border: 0; background: transparent; border-radius: 14px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-composite: intersect; }
 .cap-head-cap { font-family: var(--font-serif); font-style: italic; font-size: var(--size-body); color: var(--ink-3); }
+/* ===== 02 / Capabilities: full-bleed dark theme (scoped to this section only) ===== */
+#work-do { background: #1a1714; }
+#work-do .eyebrow { color: var(--on-ink-2); }
+#work-do .eyebrow .idx { color: var(--signal-3); }
+#work-do .h2 { color: var(--on-ink-1); }
+#work-do .cap-head-text .lead { color: var(--on-ink-2); }
+#work-do .cap-head-cap { color: var(--on-ink-2); }
+#work-do .do-card { background: var(--ink-surface-2); border-color: var(--on-ink-line); box-shadow: none; }
+#work-do .do-card.card--interactive:hover { border-color: rgba(244,242,236,0.28); box-shadow: none; }
+#work-do .do-card h3 { color: var(--on-ink-1); }
+#work-do .do-card p { color: var(--on-ink-2); }
+#work-do .do-icon { background: rgba(244,242,236,0.08); color: var(--on-ink-1); }
+#work-do .do-list { border-top-color: var(--on-ink-line); }
+#work-do .do-list li { color: var(--on-ink-2); }
+#work-do .do-list svg { color: var(--signal-3); }
+#work-do .toolkit { border-top-color: var(--on-ink-line); }
+#work-do .tg-label { color: var(--on-ink-2); }
+#work-do .tag { border-color: var(--on-ink-line); color: var(--on-ink-2); }
+#work-do .tag--solid { background: rgba(244,242,236,0.09); border-color: transparent; color: var(--on-ink-1); }
+#work-do .cap-structure { margin-top: var(--space-9); display: flex; flex-direction: column; gap: var(--space-3); }
+#work-do .band-photo { border-color: var(--on-ink-line); background: var(--ink-surface-2); }
 .do-card .do-icon { width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--paper-2); display: grid; place-items: center; color: var(--ink-1); margin-bottom: var(--space-5); }
 .do-card .do-icon svg { width: 22px; height: 22px; }
 .do-card h3 { margin-bottom: var(--space-3); }
@@ -836,18 +861,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============================================================
-     EDITORIAL BAND: full-width structural image (breather between Capabilities and Experience)
-     ============================================================ -->
-<section class="section" style="padding-block: var(--space-7);">
-  <div class="container">
-    <!-- Stairs / structural detail image (between Capabilities and Experience). -->
-    <figure class="photo band-photo">
-      <img src="/images/stairs-background.jpg" alt="Warm, golden-hour architectural detail of curved metal railings and beams" loading="lazy" onerror="this.classList.add('is-missing')" />
-      <figcaption>Structure</figcaption>
+    <!-- Structure image (bottom of Capabilities, on dark) -->
+    <figure class="cap-structure reveal">
+      <div class="photo band-photo">
+        <img src="/images/stairs-background.jpg" alt="Warm, golden-hour architectural detail of curved metal railings and beams" loading="lazy" onerror="this.classList.add('is-missing')" />
+      </div>
+      <figcaption class="cap-head-cap">Structure</figcaption>
     </figure>
   </div>
 </section>
