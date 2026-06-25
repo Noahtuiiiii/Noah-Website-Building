@@ -467,9 +467,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-photo { margin-bottom: var(--space-6); }
 .about-headshot { margin-bottom: var(--space-2); }
 /* Surfer photo background for the "For the record" tile */
-/* Surf tile: auto-cycling multi-photo box (reuses .built-gallery), taller than the others for presence */
-.about-tile--surf.built-gallery { min-height: 500px; }
+/* Surf tile: rest = single feature image; hover / focus / tap expands into a gallery row (collapses back). Height fixed = no layout shift. */
+.about-tile--surf { position: relative; overflow: hidden; isolation: isolate; min-height: 500px; justify-content: flex-end; background: var(--ink-surface-1); border-color: transparent; cursor: pointer; outline: none; }
+.about-tile--surf:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
+.surf-strip { position: absolute; inset: 0; z-index: 0; display: flex; }
+.surf-shot { position: relative; flex: 0 1 0%; min-width: 0; overflow: hidden; transition: flex-grow .32s var(--ease-out), flex-basis .32s var(--ease-out), opacity .32s var(--ease-out); }
+.surf-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.surf-shot--feature { flex-grow: 1; flex-basis: 100%; }
+.surf-shot:not(.surf-shot--feature) { flex-grow: 0; flex-basis: 0%; opacity: 0; }
+.surf-overlay { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to bottom, rgba(26,24,19,0.16), rgba(26,24,19,0.30) 52%, rgba(26,24,19,0.80)); }
+.surf-body { position: relative; z-index: 2; display: flex; flex-direction: column; gap: var(--space-3); }
 .about-tile--surf .about-eyebrow { color: var(--on-ink-2); text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
+.about-tile--surf p { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.65); }
+/* expanded: keyboard focus or tap (works on touch), plus hover on hover-capable devices */
+.about-tile--surf:focus-within .surf-shot, .about-tile--surf.is-open .surf-shot { flex-grow: 1; flex-basis: 0%; opacity: 1; }
+@media (hover: hover) { .about-tile--surf:hover .surf-shot { flex-grow: 1; flex-basis: 0%; opacity: 1; } }
 /* Arcade photo as a background card on BUILD / 01 (same treatment as the surfer tile) */
 .built-card--bg { position: relative; overflow: hidden; border-color: transparent; background: var(--ink-surface-1); min-height: 460px; justify-content: flex-end; }
 .built-card--bg::before { content: ""; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(to bottom, rgba(26,24,19,0.10), rgba(26,24,19,0.16) 30%, rgba(26,24,19,0.52) 62%, rgba(26,24,19,0.86)), var(--card-bg); background-size: cover; background-position: center; }
@@ -650,6 +662,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .ski-strip, .ski-shot, .ski-badge { transition: none !important; }
   .built-gallery .bg-img { transition: none !important; }
   .built-card.built-gallery:hover { transform: none !important; }
+  .surf-shot { transition: none !important; }
 }
 </style>
 </head>
@@ -1206,18 +1219,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <p>The fastest way to understand a place is to speak its language, even badly. It's also a genuine edge for organisations with Spanish or European parent companies.</p>
       </div>
 
-      <!-- Personality line: auto-cycling surf gallery (same crossfade as the build cards), just taller. Supports 2-4 frames. -->
-      <div class="about-tile built-gallery about-tile--surf reveal">
-        <div class="bg-stack">
-          <img class="bg-img is-active" src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" decoding="async" />
-          <img class="bg-img" src="/images/surf-2.jpg" alt="Noah at the beach in a wetsuit with his surfboard" loading="lazy" decoding="async" />
-          <img class="bg-img" src="/images/surf-3.jpg" alt="A surfboard on the sand at a bright, sunny beach" loading="lazy" decoding="async" />
-          <!-- Add a 4th frame: drop your file at images/surf-4.jpg, then uncomment and edit the alt -->
-          <!-- <img class="bg-img" src="/images/surf-4.jpg" alt="Add your surf photo here (images/surf-4.jpg)" loading="lazy" decoding="async" /> -->
+      <!-- Personality line: rest = single feature image; hover / keyboard focus / tap expands into a gallery row, then collapses back. Supports 2-4 frames. -->
+      <div class="about-tile about-tile--surf reveal" tabindex="0" role="button" aria-expanded="false"
+           aria-label="Surfing photos. Hover, tap, or press Enter to expand the gallery.">
+        <div class="surf-strip">
+          <div class="surf-shot surf-shot--feature"><img src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" decoding="async" /></div>
+          <div class="surf-shot"><img src="/images/surf-2.jpg" alt="Noah at the beach in a wetsuit with his surfboard" loading="lazy" decoding="async" /></div>
+          <div class="surf-shot"><img src="/images/surf-3.jpg" alt="A surfboard on the sand at a bright, sunny beach" loading="lazy" decoding="async" /></div>
+          <!-- Add a 4th frame: <div class="surf-shot"><img src="/images/surf-4.jpg" alt="Add your surf photo here (images/surf-4.jpg)" loading="lazy" decoding="async" /></div> -->
         </div>
-        <div class="bg-vignette"></div>
-        <div class="bg-scrim"></div>
-        <div class="built-body">
+        <div class="surf-overlay"></div>
+        <div class="surf-body">
           <span class="about-eyebrow">For the record</span>
           <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
         </div>
@@ -1377,6 +1389,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     decode(1);
     setTimeout(() => { advance(); setInterval(advance, interval); }, startDelay + interval);
   });
+})();
+
+/* ============================================================
+   SURF TILE: tap / keyboard expand (hover handled by CSS)
+   ============================================================ */
+(function surfGallery() {
+  const tile = document.querySelector('.about-tile--surf');
+  if (!tile) return;
+  const toggle = () => { const open = tile.classList.toggle('is-open'); tile.setAttribute('aria-expanded', String(open)); };
+  tile.addEventListener('click', toggle);
+  tile.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
 })();
 
 /* ============================================================
