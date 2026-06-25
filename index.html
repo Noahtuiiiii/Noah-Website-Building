@@ -483,6 +483,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
 .gallery figure { display: flex; flex-direction: column; gap: var(--space-3); }
 .gallery-cap { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
+
+/* === Skiing hover/tap-expand gallery === */
+.ski-gallery { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-2); }
+.ski-frame { position: relative; border-radius: var(--radius-lg); }
+.ski-strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+.ski-shot { position: relative; flex: 0 0 78%; aspect-ratio: 4 / 5; border-radius: var(--radius-lg); overflow: hidden; background: var(--stone-1); scroll-snap-align: start; }
+.ski-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.ski-shot.is-missing img { display: none; }
+.ski-badge { display: none; }
+@media (hover: hover) and (min-width: 761px) {
+  .ski-frame { cursor: pointer; outline: none; }
+  .ski-frame:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
+  .ski-strip { overflow: hidden; scroll-snap-type: none; height: 22rem; transition: height .32s var(--ease-out); }
+  .ski-shot { flex: 0 1 0%; aspect-ratio: auto; min-width: 0; transition: flex-grow .32s var(--ease-out), flex-basis .32s var(--ease-out), opacity .32s var(--ease-out); }
+  .ski-shot--feature { flex-grow: 1; flex-basis: 100%; }
+  .ski-shot:not(.ski-shot--feature) { flex-grow: 0; flex-basis: 0%; opacity: 0; }
+  .ski-frame:hover .ski-strip, .ski-frame:focus-within .ski-strip, .ski-frame.is-open .ski-strip { height: 13rem; }
+  .ski-frame:hover .ski-shot, .ski-frame:focus-within .ski-shot, .ski-frame.is-open .ski-shot { flex-grow: 1; flex-basis: 0%; opacity: 1; }
+  .ski-badge { display: inline-block; position: absolute; right: 10px; bottom: 10px; z-index: 2; font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--track-label); color: var(--on-ink-1); background: rgba(26,24,19,0.72); padding: 4px 9px; border-radius: var(--radius-pill); pointer-events: none; transition: opacity .25s var(--ease-out); }
+  .ski-frame:hover .ski-badge, .ski-frame:focus-within .ski-badge, .ski-frame.is-open .ski-badge { opacity: 0; }
+}
 .band-photo { aspect-ratio: 21 / 9; }
 @media (max-width: 760px) { .band-photo { aspect-ratio: 16 / 10; } }
 
@@ -605,6 +626,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .ski-strip, .ski-shot, .ski-badge { transition: none !important; }
 }
 </style>
 </head>
@@ -1088,15 +1110,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="about-eyebrow">Since I was two</span>
         <h3 class="h4">Skiing is the through-line.</h3>
         <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
-        <!-- Niseko instructing photo -->
-        <figure class="photo photo--portrait">
-          <img src="/images/niseko-instructing.jpg" alt="Noah guiding two clients on a Niseko slope, Mt Yotei in the background" loading="lazy" onerror="this.classList.add('is-missing')" />
-          <figcaption>Niseko, Japan</figcaption>
-        </figure>
-        <!-- PHOTO (add file): Noah with the GoSnow ski-school cohort in Niseko. ~1600x1000 (16:10) -->
-        <figure class="photo">
-          <img src="/images/niseko-ski.jpg" alt="Noah with the full GoSnow ski-school team gathered on the snow in Niseko, Japan" loading="lazy" onerror="this.classList.add('is-missing')" />
-          <figcaption>Niseko, Japan</figcaption>
+        <!-- Hover/tap-expand ski gallery. Rest: feature only. Desktop hover/keyboard expands to the full row; touch = horizontal-scroll filmstrip. -->
+        <figure class="ski-gallery">
+          <div class="ski-frame" tabindex="0" role="button" aria-expanded="false" aria-controls="ski-strip"
+               aria-label="Skiing photos from Niseko, Japan. Hover, tap, or press Enter to see more.">
+            <div class="ski-strip" id="ski-strip">
+              <div class="ski-shot ski-shot--feature">
+                <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" />
+              </div>
+              <div class="ski-shot">
+                <img src="/images/ski-02.jpg" alt="Noah in ski helmet and mirrored goggles on a snowy day in Niseko" loading="lazy" onerror="this.closest('.ski-shot').classList.add('is-missing')" />
+              </div>
+              <div class="ski-shot">
+                <!-- REPLACE: drop your photo at images/ski-03.jpg, then edit this alt text -->
+                <img src="/images/ski-03.jpg" alt="Add your ski photo here (images/ski-03.jpg)" loading="lazy" onerror="this.closest('.ski-shot').classList.add('is-missing')" />
+              </div>
+              <div class="ski-shot">
+                <!-- REPLACE: drop your photo at images/ski-04.jpg, then edit this alt text -->
+                <img src="/images/ski-04.jpg" alt="Add your ski photo here (images/ski-04.jpg)" loading="lazy" onerror="this.closest('.ski-shot').classList.add('is-missing')" />
+              </div>
+            </div>
+            <span class="ski-badge" aria-hidden="true">+3</span>
+          </div>
+          <figcaption class="gallery-cap">Niseko, Japan</figcaption>
         </figure>
       </div>
 
@@ -1132,16 +1168,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </div>
 
-    <!-- Niseko gallery: one of Noah's own photos -->
-    <div class="gallery reveal">
-      <figure>
-        <!-- PHOTO (add file): Noah buried in deep Niseko powder after a fall, skis upright. ~1200x1500 (4:5) -->
-        <div class="photo photo--portrait">
-          <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" onerror="this.classList.add('is-missing')" />
-        </div>
-        <figcaption class="gallery-cap">A proper powder day</figcaption>
-      </figure>
-    </div>
   </div>
 </section>
 
@@ -1236,6 +1262,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       toggle.setAttribute('aria-expanded', 'false');
     })
   );
+})();
+
+/* ============================================================
+   SKI GALLERY: tap / keyboard expand (hover handled by CSS)
+   ============================================================ */
+(function skiGallery() {
+  const frame = document.querySelector('.ski-gallery .ski-frame');
+  if (!frame) return;
+  const toggle = () => {
+    const open = frame.classList.toggle('is-open');
+    frame.setAttribute('aria-expanded', String(open));
+  };
+  frame.addEventListener('click', toggle);
+  frame.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
 })();
 
 /* ============================================================
