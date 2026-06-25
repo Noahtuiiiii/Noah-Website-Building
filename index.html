@@ -518,7 +518,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .contact-panel { background: rgba(26,24,19,0.82); color: var(--on-ink-1); border-radius: var(--radius-xl); padding: var(--space-9); box-shadow: var(--shadow-lg); }
 /* Contact section background: photo + the same filter used on the Build cards */
-#contact { background-image: linear-gradient(rgba(26,24,19,0.34), rgba(26,24,19,0.34)), url("/images/contact-bg-v3.jpg"); background-size: cover; background-position: center; aspect-ratio: 1800 / 1110; display: flex; flex-direction: column; justify-content: center; }
+#contact { background-image: linear-gradient(rgba(26,24,19,0.34), rgba(26,24,19,0.34)), url("/images/contact-bg.jpg"); background-size: cover; background-position: center; aspect-ratio: 4 / 3; position: relative; }
+#contact > .container { position: absolute; top: 22%; left: 0; right: 0; }
 .contact-center { max-width: 640px; margin-inline: auto; text-align: center; }
 .contact-panel .eyebrow { color: var(--on-ink-2); justify-content: center; }
 .contact-panel .eyebrow .idx { color: var(--signal-3); }
@@ -590,6 +591,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .about-tall { grid-row: auto; }
   .exp { grid-template-columns: 1fr; gap: var(--space-4); }
   .contact-panel { padding: var(--space-6); }
+  #contact { aspect-ratio: auto; background-position: center top; }
+  #contact > .container { position: static; }
   .section { padding-block: var(--space-9); }
   .hero { padding-top: 6rem; }
   /* Mobile: soft white halo behind the transparent Download CV button so it stays legible over the image */
