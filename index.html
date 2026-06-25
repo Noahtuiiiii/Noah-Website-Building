@@ -572,6 +572,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .reveal { opacity: 0; transform: translateY(8px); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
 .reveal.is-in { opacity: 1; transform: none; }
 
+/* === Build cards: staggered auto-cycling crossfade galleries === */
+.built-gallery { position: relative; overflow: hidden; isolation: isolate; min-height: 460px; justify-content: flex-end; background: var(--ink-surface-1); border-color: transparent; transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out), opacity var(--dur-slow) var(--ease-out); }
+.built-gallery .bg-stack, .built-gallery .bg-vignette, .built-gallery .bg-scrim { position: absolute; inset: 0; pointer-events: none; }
+.built-gallery .bg-stack { z-index: 0; }
+.built-gallery .bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s var(--ease-out); }
+.built-gallery .bg-img.is-active { opacity: 1; }
+/* full-card ambient vignette — softens on hover so the photo reads clearly */
+.built-gallery .bg-vignette { z-index: 1; background: linear-gradient(to bottom, rgba(26,24,19,0.34), rgba(26,24,19,0.28) 45%, rgba(26,24,19,0.42)); transition: opacity .3s var(--ease-out); }
+/* localized bottom scrim under the text — stays put for legibility on any image */
+.built-gallery .bg-scrim { z-index: 2; background: linear-gradient(to top, rgba(26,24,19,0.92) 0%, rgba(26,24,19,0.72) 16%, rgba(26,24,19,0.34) 38%, rgba(26,24,19,0) 54%); }
+.built-gallery .built-body { position: relative; z-index: 3; display: flex; flex-direction: column; gap: var(--space-3); }
+.built-gallery .built-no { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
+.built-gallery h3 { color: var(--on-ink-1); text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
+.built-gallery p { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.65); }
+@media (hover: hover) {
+  .built-card.built-gallery:hover { transform: scale(1.04); z-index: 4; box-shadow: var(--shadow-lg); }
+  .built-card.built-gallery:hover .bg-vignette { opacity: 0.3; }
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -631,6 +650,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   * { animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ski-strip, .ski-shot, .ski-badge { transition: none !important; }
+  .built-gallery .bg-img { transition: none !important; }
+  .built-card.built-gallery:hover { transform: none !important; }
 }
 </style>
 </head>
@@ -1053,20 +1074,46 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <h3 class="h3" style="margin-top: var(--space-3);">When something I want doesn't exist or isn't good enough, I <span class="accent accent--signal">build</span> it.</h3>
       </div>
       <div class="built-grid">
-        <article class="card built-card built-card--bg reveal" style="--card-bg: url('/images/arcade-machine.jpg');">
-          <span class="built-no">BUILD / 01</span>
-          <h3 class="h4">A custom retro arcade machine</h3>
-          <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
+        <article class="card built-card built-gallery reveal">
+          <div class="bg-stack">
+            <img class="bg-img is-active" src="/images/arcade-machine.jpg" alt="The finished custom retro arcade cabinet, lit up" decoding="async" />
+            <img class="bg-img" src="/images/build-01-2.jpg" alt="The cabinet's control panel and multi-system emulator menu" loading="lazy" decoding="async" />
+            <img class="bg-img" src="/images/build-01-3.jpg" alt="Wiring the joysticks and buttons to the controller board during the build" loading="lazy" decoding="async" />
+            <img class="bg-img" src="/images/build-01-4.jpg" alt="Setting up and programming the Raspberry Pi" loading="lazy" decoding="async" />
+          </div>
+          <div class="bg-vignette"></div>
+          <div class="bg-scrim"></div>
+          <div class="built-body">
+            <span class="built-no">BUILD / 01</span>
+            <h3 class="h4">A custom retro arcade machine</h3>
+            <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
+          </div>
         </article>
-        <article class="card built-card built-card--bg reveal" style="--card-bg: url('/images/build-website.jpg');">
-          <span class="built-no">BUILD / 02</span>
-          <h3 class="h4">This website</h3>
-          <p>Built from scratch with Claude.</p>
+        <article class="card built-card built-gallery reveal">
+          <div class="bg-stack">
+            <img class="bg-img is-active" src="/images/build-website.jpg" alt="Building this portfolio website" decoding="async" />
+            <!-- Add more BUILD / 02 frames here, e.g.: <img class="bg-img" src="/images/build-02-2.jpg" alt="..." loading="lazy" decoding="async" /> -->
+          </div>
+          <div class="bg-vignette"></div>
+          <div class="bg-scrim"></div>
+          <div class="built-body">
+            <span class="built-no">BUILD / 02</span>
+            <h3 class="h4">This website</h3>
+            <p>Built from scratch with Claude.</p>
+          </div>
         </article>
-        <article class="card built-card built-card--bg reveal" style="--card-bg: url('/images/anz-office.jpg');">
-          <span class="built-no">BUILD / 03</span>
-          <h3 class="h4">The ANZ policy reference set</h3>
-          <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
+        <article class="card built-card built-gallery reveal">
+          <div class="bg-stack">
+            <img class="bg-img is-active" src="/images/anz-office.jpg" alt="The ANZ office where the policy reference set was built" decoding="async" />
+            <!-- Add more BUILD / 03 frames here, e.g.: <img class="bg-img" src="/images/build-03-2.jpg" alt="..." loading="lazy" decoding="async" /> -->
+          </div>
+          <div class="bg-vignette"></div>
+          <div class="bg-scrim"></div>
+          <div class="built-body">
+            <span class="built-no">BUILD / 03</span>
+            <h3 class="h4">The ANZ policy reference set</h3>
+            <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -1292,6 +1339,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   frame.addEventListener('click', toggle);
   frame.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
+})();
+
+/* ============================================================
+   BUILD CARDS: staggered auto-cycling crossfade galleries
+   ============================================================ */
+(function buildGalleries() {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.built-gallery').forEach((card, i) => {
+    const imgs = Array.from(card.querySelectorAll('.bg-img'));
+    if (reduce || imgs.length < 2) return;            // static if no frames to cycle
+    let idx = 0;
+    const interval = 4500 + i * 300;                  // drift: 4.5 / 4.8 / 5.1s ...
+    const startDelay = i * 1600;                       // stagger the starts so they never sync
+    const decode = (n) => { const im = imgs[n]; return (im && im.decode) ? im.decode().catch(() => {}) : Promise.resolve(); };
+    const advance = async () => {
+      const next = (idx + 1) % imgs.length;
+      await decode(next);                              // ensure next frame is ready -> smooth crossfade
+      imgs[idx].classList.remove('is-active');
+      imgs[next].classList.add('is-active');
+      idx = next;
+      decode((next + 1) % imgs.length);               // preload the following one
+    };
+    decode(1);
+    setTimeout(() => { advance(); setInterval(advance, interval); }, startDelay + interval);
   });
 })();
 
