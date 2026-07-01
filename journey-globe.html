@@ -13,7 +13,7 @@
   html, body { height:100%; }
   body { background: radial-gradient(circle at 50% 42%, #1a2c52 0%, #0d1b2a 55%, #0a1622 100%);
     overflow:hidden; font-family:"DM Mono", ui-monospace, monospace; color:var(--ink); }
-  #globe { display:block; width:100vw; height:100vh; cursor:grab; }
+  #globe { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none; -ms-touch-action:none; }
   #globe:active { cursor:grabbing; }
   .caption { position:fixed; left:24px; bottom:22px; z-index:2; pointer-events:none; }
   .caption .title { font-family:"Syne",sans-serif; font-weight:800; font-size:15px;
@@ -674,7 +674,12 @@
     window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); });
     window.addEventListener("mouseup", function (e) { up(e.clientX, e.clientY); });
     canvas.addEventListener("touchstart", function (e) { down(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-    window.addEventListener("touchmove", function (e) { move(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    window.addEventListener("touchmove", function (e) {
+      // A drag that began on the globe owns the gesture: rotate, and stop the
+      // browser/parent page from scrolling. Needs passive:false for preventDefault().
+      if (dragging && e.cancelable) e.preventDefault();
+      if (e.touches[0]) move(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
     window.addEventListener("touchend", function (e) {
       var t = e.changedTouches && e.changedTouches[0];
       up(t ? t.clientX : downX, t ? t.clientY : downY);
