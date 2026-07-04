@@ -1658,9 +1658,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    STAT COUNTERS: count up from 0 when a metric strip scrolls in
    (respects prefers-reduced-motion). Targets the leading number in
-   each .metric .value; units like +, %, x stay put. Runs once per
-   metric container (the hero .metrics strip, plus each case card's
-   .case-metrics row) so every stat animates independently.
+   each .metric .value; units like +, %, x stay put. Non-integer
+   values (e.g. "3.2") and non-numeric values (e.g. "Lowest") are
+   left as static text. Runs once per metric container (the hero
+   .metrics strip, plus each case card's .case-metrics row) so
+   every stat animates independently.
    ============================================================ */
 (function statCounters() {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1669,8 +1671,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     container.querySelectorAll('.metric .value').forEach((el) => {
       const node = el.firstChild;                 // leading text node = the number
       if (!node || node.nodeType !== 3) return;
-      const target = parseInt(node.textContent.trim(), 10);
-      if (isNaN(target)) return;
+      const raw = node.textContent.trim();
+      const target = parseInt(raw, 10);
+      if (isNaN(target) || String(target) !== raw) return;   // skip decimals/non-integers, e.g. "3.2"
       items.push({ node, target });
       if (!reduce) node.textContent = '0';
     });
