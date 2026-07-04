@@ -259,6 +259,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-block { display: flex; flex-direction: column; gap: var(--space-2); }
 .case-k { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
 .case-block p { color: var(--ink-2); font-size: var(--size-body-sm); }
+/* Metric-stat row inside a case card: reuses .metric/.value/.unit/.label/.delta from the metric strip (lines ~345-349) */
+.case-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); }
 .more-writeups { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); }
 
 /* ============================================================
@@ -643,6 +645,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .cap-img { height: auto; aspect-ratio: 4 / 3; }
   .about-grid { column-count: 1; }
   .case-body { grid-template-columns: 1fr; }
+  .case-metrics { grid-template-columns: 1fr; gap: var(--space-4); }
   .built-grid { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; }
   /* Journey map becomes a vertical spine on small screens */
@@ -1087,6 +1090,99 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </article>
 
+    <!-- Case study: ANZ policy reference set -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 02</span>
+        <h3 class="h3">Building the system that moved the throughput</h3>
+      </div>
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="value">50<span class="unit">%</span></div>
+          <div class="label">Throughput gain</div>
+          <div class="delta">vs the 30-case benchmark</div>
+        </div>
+        <div class="metric">
+          <div class="value">45<span class="unit">+</span></div>
+          <div class="label">Cases resolved / day</div>
+          <div class="delta">Peaking at 60</div>
+        </div>
+        <div class="metric">
+          <div class="value">Lowest</div>
+          <div class="label">Escalation-rate band</div>
+          <div class="delta">Held on the team</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>At ANZ I resolved small-business client cases in a regulated banking environment, where every resolution has to be correct, compliant, and defensible on audit. Four months in, KPI targets rose from a 30-case daily benchmark toward 45+. The volume wasn't the real problem — the real cost was the time each case took, because the policy and process knowledge needed to resolve them lived in people's heads and across scattered sources.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <p>I treated it as an analysis problem before a speed problem. I mapped where handling time actually went, then built a working reference set of policy and process notes, a single, structured source that standardised how complex scenarios got resolved and sharpened which cases to prioritise. I kept the documentation audit-ready and engaged cross-functional stakeholders to align on compliant resolutions, so the reference set held up under governance, not just at my own desk.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>Per-case handling time fell and throughput rose to 45+ cases a day, peaking at 60, roughly a 50% increase on the original benchmark, while I held one of the lowest case-escalation rates on the team and sustained accuracy as volume climbed. The reference set became shared infrastructure: structured documentation that supported knowledge transfer across the team, not a personal shortcut.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>This is the PMO half of how I work. Finding the real lever is step one; the value is in turning it into a repeatable system with the governance, documentation, and stakeholder alignment that lets other people rely on it. Process improvement that survives an audit and outlives the person who built it.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case study: RMIT Master of Project Management -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 03</span>
+        <h3 class="h3">Delivery documentation, before it's on the line</h3>
+      </div>
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="value">4<span class="unit">&times; HD</span></div>
+          <div class="label">High Distinctions</div>
+          <div class="delta">Risk, Leadership, Procurement &amp; Ethics, Research Design</div>
+        </div>
+        <div class="metric">
+          <div class="value">3.2</div>
+          <div class="label">GPA</div>
+          <div class="delta">Master of Project Management, RMIT</div>
+        </div>
+        <div class="metric">
+          <div class="value">2026</div>
+          <div class="label">Completion</div>
+          <div class="delta">MPM, Melbourne</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>I chose the Master of Project Management at RMIT deliberately, and moved from Sydney to Melbourne to do it. The point wasn't the credential, it was practising the analytical and delivery discipline on real briefs, so the rigour is already a habit before it's carrying a live project. The coursework behind my four High Distinctions is concrete, and it looks like the work.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <ul class="exp-points">
+            <li>Risk and financial appraisal, board-level: for a build-operate-transfer water-infrastructure project I wrote a full risk assessment for an interim board and built the financial feasibility model behind it, NPV, project and equity IRR, WACC, and net-cashflow analysis, so the risk narrative and the numbers told one consistent story.</li>
+            <li>A complete project-management plan: for a consultancy management report I produced the full delivery documentation set, PM role, stakeholder and communications management, scope statement, cost and schedule management, and project close-out.</li>
+            <li>Public-sector governance: a 4,000-word comparative analysis of project-management maturity across Australia's three government tiers, plus a group investigation of the myki modernisation using an Investment Logic Map and benefits-realisation framing, grounded in PRINCE2.</li>
+            <li>Process mapping in Agile: value-stream and to-be workflow mapping, Scrum and Kanban, and a bottleneck analysis for a delivery case, backed by an ICAgile ICP certification.</li>
+            <li>Evidence discipline: a research proposal taken from research question and rationale through literature review to a justified methodology, the same discipline that underwrites good requirements work.</li>
+            <li>Procurement and ethics: an analysis of commercial models and incentive structures in alliance contracting, and a supplier-comparison assessment of how contract design drives delivery behaviour.</li>
+          </ul>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>Four High Distinctions in the subjects that map straight onto BA and PMO work, and a body of delivery artifacts, risk registers, a financial model, a full project-management plan, an Investment Logic Map, value-stream maps, a research proposal, grounded in PRINCE2, Agile, and Waterfall, with the tooling to match: Excel, Power BI, SQL, MS Project, Smartsheet, Confluence, SharePoint.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>The ANZ and IBT results show the instinct working in the wild; this is where it got its discipline. At ANZ I'd been practising iteration, governance, and flow without the vocabulary, and the degree gave the method its name and its rigour: root-cause analysis, risk thinking, stakeholder governance, and evidence-led writing, practised deliberately, so that on a real project the rigour is already there.</p>
+        </div>
+      </div>
+    </article>
+
     <!-- Things I've built (moved here so the page closes on "a team that teaches") -->
     <div class="built reveal">
       <div class="built-head measure">
@@ -1175,7 +1271,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="about-tile about-tall reveal">
         <span class="about-eyebrow">Operating principle</span>
         <h3 class="h4">Look first, act second.</h3>
-        <p>My instinct is to ask why something's happening before deciding what to do about it. At IBT I wasn't asked to dig into the outcome data, but the pattern bothered me, so I traced it, and the answer turned out to be tutor ratios, not the students. That habit is the through-line in everything I do.</p>
+        <p>My instinct is to ask why something's happening before deciding what to do about it, even when no one's asked me to look. The answer is rarely what people assume, and finding it usually points to a different fix than the obvious one. That habit is the through-line in everything I do.</p>
         <p>It's the same instinct that takes me to new places and makes me want to build things: find the shape of something unfamiliar, then give it structure.</p>
       </div>
 
@@ -1201,11 +1297,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </figure>
       </div>
 
-      <!-- 30 to 60 highlight -->
+      <!-- Personal reflection (not a repeat of the IBT stat) -->
       <div class="about-tile reveal">
         <span class="about-eyebrow">Quietly proud of</span>
-        <h3 class="h4">30% to 60%</h3>
-        <p>The jump in top-grade attainment after my analysis reshaped how three subjects were tutored. Numbers moving because of a question I asked is the best feeling in the job.</p>
+        <h3 class="h4">Rebuilding on my own timeline.</h3>
+        <p>Moving from Sydney to Melbourne for this degree meant restarting everything at once, bills, budgeting, a new city, on a timeline nobody set for me but mine. Choosing that discomfort on purpose still feels like the right call.</p>
       </div>
 
       <!-- Languages ink tile (trilingual differentiator) -->
@@ -1560,46 +1656,51 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 })();
 
 /* ============================================================
-   STAT COUNTERS: count up from 0 when the metric strip scrolls in
+   STAT COUNTERS: count up from 0 when a metric strip scrolls in
    (respects prefers-reduced-motion). Targets the leading number in
-   each .metric .value; units like +, %, x stay put.
+   each .metric .value; units like +, %, x stay put. Non-integer
+   values (e.g. "3.2") and non-numeric values (e.g. "Lowest") are
+   left as static text. Runs once per metric container (the hero
+   .metrics strip, plus each case card's .case-metrics row) so
+   every stat animates independently.
    ============================================================ */
 (function statCounters() {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const items = [];
-  document.querySelectorAll('.metric .value').forEach((el) => {
-    const node = el.firstChild;                 // leading text node = the number
-    if (!node || node.nodeType !== 3) return;
-    const target = parseInt(node.textContent.trim(), 10);
-    if (isNaN(target)) return;
-    items.push({ node, target });
-    if (!reduce) node.textContent = '0';
+  document.querySelectorAll('.metrics, .case-metrics').forEach((container) => {
+    const items = [];
+    container.querySelectorAll('.metric .value').forEach((el) => {
+      const node = el.firstChild;                 // leading text node = the number
+      if (!node || node.nodeType !== 3) return;
+      const raw = node.textContent.trim();
+      const target = parseInt(raw, 10);
+      if (isNaN(target) || String(target) !== raw) return;   // skip decimals/non-integers, e.g. "3.2"
+      items.push({ node, target });
+      if (!reduce) node.textContent = '0';
+    });
+    if (reduce || !items.length) return;
+    const dur = 1800;            // slower tick-up
+    let raf = null;
+    function animate() {
+      if (raf) cancelAnimationFrame(raf);
+      const t0 = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);       // easeOutCubic
+        items.forEach((it) => { it.node.textContent = Math.round(ease * it.target); });
+        if (p < 1) raf = requestAnimationFrame(tick);
+        else { raf = null; items.forEach((it) => { it.node.textContent = it.target; }); }
+      })(t0);
+    }
+    function reset() {
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      items.forEach((it) => { it.node.textContent = '0'; });
+    }
+    // Replay every time this container scrolls into view; reset to 0 when it leaves.
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { e.isIntersecting ? animate() : reset(); });
+    }, { threshold: 0.4 });
+    obs.observe(container);
   });
-  if (reduce || !items.length) return;
-  const metrics = document.querySelector('.metrics');
-  if (!metrics) return;
-  const dur = 1800;            // slower tick-up
-  let raf = null;
-  function animate() {
-    if (raf) cancelAnimationFrame(raf);
-    const t0 = performance.now();
-    (function tick(now) {
-      const p = Math.min((now - t0) / dur, 1);
-      const ease = 1 - Math.pow(1 - p, 3);       // easeOutCubic
-      items.forEach((it) => { it.node.textContent = Math.round(ease * it.target); });
-      if (p < 1) raf = requestAnimationFrame(tick);
-      else { raf = null; items.forEach((it) => { it.node.textContent = it.target; }); }
-    })(t0);
-  }
-  function reset() {
-    if (raf) { cancelAnimationFrame(raf); raf = null; }
-    items.forEach((it) => { it.node.textContent = '0'; });
-  }
-  // Replay every time the strip scrolls into view; reset to 0 when it leaves.
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { e.isIntersecting ? animate() : reset(); });
-  }, { threshold: 0.4 });
-  obs.observe(metrics);
 })();
 
 /* ============================================================
