@@ -563,9 +563,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer-col a, .footer-col span { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-2); transition: color var(--dur-base) var(--ease-out); }
 .footer-col a:hover { color: var(--signal-2); }
 /* === Interactive 3D globe (full-bleed iframe, blends with globe edge colour #0a1622) === */
-.globe-embed { background: #0a1622; line-height: 0; }
+.globe-embed { position: relative; background: #0a1622; line-height: 0; }
 .globe-embed iframe { width: 100%; height: 100vh; border: 0; display: block; touch-action: none; }
 @media (max-width: 760px) { .globe-embed iframe { height: 70vh; } }
+
+/* Globe hint: grey scrim + "Drag to explore", shown once when the globe first scrolls into view */
+.globe-hint {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(20, 19, 16, 0.55);
+  backdrop-filter: grayscale(1) contrast(0.92);
+  -webkit-backdrop-filter: grayscale(1) contrast(0.92);
+  opacity: 0; pointer-events: none; cursor: pointer;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.globe-hint.is-visible { opacity: 1; pointer-events: auto; }
+.globe-hint-label {
+  font-family: var(--font-mono); font-size: var(--size-label);
+  text-transform: uppercase; letter-spacing: var(--track-label-wide);
+  color: var(--on-ink-1); background: rgba(0,0,0,0.25);
+  border: 1px solid var(--on-ink-line); border-radius: 999px;
+  padding: var(--space-3) var(--space-5);
+}
 .footer-bottom { margin-top: var(--space-8); padding-top: var(--space-5); border-top: 1px solid var(--line-1); display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
 
 /* ============================================================
@@ -1241,6 +1260,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <iframe src="/journey-globe.html"
           title="Interactive 3D globe charting Noah's ski and work journey"
           loading="lazy"></iframe>
+  <div class="globe-hint" id="globeHint">
+    <span class="globe-hint-label">Drag to explore</span>
+  </div>
 </section>
 
 <!-- ============================================================
@@ -1578,6 +1600,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     entries.forEach((e) => { e.isIntersecting ? animate() : reset(); });
   }, { threshold: 0.4 });
   obs.observe(metrics);
+})();
+
+/* ============================================================
+   GLOBE HINT: grey overlay reading "Drag to explore", shown the
+   first time the globe scrolls into view. Dismissed on first
+   interaction (click/tap on the overlay) and never shown again.
+   ============================================================ */
+(() => {
+  const hint = document.getElementById('globeHint');
+  const section = document.querySelector('.globe-embed');
+  if (!hint || !section) return;
+
+  let dismissed = false;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting && !dismissed) hint.classList.add('is-visible');
+    });
+  }, { threshold: 0.4 });
+  obs.observe(section);
+
+  const dismiss = () => {
+    if (dismissed) return;
+    dismissed = true;
+    hint.classList.remove('is-visible');
+    obs.disconnect();
+  };
+  hint.addEventListener('pointerdown', dismiss);
+  hint.addEventListener('touchstart', dismiss, { passive: true });
 })();
 
 /* ---- Footer year auto-update ---- */
