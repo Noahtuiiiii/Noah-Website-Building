@@ -1147,52 +1147,218 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </article>
 
-    <!-- Case study: RMIT Master of Project Management -->
+
+    <!-- Case study: WaterSolution BOT financial appraisal + risk assessment -->
     <article class="card case reveal">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 03</span>
-        <h3 class="h3">Delivery documentation, before it's on the line</h3>
+        <h3 class="h3">Model the number, then try to break it</h3>
       </div>
       <div class="case-metrics">
         <div class="metric">
-          <div class="value">4<span class="unit">&times; HD</span></div>
-          <div class="label">High Distinctions</div>
-          <div class="delta">Risk, Leadership, Procurement &amp; Ethics, Research Design</div>
+          <div class="value">$53.5M</div>
+          <div class="label">NPV modelled</div>
+          <div class="delta">14% project IRR vs. 12.46% WACC</div>
         </div>
         <div class="metric">
-          <div class="value">3.2</div>
-          <div class="label">GPA</div>
-          <div class="delta">Master of Project Management, RMIT</div>
+          <div class="value">5</div>
+          <div class="label">Risk categories stress-tested</div>
+          <div class="delta">Construction, demand, financing, regulatory, FX &amp; inflation</div>
         </div>
         <div class="metric">
-          <div class="value">2026</div>
-          <div class="label">Completion</div>
-          <div class="delta">MPM, Melbourne</div>
+          <div class="value">-$1.16M</div>
+          <div class="label">Monte Carlo mean NPV</div>
+          <div class="delta">10,000-run stress test on the same model</div>
         </div>
       </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
-          <p>I chose the Master of Project Management at RMIT deliberately, and moved from Sydney to Melbourne to do it. The point wasn't the credential, it was practising the analytical and delivery discipline on real briefs, so the rigour is already a habit before it's carrying a live project. The coursework behind my four High Distinctions is concrete, and it looks like the work.</p>
+          <p>Two linked reports for the Board of Directors of ABC Pty Ltd, written for BUSM4417 (Project Financial Management &amp; Appraisal) and BUSM1276 (Evaluating and Managing Project Risk), on a Build-Operate-Transfer water-treatment facility: $85M capex, a 20-year concession, financed 75% debt at 12% against 25% equity, with revenue locked in through three offtake contracts.</p>
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <ul class="exp-points">
-            <li>Risk and financial appraisal, board-level: for a build-operate-transfer water-infrastructure project I wrote a full risk assessment for an interim board and built the financial feasibility model behind it, NPV, project and equity IRR, WACC, and net-cashflow analysis, so the risk narrative and the numbers told one consistent story.</li>
-            <li>A complete project-management plan: for a consultancy management report I produced the full delivery documentation set, PM role, stakeholder and communications management, scope statement, cost and schedule management, and project close-out.</li>
-            <li>Public-sector governance: a 4,000-word comparative analysis of project-management maturity across Australia's three government tiers, plus a group investigation of the myki modernisation using an Investment Logic Map and benefits-realisation framing, grounded in PRINCE2.</li>
-            <li>Process mapping in Agile: value-stream and to-be workflow mapping, Scrum and Kanban, and a bottleneck analysis for a delivery case, backed by an ICAgile ICP certification.</li>
-            <li>Evidence discipline: a research proposal taken from research question and rationale through literature review to a justified methodology, the same discipline that underwrites good requirements work.</li>
-            <li>Procurement and ethics: an analysis of commercial models and incentive structures in alliance contracting, and a supplier-comparison assessment of how contract design drives delivery behaviour.</li>
-          </ul>
+          <p>Built the full 20-year financial model in Excel first, cash flows, loan amortisation, NPV, project and equity IRR, WACC, CAPM, DSCR, and interest cover, then wrote a second report that used that same model as the thing to attack. I ran a 10,000-iteration Monte Carlo simulation on revenue and cost assumptions and stress-tested the base case across five risk categories, pairing each with a specific mitigation: EPC contract caps, take-or-pay clauses, debt sculpting, and reserve accounts.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
-          <p>Four High Distinctions in the subjects that map straight onto BA and PMO work, and a body of delivery artifacts, risk registers, a financial model, a full project-management plan, an Investment Logic Map, value-stream maps, a research proposal, grounded in PRINCE2, Agile, and Waterfall, with the tooling to match: Excel, Power BI, SQL, MS Project, Smartsheet, Confluence, SharePoint.</p>
+          <p>The base case looked bankable: positive NPV, project IRR above WACC, equity IRR above the CAPM-required return, average DSCR of 6.24. The stress test told a less comfortable story, mean NPV under plausible revenue and cost variation fell to roughly -$1.16M, with debt coverage tightest in the early operating years. I recommended the board proceed, but only alongside active early-year monitoring and the mitigation set the risk assessment specified.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Why it matters</span>
-          <p>The ANZ and IBT results show the instinct working in the wild; this is where it got its discipline. At ANZ I'd been practising iteration, governance, and flow without the vocabulary, and the degree gave the method its name and its rigour: root-cause analysis, risk thinking, stakeholder governance, and evidence-led writing, practised deliberately, so that on a real project the rigour is already there.</p>
+          <p>Board-level appraisal isn't finished when the base case is positive. It's finished when someone has tried to break the model and reported honestly on what it takes to do that, exactly what I'd bring to a business case or investment paper.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case study: Public sector PM maturity + myki modernisation -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 04</span>
+        <h3 class="h3">Structure without control: the myki governance gap</h3>
+      </div>
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="value">$136.8M</div>
+          <div class="label">Cost increase</div>
+          <div class="delta">18-month delay against ~$2.8B lifetime cost</div>
+        </div>
+        <div class="metric">
+          <div class="value">6</div>
+          <div class="label">Organisations benchmarked</div>
+          <div class="delta">Across federal, state &amp; local tiers</div>
+        </div>
+        <div class="metric">
+          <div class="value">2012 &rarr; 2028</div>
+          <div class="label">Contactless timeline gap</div>
+          <div class="delta">London 2012, Sydney 2017, Melbourne delayed to 2028</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>An individual 4,100-word report for BUSM2654 (Public Sector Project Management) comparing PM maturity across Australia's three government tiers, paired with group work benchmarking Melbourne's myki contactless-ticketing modernisation against the global leaders, using an Investment Logic Map, benefits-realisation framing, and PRINCE2, and drawing on the Victorian Auditor-General's 2026 findings.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <p>Assessed six organisations against a P3M3-style maturity lens (ATO vs. NDIA at federal, Transport for NSW vs. Victoria's DTP at state, two councils at local), then built the Investment Logic Map for the $1.96B, 15-year myki contract, mapping drivers, problems, benefits and required changes against VAGO's audit of why known delivery risk was accepted at contract signing instead of resolved.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>DTP ran an effective strategy and tender process but didn't resolve known schedule risk before awarding the contract, producing an 18-month standstill and a $136.8M cost increase. Contactless ticketing wasn't the problem, London proved it in 2012 and Sydney staged it from 2017. The failure was governance: documented risk that was never converted into a binding decision at the point that mattered.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>This is the version of governance analysis I'd bring to a delivery-PMO role: don't accept an optimistic schedule at contract award, and know how to find the exact point where structure stopped producing control.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case study: Woody 2010 project management plan -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 05</span>
+        <h3 class="h3">Six PMBOK domains, one broken project</h3>
+      </div>
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="value">6</div>
+          <div class="label">PMBOK domains diagnosed</div>
+          <div class="delta">Governance, scope, cost, schedule, stakeholders, close-out</div>
+        </div>
+        <div class="metric">
+          <div class="value">$17M</div>
+          <div class="label">Expansion, no feasibility study</div>
+          <div class="delta">Committed without independent analysis</div>
+        </div>
+        <div class="metric">
+          <div class="value">0</div>
+          <div class="label">Formal scope baseline or close-out</div>
+          <div class="delta">A systemic breakdown, not one bad call</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>A ~2,870-word consultancy management report for BUSM1278 (Project Management Practice) on the Woody 2010 case: a custom woodworking company's $17M capacity expansion that collapsed into cost overruns, schedule slippage, and unresolved supplier disputes.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <p>Applied a PMBOK 6th-edition diagnostic across the full delivery lifecycle, PM authority, stakeholder and communications management, scope, cost, schedule, and project close-out, tracing each failure back to its root governance gap and pairing it with a specific fix: a formal scope statement and change-control board, a communications matrix by audience and frequency, earned-value tracking, and a mandated close-out checklist.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>The project hadn't failed from one bad decision, it had never had the basic controls to fail well: no charter, no work breakdown structure, no cost or schedule baseline, no stakeholder register, no close-out review. I delivered a full set of recommendations to rebuild those controls before the next capital project, not after the next failure.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>This is the PMBOK toolkit applied end to end rather than module by module, the same lens I'd use to diagnose a struggling program: work backward from the symptom to the missing control, and give the fix an owner.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case study: LXRP stakeholder engagement investigation -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 06</span>
+        <h3 class="h3">Did the engagement shape the disruption, or explain it?</h3>
+      </div>
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="value">$1.6B</div>
+          <div class="label">Caulfield&ndash;Dandenong LXRP</div>
+          <div class="delta">Noble Park trader precinct, 2016&ndash;2018</div>
+        </div>
+        <div class="metric">
+          <div class="value">17%</div>
+          <div class="label">Rail users aware of engagement</div>
+          <div class="delta">Before construction began</div>
+        </div>
+        <div class="metric">
+          <div class="value">5</div>
+          <div class="label">Recommendations delivered</div>
+          <div class="delta">From outcome evaluation to a cross-agency director role</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>A 13,200-word group investigation for BUSM4415 (Industry Project Investigation) into stakeholder engagement on the $1.6B Caulfield to Dandenong Level Crossing Removal Project, focused on construction disruption for traders in Noble Park's Douglas &amp; Ian Street precinct between 2016 and 2018.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <p>Ran a qualitative, triangulated desk case study against one sharp research question, did engagement genuinely shape how disruption was managed, or mainly justify decisions already made, drawing on the VAGO audit, the EY Sweeney pre-construction sentiment survey of 144 traders, and the Area 2 and 3 Stakeholder Liaison Group summaries.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>Found four linked weaknesses: high engagement activity but only 17% pre-construction awareness among rail users, engagement front-loaded before construction and weakest during the disruption itself, no measurement of commercial impact on traders, and community-outcome accountability split from authority over delivery decisions. The clearest evidence of what was left unresolved: a $3.5M trader revitalisation package committed three years after completion. We delivered five recommendations, including an outcome-oriented evaluation framework and a unified cross-agency Community Outcomes Director role.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>Engagement is easy to measure by activity count and easy to get wrong that way. I know how to separate genuine influence on decisions from documentation of decisions already made, and to turn that gap into recommendations a delivery authority could actually implement.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Case study: Agile & Lean at Netflix -->
+    <article class="card case reveal">
+      <div class="case-head">
+        <span class="eyebrow"><span class="idx">CASE</span> / 07</span>
+        <h3 class="h3">Finding the bottleneck in a content engine, not applying Agile by default</h3>
+      </div>
+      <div class="case-metrics">
+        <div class="metric">
+          <div class="value">82/100</div>
+          <div class="label">High Distinction</div>
+          <div class="delta">Group Agile &amp; Lean project, BUSM4764</div>
+        </div>
+        <div class="metric">
+          <div class="value">$9.2B</div>
+          <div class="label">Content-in-production assets</div>
+          <div class="delta">The scale the coordination problem sat inside</div>
+        </div>
+        <div class="metric">
+          <div class="value">Scrum + Kanban</div>
+          <div class="label">Recommended model</div>
+          <div class="delta">Value-stream mapped, root-cause led</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <span class="case-k">Context</span>
+          <p>A group project for BUSM4764 (Agile Project Management), graded 82/100, applying Agile and Lean to Netflix's in-house content production, where fragmented, stage-based workflows across creative, production and tech teams were driving delayed releases, missed audience trends, and higher cost and rework.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">What I did</span>
+          <p>Used value-stream mapping and root-cause and bottleneck analysis to locate where the fragmentation actually lived, sequential handoffs, low visibility, and reactive late-stage decisions, then designed the fix: a shared Scrum cadence across creative, production and tech with regular reviews to surface issues earlier, supported by Lean and Kanban for waste elimination and real-time flow visibility.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Result</span>
+          <p>A staged implementation roadmap, pilot one production team, establish sprints and retrospectives, bring external studios into shared visibility, then scale across content divisions, with success measured on flow, delivery and collaboration metrics rather than on whether teams were simply "doing Agile." Graded 82/100 (High Distinction), backed by an ICAgile ICP certification I earned in the course.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-k">Why it matters</span>
+          <p>A delivery methodology only earns its place if it's chosen for the bottleneck it fixes, not applied by default. This is that instinct: find the actual constraint first, then match the framework to it.</p>
         </div>
       </div>
     </article>
