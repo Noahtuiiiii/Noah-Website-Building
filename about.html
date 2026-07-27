@@ -7,8 +7,8 @@
 <!-- ============================================================
      EDIT: Page title + meta description (shown in browser tab & search)
      ============================================================ -->
-<title>Noah McGill, Business Analyst &amp; Delivery PMO</title>
-<meta name="description" content="Noah McGill, Business Analyst and delivery-focused PMO. I find the real cause of a problem before anyone asks. Trilingual EN/ES/DE, MPM from RMIT. Melbourne &amp; Sydney." />
+<title>About &mdash; Noah McGill</title>
+<meta name="description" content="The path that got Noah McGill here: an interactive 3D journey globe, the timeline from Sydney to Bariloche, Niseko and Melbourne, and the longer version in his own words." />
 
 <!-- Brand fonts (Google Fonts): Space Grotesk / Space Mono / Instrument Serif -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -706,18 +706,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
      ============================================================ -->
 <div class="nav-wrap">
   <nav class="nav" aria-label="Primary">
-    <a href="#top" class="nav-brand" aria-label="Home">
+    <a href="/" class="nav-brand" aria-label="Home">
       <!-- EDIT: Replace "NM" with your initials -->
       <span class="nav-monogram">NM</span>
       <!-- EDIT: Replace with your name -->
       <span class="nav-name">Noah McGill</span>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#work-do" class="nav-link">What I do</a>
-      <a href="#experience" class="nav-link">Experience</a>
+      <a href="/#work-do" class="nav-link">What I do</a>
+      <a href="/#experience" class="nav-link">Experience</a>
       <a href="/work" class="nav-link">Work</a>
-      <a href="/about" class="nav-link">About</a>
-      <a href="#contact" class="btn btn--signal nav-cta">Let's talk</a>
+      <a href="/about" class="nav-link is-active">About</a>
+      <a href="/#contact" class="btn btn--signal nav-cta">Let's talk</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -726,495 +726,169 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </div>
 
 <span id="top"></span>
-
 <!-- ============================================================
-     SECTION 1: HERO / INTRODUCTION
-     EDIT: name, tagline, bio, availability
+     INTERACTIVE 3D GLOBE  (self-contained, isolated in an iframe)
+     Asset: /journey-globe.html  -- do NOT inline; do NOT modify that file.
+     Full-bleed: this section sits OUTSIDE the centered .container.
      ============================================================ -->
-<header class="hero section" id="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-intro reveal">
-        <div class="hero-availability">
-          <span class="pulse"></span>
-          <!-- EDIT: availability status line -->
-          Open to BA &amp; delivery PMO roles, available mid-2026
-        </div>
-
-        <span class="eyebrow"><span class="idx">01</span> / Profile</span>
-
-        <!-- EDIT: Hero statement. Keep ONE serif-italic accent word. -->
-        <h1 class="h-display hero-statement">I turn complex problems into <span class="accent accent--signal">clear</span> decisions.</h1>
-
-        <!-- EDIT: Human-sounding bio / sub-statement -->
-        <p class="lead hero-sub">
-          I'm Noah. I find the real cause of a problem before anyone asks me to.
-          At ANZ I did it across 45+ regulated client cases a day; at IB Tutoring
-          Australia I traced a drop in student outcomes to tutor ratios, not ability,
-          and the fix moved top-grade attainment from 30% to 60%. I've just finished a
-          Master of Project Management at RMIT, and I think in three languages. I'm best
-          in unfamiliar systems, where people work in very different ways and nobody has
-          framed the problem yet. Business Analyst and delivery-focused PMO roles,
-          Melbourne &amp; Sydney.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn--primary">
-            View work
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="#contact" class="btn btn--secondary">Let's talk</a>
-          <!-- CV: hosted PDF at the static root. Drop Noah_McGill_CV.pdf into the
-               public/static root and this works immediately. -->
-          <a href="/Noah_McGill_CV.pdf" class="btn btn--ghost" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download CV
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-card reveal">
-        <div class="id-card">
-          <div class="id-head">
-            <div class="id-ident">
-              <div class="id-mono">NM</div>
-              <div class="id-role">Business Analyst &amp;<br />Delivery PMO</div>
-              <!-- EDIT: name -->
-              <div class="id-name">Noah McGill</div>
-            </div>
-            <!-- EDIT: headshot -->
-            <img class="id-photo" src="/images/noah-headshot.jpg" width="640" height="640" alt="Noah McGill" decoding="async" />
-          </div>
-          <div class="id-rows">
-            <!-- EDIT: identity rows -->
-            <div class="id-row"><span class="k">Focus /</span><span class="v">Analysis &amp; Delivery</span></div>
-            <div class="id-row"><span class="k">Based /</span><span class="v">Melbourne, AU</span></div>
-            <div class="id-row"><span class="k">Education /</span><span class="v">MPM, RMIT '26 · BA, USYD Business School</span></div>
-            <div class="id-row"><span class="k">Languages /</span><span class="v">EN · ES · DE</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- ============================================================
-     METRIC STRIP: quantified outcomes (metrics as content)
-     EDIT: values, units, labels, deltas
-     ============================================================ -->
-<section class="section" style="padding-block: 0;">
-  <div class="container">
-    <div class="metrics reveal">
-      <div class="metric">
-        <div class="value">45<span class="unit">+</span></div>
-        <div class="label">Client cases / day</div>
-        <div class="delta">Peak 60</div>
-      </div>
-      <div class="metric">
-        <div class="value">50<span class="unit">%</span></div>
-        <div class="label">Throughput gain</div>
-        <div class="delta">vs 30-case benchmark</div>
-      </div>
-      <div class="metric">
-        <div class="value">2<span class="unit">×</span></div>
-        <div class="label">Top grade-band lift</div>
-        <div class="delta">30% to 60%</div>
-      </div>
-      <div class="metric">
-        <div class="value">3</div>
-        <div class="label">Languages: EN · ES · DE</div>
-      </div>
-    </div>
+<section class="globe-embed" aria-label="Interactive 3D globe of Noah's journey">
+  <iframe src="/journey-globe.html"
+          title="Interactive 3D globe charting Noah's ski and work journey"
+          loading="lazy"></iframe>
+  <div class="globe-hint" id="globeHint">
+    <span class="globe-hint-label">Drag to explore</span>
   </div>
 </section>
 
 <!-- ============================================================
-     SIGNATURE LINE: lead differentiator
+     SECTION 5: INTERESTS / A BIT ABOUT ME
+     EDIT: tiles below, keep them specific and human
      ============================================================ -->
-<section class="section" style="padding-block: var(--space-9) 0;">
+<section class="section" id="about" style="padding-top: var(--space-9);">
   <div class="container">
-    <p class="signature reveal">Find the real <span class="accent accent--signal">variable</span>, then make it clear.</p>
-  </div>
-</section>
+    <a href="/" class="page-back">&larr; Back to home</a>
+    <div class="section-head measure reveal">
+      <span class="eyebrow"><span class="idx">05</span> / A bit about me &middot; The journey</span>
+      <h2 class="h2">The path that got me <span class="accent accent--signal">here</span>.</h2>
+    </div>
 
-<!-- ============================================================
-     SECTION 2: WHAT I DO / SKILLS
-     EDIT: each capability card (icon, title, description, list)
-     ============================================================ -->
-<section class="section" id="work-do">
-  <div class="container">
-    <div class="cap-head reveal">
-      <div class="cap-head-text">
-        <span class="eyebrow"><span class="idx">02</span> / Capabilities</span>
-        <h2 class="h2">Not a tag cloud, three things I do <span class="accent accent--signal">deeply</span>.</h2>
-        <p class="lead muted" style="margin-top: var(--space-4);">
-          My work sits where ambiguity is highest: taking a vague problem, finding
-          the real cause in the data, and turning it into something a team can act on.
-        </p>
+    <!-- JOURNEY MAP: the path that got me here (EDIT: each .journey-stop) -->
+    <div id="journey" class="about-journey">
+      <ol class="journey-track reveal">
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Sydney</span>
+          <p class="journey-text">Home, and where I learned to surf. The baseline I keep coming back to.</p>
+          <p class="journey-note">Via Scotland and the US.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Bariloche, Argentina</span>
+          <p class="journey-text">At 19 I trained for an Austrian Level 2 ski instructor qualification, a long way from anyone I knew.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Niseko, Japan</span>
+          <p class="journey-text">Four months instructing international clients across language barriers. The best year of my life, and proof I back myself in unfamiliar places.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Sydney, undergrad</span>
+          <p class="journey-text">Home three weeks before Covid lockdown. A blurry, formative stretch where I learned to manage myself: time, money, relationships.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Melbourne, master's</span>
+          <p class="journey-text">A deliberate move out of my comfort zone. I put the full weight of adult life on myself on purpose, and came out clearer and steadier.</p>
+        </li>
+        <li class="journey-stop journey-stop--next">
+          <span class="journey-dot journey-dot--open"></span>
+          <span class="journey-place">Next</span>
+          <p class="journey-text">A Business Analyst or delivery PMO role with a team that teaches.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="section-head measure reveal" style="margin-bottom: var(--space-6);">
+      <h2 class="h2">The person behind the <span class="accent accent--signal">analysis</span>.</h2>
+    </div>
+
+    <!-- Narrative + feature photo (two columns; photo moves above the paragraphs on mobile) -->
+    <div class="about-intro">
+      <div class="about-narrative reveal">
+      <p>I came to analysis from an unusual direction. At 19 I flew to Bariloche, Argentina to train for an Austrian Level 2 ski instructor qualification, then spent four months teaching and living in Niseko, Japan. It was the best year of my life, and three weeks after I got home to start university, Australia went into full Covid lockdown. The whiplash taught me something I've leaned on ever since: I'm at my best when I'm stepping into something unfamiliar and giving it structure. I find that genuinely satisfying.</p>
+      <p>Growing up across Houston, Chicago, and eight years in and around New York City before moving to Australia at 13 taught me early that places operate differently, and that paying attention to that difference is an advantage. That's also why I love languages. I think the fastest way to understand a place is to try to speak its language, even badly, and actually talk to people. It changes how you see your own place in the world and what you think you're capable of. English and Spanish are native, German is professional.</p>
+      <p>Moving from Sydney to Melbourne for my master's was deliberate. I wanted out of my comfort zone, so I put the full weight of adult life on myself at once: bills, budgeting, a household, the job search. It was hard and I learned things I didn't know I needed to. It made me more honest, clearer, and steadier. Skiing and surfing feel like the same sport to me now: read the environment, commit to the line, adjust in real time. That instinct, and the curiosity that comes from moving a lot, keeps pulling me toward the intersection of business, language, and culture, and eventually toward strategy consulting at a global level.</p>
       </div>
-      <figure class="cap-head-photo">
-        <div class="photo cap-img">
-          <img src="/images/anz-colleagues.jpg" alt="Noah working through a problem with colleagues" loading="lazy" onerror="this.classList.add('is-missing')" />
+      <figure class="about-intro-photo reveal">
+        <div class="photo about-intro-img">
+          <img src="/images/about-feature.jpg" alt="Noah with a colleague at a work celebration, cutting a cake in the office" loading="lazy" onerror="this.classList.add('is-missing')" />
         </div>
       </figure>
     </div>
 
-    <div class="do-grid">
-      <!-- Capability 1 -->
-      <div class="card do-card card--interactive reveal">
-        <div class="do-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <h3 class="h4">Analysis &amp; requirements</h3>
-        <p>Eliciting what's actually needed, tracing problems to their root cause, and writing it down so the right thing gets built once.</p>
-        <ul class="do-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Requirements elicitation</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Root cause analysis</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>User story writing</li>
-        </ul>
+    <div class="about-grid">
+      <!-- Tall lead tile: operating principle -->
+      <div class="about-tile about-tall reveal">
+        <span class="about-eyebrow">Operating principle</span>
+        <h3 class="h4">Look first, act second.</h3>
+        <p>My instinct is to ask why something's happening before deciding what to do about it, even when no one's asked me to look. The answer is rarely what people assume, and finding it usually points to a different fix than the obvious one. That habit is the through-line in everything I do.</p>
+        <p>It's the same instinct that takes me to new places and makes me want to build things: find the shape of something unfamiliar, then give it structure.</p>
       </div>
 
-      <!-- Capability 2 -->
-      <div class="card do-card card--interactive reveal">
-        <div class="do-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg>
-        </div>
-        <h3 class="h4">Data &amp; insight</h3>
-        <p>Turning raw operational and outcome data into the clear story that tells leaders what to do next, and why.</p>
-        <ul class="do-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Excel, Power BI &amp; SQL</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Insight development</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Stakeholder-ready reporting</li>
-        </ul>
+      <!-- Skiing / adventure tile -->
+      <div class="about-tile stone reveal">
+        <span class="about-eyebrow">Since I was two</span>
+        <h3 class="h4">Skiing is the through-line.</h3>
+        <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
+        <!-- Hover/tap-expand ski gallery. Rest: feature only. Desktop hover/keyboard expands to the full row; touch = horizontal-scroll filmstrip. -->
+        <figure class="gallery gallery--inline" aria-label="Skiing photos from Niseko, Japan">
+          <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
+               aria-label="Open the skiing photo gallery (4 photos). Hover, tap, or press Enter.">
+            <img class="gallery-cover-img" src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" />
+            <span class="gallery-badge" aria-hidden="true">+3</span>
+          </div>
+          <figcaption class="gallery-cap">Niseko, Japan</figcaption>
+          <div class="gallery-source" hidden aria-hidden="true">
+            <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" />
+            <img src="/images/ski-02.jpg" alt="Noah in ski helmet and mirrored goggles on a snowy day in Niseko" />
+            <img src="/images/ski-03.jpg" alt="Noah and friends at the top of a ski run, snowy peaks behind" />
+            <img src="/images/ski-04.jpg" alt="Noah sitting on a snowy slope in ski gear, mountains behind" />
+          </div>
+        </figure>
       </div>
 
-      <!-- Capability 3 -->
-      <div class="card do-card card--interactive reveal">
-        <div class="do-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <!-- Personal reflection (not a repeat of the IBT stat) -->
+      <div class="about-tile reveal">
+        <span class="about-eyebrow">Quietly proud of</span>
+        <h3 class="h4">Rebuilding on my own timeline.</h3>
+        <p>Moving from Sydney to Melbourne for this degree meant restarting everything at once, bills, budgeting, a new city, on a timeline nobody set for me but mine. Choosing that discomfort on purpose still feels like the right call.</p>
+      </div>
+
+      <!-- Languages ink tile (trilingual differentiator) -->
+      <div class="about-tile ink reveal">
+        <span class="about-eyebrow">/ Languages</span>
+        <div class="lang-row">
+          <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Native</span></div>
+          <div class="lang-item"><span class="lang-name">Spanish</span><span class="lang-level">Native</span></div>
+          <div class="lang-item"><span class="lang-name">German</span><span class="lang-level">Professional</span></div>
         </div>
-        <h3 class="h4">Stakeholders &amp; delivery</h3>
-        <p>Mapping how work really flows, engaging diverse stakeholders across three languages, and keeping documentation audit-ready.</p>
-        <ul class="do-list">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Process mapping &amp; documentation</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Stakeholder engagement</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Agile · Waterfall · PRINCE2</li>
-        </ul>
+        <p>The fastest way to understand a place is to speak its language, even badly. It's also a genuine edge for organisations with Spanish or European parent companies.</p>
+      </div>
+
+      <!-- Personality line: shared gallery component, bleed variant (full-bleed cover + overlaid text) -->
+      <figure class="gallery gallery--bleed about-tile reveal" aria-label="Surfing photos">
+        <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
+             aria-label="Open the surfing photo gallery (5 photos). Hover, tap, or press Enter.">
+          <img class="gallery-cover-img" src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" />
+          <div class="gallery-bleed-scrim" aria-hidden="true"></div>
+          <div class="gallery-bleed-text">
+            <span class="about-eyebrow">For the record</span>
+            <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
+          </div>
+          <span class="gallery-badge" aria-hidden="true">+4</span>
+        </div>
+        <div class="gallery-source" hidden aria-hidden="true">
+          <img src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" />
+          <img src="/images/surf-2.jpg" alt="Noah at the beach in a wetsuit with his surfboard" />
+          <img src="/images/surf-3.jpg" alt="A surfboard on the sand at a bright, sunny beach" />
+          <img src="/images/surf-4.jpg" alt="Noah and two friends out on a boat on a sunny day" />
+          <img src="/images/surf-5.jpg" alt="A surfer wading through the shore break at a Brazilian beach" />
+        </div>
+      </figure>
+
+      <!-- What I'm after (page closes on this before Contact) -->
+      <div class="about-tile reveal">
+        <span class="about-eyebrow">What I'm after</span>
+        <h3 class="h4">A team that teaches</h3>
+        <p>I'm looking for a Business Analyst or delivery PMO role with a lively team and real learning, somewhere the bar is high and feedback is honest.</p>
       </div>
     </div>
 
-    <!-- Toolkit: full skills & tools from CV -->
-    <div class="toolkit reveal">
-      <div class="toolkit-group">
-        <span class="tg-label">Analysis &amp; tooling</span>
-        <div class="tg-tags">
-          <span class="tag tag--solid">Microsoft Excel</span>
-          <span class="tag tag--solid">Power BI</span>
-          <span class="tag tag--solid">SQL</span>
-          <span class="tag tag--solid">Confluence</span>
-          <span class="tag tag--solid">SharePoint</span>
-          <span class="tag tag--solid">Microsoft 365</span>
-        </div>
-      </div>
-      <div class="toolkit-group">
-        <span class="tg-label">Methodologies</span>
-        <div class="tg-tags">
-          <span class="tag">Agile</span>
-          <span class="tag">Waterfall</span>
-          <span class="tag">PRINCE2</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Structure image (bottom of Capabilities, on dark) -->
-    <figure class="cap-structure reveal">
-      <div class="photo band-photo">
-        <img src="/images/stairs-background.jpg" alt="Warm, golden-hour architectural detail of curved metal railings and beams" loading="lazy" onerror="this.classList.add('is-missing')" />
-      </div>
-    </figure>
   </div>
-</section>
-
-<!-- ============================================================
-     SECTION 3: EXPERIENCE / WHAT I'VE BUILT (timeline)
-     EDIT: each .exp block (period, org, role, summary, points, tags)
-     ============================================================ -->
-<section class="section" id="experience">
   <div class="container">
-    <div class="section-head measure reveal">
-      <span class="eyebrow"><span class="idx">03</span> / Experience</span>
-      <h2 class="h2">Where I've made the numbers <span class="accent accent--signal">move</span>.</h2>
-    </div>
-
-    <div class="timeline">
-      <!-- Experience entry: ANZ (anchored) -->
-      <article class="exp reveal">
-        <div class="exp-meta">
-          <span class="exp-period">May 2025 – Feb 2026</span>
-          <span class="exp-org">ANZ / Melbourne</span>
-        </div>
-        <div class="exp-body">
-          <h3 class="h4">Small Business Consultant</h3>
-          <p>Resolving complex client cases in a regulated banking environment, against rising KPI targets.</p>
-          <ul class="exp-points">
-            <li>Managed 45+ client cases daily (peaking at 60), a ~50% increase on the initial 30-case benchmark after targets rose four months in.</li>
-            <li>Built a working reference set of policy and process notes that cut per-case handling time and sharpened call targeting, the main driver behind the higher throughput.</li>
-            <li>Held one of the lowest case-escalation rates on the team, independently resolving complex policy scenarios while sustaining accuracy as volume rose.</li>
-            <li>Engaged cross-functional stakeholders on compliant resolutions and produced audit-ready documentation of resolution workflows.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag"><span class="tag-label">SECTOR /</span>Banking</span>
-            <span class="tag tag--solid">Process improvement</span>
-            <span class="tag tag--solid">Compliance</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Experience entry: IBT Coordinator (anchored) -->
-      <article class="exp reveal">
-        <div class="exp-meta">
-          <span class="exp-period">Mar 2024 – Dec 2024</span>
-          <span class="exp-org">IB Tutoring Australia / Remote</span>
-        </div>
-        <div class="exp-body">
-          <h3 class="h4">Academic Program Coordinator</h3>
-          <p>Owning student-outcome analysis and turning it into program-level recommendations.</p>
-          <ul class="exp-points">
-            <li>Analysed outcome data across 50+ subjects and traced underperformance to tutor-to-student ratios rather than student ability. Unprompted, I recommended tutor reallocation and material refreshes for the three weakest subjects.</li>
-            <li>After implementation, top grade-band attainment in the targeted subjects rose from ~30% to ~60%, and the work prompted a recurring program-wide data-review process.</li>
-            <li>Produced structured reports and stakeholder-ready summaries translating cohort trends into clear recommendations for management.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag"><span class="tag-label">FOCUS /</span>Data analysis</span>
-            <span class="tag tag--solid">Reporting</span>
-            <span class="tag tag--solid">Insight</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Experience entry: Private Tutor (condensed to a single line) -->
-      <article class="exp reveal">
-        <div class="exp-meta">
-          <span class="exp-period">Jan 2022 – Mar 2024</span>
-          <span class="exp-org">IB Tutoring Australia / Sydney</span>
-        </div>
-        <div class="exp-body">
-          <h3 class="h4">Private Tutor (IB)</h3>
-          <p>Tailored instruction to measurable outcomes across five IB subjects, with feedback loops kept tight with students and parents.</p>
-        </div>
-      </article>
-
-      <!-- Education sub-section (elevated) -->
-      <div class="edu reveal">
-        <h3 class="h3 edu-title">Education</h3>
-        <div class="edu-item">
-          <div class="edu-deg">
-            <span class="exp-period">June 2026</span>
-            <h4 class="h4">Master of Project Management</h4>
-            <span class="exp-org">RMIT University</span>
-          </div>
-          <div class="edu-copy">
-            <p>High Distinctions in Project Risk, Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods. I chose this degree deliberately, and moved from Sydney to Melbourne to do it.</p>
-          </div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-deg">
-            <span class="exp-period">2023</span>
-            <h4 class="h4">Bachelor of Arts, International Business &amp; Germanic Studies</h4>
-            <span class="exp-org">University of Sydney, Business School</span>
-          </div>
-          <div class="edu-copy"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 4: WORK / SELECTED WORK (landing page: two cases + CTA)
-     Full write-ups live on /work.html
-     ============================================================ -->
-<section class="section" id="projects">
-  <div class="container">
-    <div class="section-head measure reveal">
-      <span class="eyebrow"><span class="idx">04</span> / Selected work</span>
-      <h2 class="h2">The work behind the <span class="accent accent--signal">numbers</span>.</h2>
-    </div>
-
-    <article class="card case reveal">
-      <div class="case-head">
-        <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
-        <h3 class="h3">Finding the real variable</h3>
-      </div>
-      <div class="case-metrics">
-        <div class="metric">
-          <div class="value">59<span class="unit">%</span></div>
-          <div class="label">Band 7 attainment</div>
-          <div class="delta">Up from 27%, same cohort</div>
-        </div>
-        <div class="metric">
-          <div class="value">8.5 vs 4</div>
-          <div class="label">Tutor-student ratio</div>
-          <div class="delta">Spanish &amp; French vs. other subjects</div>
-        </div>
-        <div class="metric">
-          <div class="value">1 in 10</div>
-          <div class="label">Finished band 5 or below</div>
-          <div class="delta">Down from 1 in 3</div>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="case-block">
-          <span class="case-k">Context</span>
-          <p>As Academic Program Coordinator at IB Tutoring Australia I owned student-outcome analysis across 50+ IB subjects, four of which I had tutored myself.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-k">Result</span>
-          <p>I traced weak language results to tutor-to-student ratios rather than student ability and recommended a specific reallocation. Band 7 attainment across Spanish and French rose from 27% to 59% for the same cohort, and the one-off analysis became a recurring program-wide review.</p>
-        </div>
-      </div>
-    </article>
-
-    <article class="card case reveal">
-      <div class="case-head">
-        <span class="eyebrow"><span class="idx">CASE</span> / 02</span>
-        <h3 class="h3">Building the system that moved the throughput</h3>
-      </div>
-      <div class="case-metrics">
-        <div class="metric">
-          <div class="value">50<span class="unit">%</span></div>
-          <div class="label">Throughput gain</div>
-          <div class="delta">vs the 30-case benchmark</div>
-        </div>
-        <div class="metric">
-          <div class="value">45<span class="unit">+</span></div>
-          <div class="label">Cases resolved / day</div>
-          <div class="delta">Peaking at 60</div>
-        </div>
-        <div class="metric">
-          <div class="value">Lowest</div>
-          <div class="label">Escalation-rate band</div>
-          <div class="delta">Held on the team</div>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="case-block">
-          <span class="case-k">Context</span>
-          <p>At ANZ, KPI targets rose from a 30-case daily benchmark toward 45+ in an environment where every resolution has to be compliant and defensible on audit.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-k">Result</span>
-          <p>I mapped where handling time actually went and built a structured policy and process reference set the whole team could work from. Throughput reached 45+ cases a day, peaking at 60, while I held one of the lowest escalation rates on the team.</p>
-        </div>
-      </div>
-    </article>
-
-    <div class="work-cta reveal">
-      <a href="/work" class="btn btn--signal">See all seven case studies <span class="cta-arrow">&rarr;</span></a>
-      <p class="work-cta-note">Financial modelling &middot; Public-sector governance &middot; PMBOK diagnostics &middot; Stakeholder engagement &middot; Agile</p>
-    </div>
-
-    <!-- Things I've built (moved here so the page closes on "a team that teaches") -->
-    <div class="built reveal">
-      <div class="built-head measure">
-        <span class="about-eyebrow">A pattern in how I work</span>
-        <h3 class="h3" style="margin-top: var(--space-3);">When something I want doesn't exist or isn't good enough, I <span class="accent accent--signal">build</span> it.</h3>
-      </div>
-      <div class="built-grid">
-        <article class="card built-card built-gallery reveal">
-          <div class="bg-stack">
-            <img class="bg-img is-active" src="/images/arcade-machine.jpg" alt="The finished custom retro arcade cabinet, lit up" decoding="async" />
-            <img class="bg-img" src="/images/build-01-2.jpg" alt="The cabinet's control panel and multi-system emulator menu" loading="lazy" decoding="async" />
-            <img class="bg-img" src="/images/build-01-3.jpg" alt="Wiring the joysticks and buttons to the controller board during the build" loading="lazy" decoding="async" />
-            <img class="bg-img" src="/images/build-01-4.jpg" alt="Setting up and programming the Raspberry Pi" loading="lazy" decoding="async" />
-          </div>
-          <div class="bg-vignette"></div>
-          <div class="bg-scrim"></div>
-          <div class="built-body">
-            <span class="built-no">BUILD / 01</span>
-            <h3 class="h4">A custom retro arcade machine</h3>
-            <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
-          </div>
-        </article>
-        <article class="card built-card built-gallery reveal">
-          <div class="bg-stack">
-            <img class="bg-img is-active" src="/images/build-website.jpg" alt="Building this portfolio website in a cafe" decoding="async" />
-            <img class="bg-img" src="/images/build-02-2.jpg" alt="A screenshot of this site's interactive 3D journey globe" loading="lazy" decoding="async" />
-            <!-- Add more BUILD / 02 frames here: <img class="bg-img" src="/images/build-02-3.jpg" alt="..." loading="lazy" decoding="async" /> -->
-          </div>
-          <div class="bg-vignette"></div>
-          <div class="bg-scrim"></div>
-          <div class="built-body">
-            <span class="built-no">BUILD / 02</span>
-            <h3 class="h4">This website</h3>
-            <p>Built from scratch with Claude.</p>
-          </div>
-        </article>
-        <article class="card built-card built-gallery reveal">
-          <div class="bg-stack">
-            <img class="bg-img is-active" src="/images/anz-office.jpg" alt="The ANZ office where the policy reference set was built" decoding="async" />
-            <img class="bg-img" src="/images/build-03-2.jpg" alt="Noah presenting a transacting-accounts product recap to the team" loading="lazy" decoding="async" />
-            <img class="bg-img" src="/images/build-03-4.jpg" alt="Noah's dual-screen desk setup at the ANZ office" loading="lazy" decoding="async" />
-            <!-- Add more BUILD / 03 frames here: <img class="bg-img" src="/images/build-03-5.jpg" alt="..." loading="lazy" decoding="async" /> -->
-          </div>
-          <div class="bg-vignette"></div>
-          <div class="bg-scrim"></div>
-          <div class="built-body">
-            <span class="built-no">BUILD / 03</span>
-            <h3 class="h4">The ANZ policy reference set</h3>
-            <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <p class="more-writeups muted reveal">More write-ups in progress.</p>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 5: A BIT ABOUT ME (teaser -> /about.html)
-     ============================================================ -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="section-head measure reveal">
-      <span class="eyebrow"><span class="idx">05</span> / A bit about me</span>
-      <h2 class="h2">There is a globe, and it is the fastest way to <span class="accent accent--signal">meet me</span>.</h2>
-      <p class="lead" style="margin-top: var(--space-4);">Sydney, Bariloche, Niseko, Melbourne. The About page opens on an interactive 3D globe you can drag through the path that got me here, followed by the timeline and the longer version in my own words.</p>
-      <div class="work-cta" style="align-items: flex-start; text-align: left; margin-top: var(--space-6);">
-        <a href="/about" class="btn btn--signal">Spin the journey globe <span class="cta-arrow">&rarr;</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 6: CONTACT / CTA (ink panel)
-     EDIT: email, LinkedIn, location
-     ============================================================ -->
-<section class="section" id="contact">
-  <div class="container">
-    <div class="contact-panel reveal">
-      <div class="contact-center">
-        <span class="eyebrow"><span class="idx">06</span> / Contact</span>
-        <h2 class="h2">Let's talk.</h2>
-        <p class="lead">Hiring, looking to connect, or happy to refer me on, all welcome. The fastest way to reach me is below.</p>
-
-        <div class="contact-buttons">
-          <!-- EDIT: email address -->
-          <a class="btn btn--signal" href="mailto:noahtui@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Email me
-          </a>
-          <!-- EDIT: LinkedIn URL -->
-          <a class="btn btn--on-ink" href="https://www.linkedin.com/in/noah-mcgill-5a022b172/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-        </div>
-
-        <p class="contact-loc">Melbourne, VIC</p>
-      </div>
+    <div class="work-cta">
+      <a href="/" class="btn btn--ghost">&larr; Back to home</a>
     </div>
   </div>
 </section>
@@ -1233,8 +907,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="footer-meta">
         <div class="footer-col">
           <span class="fk">Navigate</span>
-          <a href="#work-do">What I do</a>
-          <a href="#experience">Experience</a>
+          <a href="/#work-do">What I do</a>
+          <a href="/#experience">Experience</a>
           <a href="/work">Work</a>
           <a href="/about">About</a>
         </div>
