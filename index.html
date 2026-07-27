@@ -337,6 +337,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .id-card .id-mono { width: 64px; height: 64px; border-radius: var(--radius-lg); background: var(--signal-1); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 24px; letter-spacing: var(--track-snug); margin-bottom: var(--space-5); }
 .id-card .id-role { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--on-ink-2); }
 .id-card .id-name { font-size: var(--size-h3); color: var(--on-ink-1); margin-block: var(--space-2) var(--space-5); letter-spacing: var(--track-snug); }
+.id-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-5); }
+.id-ident { min-width: 0; }
+.id-photo { flex: none; width: 132px; height: 132px; object-fit: cover; border-radius: var(--radius-lg);
+  border: 1px solid var(--on-ink-line); box-shadow: var(--shadow-md); }
 .id-rows { display: flex; flex-direction: column; gap: var(--space-3); border-top: 1px solid var(--on-ink-line); padding-top: var(--space-5); }
 .id-row { display: flex; justify-content: space-between; gap: var(--space-4); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; }
 .id-row .k { color: var(--on-ink-2); } .id-row .v { color: var(--on-ink-1); text-align: right; }
@@ -621,6 +625,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   :root { --size-display: 4.25rem; --size-h1: 3rem; --size-h2: 2.25rem; }
   .hero-grid { grid-template-columns: 1fr; gap: var(--space-7); }
   .hero-card { max-width: 420px; }
+  .id-photo { width: 96px; height: 96px; }
   .do-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
@@ -756,10 +761,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <div class="hero-card reveal">
         <div class="id-card">
-          <div class="id-mono">NM</div>
-          <div class="id-role">Business Analyst &amp; Delivery PMO</div>
-          <!-- EDIT: name -->
-          <div class="id-name">Noah McGill</div>
+          <div class="id-head">
+            <div class="id-ident">
+              <div class="id-mono">NM</div>
+              <div class="id-role">Business Analyst &amp;<br />Delivery PMO</div>
+              <!-- EDIT: name -->
+              <div class="id-name">Noah McGill</div>
+            </div>
+            <!-- EDIT: headshot -->
+            <img class="id-photo" src="/images/noah-headshot.jpg" width="640" height="640" alt="Noah McGill" decoding="async" />
+          </div>
           <div class="id-rows">
             <!-- EDIT: identity rows -->
             <div class="id-row"><span class="k">Focus /</span><span class="v">Analysis &amp; Delivery</span></div>
