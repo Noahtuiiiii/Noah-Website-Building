@@ -453,6 +453,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-narrative { max-width: var(--container-text); display: flex; flex-direction: column; gap: var(--space-5); margin-bottom: var(--space-8); }
 .about-narrative p { font-size: var(--size-body-lg); color: var(--ink-2); line-height: var(--lh-relaxed); }
 /* About intro: paragraphs left, feature photo right (photo moves above paragraphs on mobile) */
+.about-journey { margin-bottom: var(--space-9); }
 .about-intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); background: var(--paper-2); border-radius: var(--radius-xl); padding: var(--space-7); }
 .about-intro .about-narrative { max-width: none; margin-bottom: 0; }
 .photo.about-intro-img { aspect-ratio: 2 / 3; border: 0; background: transparent; border-radius: var(--radius-xl);
@@ -811,52 +812,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="label">Languages: EN · ES · DE</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     JOURNEY MAP: the path that got me here
-     EDIT: each .journey-stop (place label + one line)
-     ============================================================ -->
-<section class="section" id="journey" style="padding-block: var(--space-9);">
-  <div class="container">
-    <div class="section-head measure reveal">
-      <span class="eyebrow">/ The journey</span>
-      <h2 class="h2" style="margin-top: var(--space-3);">The path that got me <span class="accent accent--signal">here</span>.</h2>
-    </div>
-    <ol class="journey-track reveal">
-      <li class="journey-stop">
-        <span class="journey-dot"></span>
-        <span class="journey-place">Sydney</span>
-        <p class="journey-text">Home, and where I learned to surf. The baseline I keep coming back to.</p>
-        <p class="journey-note">Via Scotland and the US.</p>
-      </li>
-      <li class="journey-stop">
-        <span class="journey-dot"></span>
-        <span class="journey-place">Bariloche, Argentina</span>
-        <p class="journey-text">At 19 I trained for an Austrian Level 2 ski instructor qualification, a long way from anyone I knew.</p>
-      </li>
-      <li class="journey-stop">
-        <span class="journey-dot"></span>
-        <span class="journey-place">Niseko, Japan</span>
-        <p class="journey-text">Four months instructing international clients across language barriers. The best year of my life, and proof I back myself in unfamiliar places.</p>
-      </li>
-      <li class="journey-stop">
-        <span class="journey-dot"></span>
-        <span class="journey-place">Sydney, undergrad</span>
-        <p class="journey-text">Home three weeks before Covid lockdown. A blurry, formative stretch where I learned to manage myself: time, money, relationships.</p>
-      </li>
-      <li class="journey-stop">
-        <span class="journey-dot"></span>
-        <span class="journey-place">Melbourne, master's</span>
-        <p class="journey-text">A deliberate move out of my comfort zone. I put the full weight of adult life on myself on purpose, and came out clearer and steadier.</p>
-      </li>
-      <li class="journey-stop journey-stop--next">
-        <span class="journey-dot journey-dot--open"></span>
-        <span class="journey-place">Next</span>
-        <p class="journey-text">A Business Analyst or delivery PMO role with a team that teaches.</p>
-      </li>
-    </ol>
   </div>
 </section>
 
@@ -1443,6 +1398,47 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <div class="section-head measure reveal">
       <span class="eyebrow"><span class="idx">05</span> / A bit about me</span>
       <h2 class="h2">The person behind the <span class="accent accent--signal">analysis</span>.</h2>
+    </div>
+
+    <!-- JOURNEY MAP: the path that got me here (EDIT: each .journey-stop) -->
+    <div id="journey" class="about-journey">
+      <div class="section-head measure reveal" style="margin-bottom: var(--space-6);">
+        <span class="eyebrow">/ The journey</span>
+        <h3 class="h3" style="margin-top: var(--space-3);">The path that got me <span class="accent accent--signal">here</span>.</h3>
+      </div>
+      <ol class="journey-track reveal">
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Sydney</span>
+          <p class="journey-text">Home, and where I learned to surf. The baseline I keep coming back to.</p>
+          <p class="journey-note">Via Scotland and the US.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Bariloche, Argentina</span>
+          <p class="journey-text">At 19 I trained for an Austrian Level 2 ski instructor qualification, a long way from anyone I knew.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Niseko, Japan</span>
+          <p class="journey-text">Four months instructing international clients across language barriers. The best year of my life, and proof I back myself in unfamiliar places.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Sydney, undergrad</span>
+          <p class="journey-text">Home three weeks before Covid lockdown. A blurry, formative stretch where I learned to manage myself: time, money, relationships.</p>
+        </li>
+        <li class="journey-stop">
+          <span class="journey-dot"></span>
+          <span class="journey-place">Melbourne, master's</span>
+          <p class="journey-text">A deliberate move out of my comfort zone. I put the full weight of adult life on myself on purpose, and came out clearer and steadier.</p>
+        </li>
+        <li class="journey-stop journey-stop--next">
+          <span class="journey-dot journey-dot--open"></span>
+          <span class="journey-place">Next</span>
+          <p class="journey-text">A Business Analyst or delivery PMO role with a team that teaches.</p>
+        </li>
+      </ol>
     </div>
 
     <!-- Narrative + feature photo (two columns; photo moves above the paragraphs on mobile) -->
