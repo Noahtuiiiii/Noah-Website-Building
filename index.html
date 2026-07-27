@@ -633,7 +633,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     box-shadow: var(--shadow-lg); display: none; }
   .nav-links.open { display: flex; }
   .nav-link { padding: var(--space-3) var(--space-4); }
-  .nav-cta { display: none; }
+  .nav-cta { display: flex; justify-content: center; margin-left: 0; margin-top: var(--space-2); }
   .nav-toggle { display: flex; }
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-4); }
   .do-grid { grid-template-columns: 1fr; }
@@ -698,8 +698,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a href="#experience" class="nav-link">Experience</a>
       <a href="#projects" class="nav-link">Work</a>
       <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="btn btn--signal nav-cta">Let's talk</a>
     </div>
-    <a href="#contact" class="btn btn--signal nav-cta">Let's talk</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
