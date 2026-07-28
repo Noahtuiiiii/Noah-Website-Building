@@ -38,13 +38,22 @@
   }
   #cityCard.open { opacity:1; transform:scale(1); pointer-events:auto; }
   #cityCard .scroll {
-    height:100%; overflow-y:auto; overflow-x:hidden; padding:22px 22px 24px;
-    scrollbar-width:thin; scrollbar-color:rgba(180,178,170,0.6) rgba(255,255,255,0.07);
+    height:100%; overflow-y:scroll; overflow-x:hidden; padding:22px 18px 30px 22px;
+    scrollbar-gutter:stable;
+    scrollbar-width:thin; scrollbar-color:rgba(215,213,205,0.85) rgba(255,255,255,0.12);
   }
-  #cityCard .scroll::-webkit-scrollbar { width:8px; }
-  #cityCard .scroll::-webkit-scrollbar-track { background:rgba(255,255,255,0.06); border-radius:8px; }
-  #cityCard .scroll::-webkit-scrollbar-thumb { background:rgba(180,178,170,0.6); border-radius:8px; }
-  #cityCard .scroll::-webkit-scrollbar-thumb:hover { background:rgba(205,203,196,0.8); }
+  /* Force a classic, always-drawn scrollbar (WebKit/Blink hide the overlay one by default) */
+  #cityCard .scroll::-webkit-scrollbar { width:10px; -webkit-appearance:none; }
+  #cityCard .scroll::-webkit-scrollbar-track {
+    background:rgba(255,255,255,0.12); border-radius:8px; margin:8px 0;
+  }
+  #cityCard .scroll::-webkit-scrollbar-thumb {
+    background:rgba(215,213,205,0.9); border-radius:8px;
+    border:2px solid transparent; background-clip:padding-box;
+  }
+  #cityCard .scroll::-webkit-scrollbar-thumb:hover {
+    background:rgba(255,255,255,0.98); background-clip:padding-box;
+  }
   #cityCard img {
     display:block; width:100%; height:auto; border-radius:12px; margin-top:14px;
     border:1px solid rgba(255,255,255,0.08);
@@ -68,6 +77,92 @@
     font-size:11.5px; letter-spacing:0.13em; text-transform:uppercase; color:#9C9A92;
   }
   #cityCard li .tick { color:#6E63E6; flex:0 0 auto; line-height:1.1; font-weight:700; }
+  #cityCard .gallery img { cursor:zoom-in; transition:transform 180ms ease, border-color 180ms ease; }
+  #cityCard .gallery img:hover { transform:scale(1.015); border-color:rgba(255,255,255,0.35); }
+  /* "scroll for photos" cue pinned to the bottom of an open card */
+  #cityCard .scrollCue {
+    position:absolute; left:0; right:10px; bottom:0; z-index:2;
+    display:flex; align-items:flex-end; justify-content:center;
+    height:46px; padding-bottom:9px; pointer-events:none;
+    background:linear-gradient(to top, rgba(18,22,20,0.96) 34%, rgba(18,22,20,0));
+    transition:opacity 220ms ease;
+  }
+  #cityCard .scrollCue.hide { opacity:0; }
+  #cityCard .scrollCue span {
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:#D8D6CE;
+    background:rgba(10,22,34,0.85); border:1px solid rgba(255,255,255,0.18);
+    border-radius:999px; padding:5px 11px;
+    animation:cueBob 1.9s ease-in-out infinite;
+  }
+  #cityCard .scrollCue svg { width:11px; height:11px; stroke:#FF3B30; fill:none; stroke-width:2.4; }
+  @keyframes cueBob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(3px); } }
+
+  /* On-globe instruction pill */
+  #hint {
+    position:fixed; z-index:4; top:20px; left:50%; transform:translateX(-50%);
+    display:flex; align-items:center; gap:10px;
+    padding:10px 16px; border-radius:999px;
+    background:rgba(10,22,34,0.72); border:1px solid rgba(255,255,255,0.18);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#C8D3DA;
+    white-space:nowrap; pointer-events:none;
+    transition:opacity 420ms ease, transform 420ms ease;
+  }
+  #hint b { color:#fff; font-weight:500; }
+  #hint .pin {
+    width:9px; height:9px; border-radius:50%; background:#FF3B30; flex:0 0 auto;
+    box-shadow:0 0 0 0 rgba(255,59,48,0.55); animation:pinPing 1.8s ease-out infinite;
+  }
+  @keyframes pinPing {
+    0% { box-shadow:0 0 0 0 rgba(255,59,48,0.55); }
+    70% { box-shadow:0 0 0 11px rgba(255,59,48,0); }
+    100% { box-shadow:0 0 0 0 rgba(255,59,48,0); }
+  }
+  #hint.gone { opacity:0; transform:translateX(-50%) translateY(-10px); }
+  @media (max-width:620px) {
+    #hint { font-size:9px; letter-spacing:0.1em; padding:9px 13px; white-space:normal; max-width:88vw; text-align:center; }
+  }
+
+  /* ---- Full-size image lightbox ---- */
+  #lightbox {
+    position:fixed; inset:0; z-index:20; display:none;
+    align-items:center; justify-content:center;
+    background:rgba(6,11,16,0.94);
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    opacity:0; transition:opacity 200ms ease;
+  }
+  #lightbox.open { display:flex; opacity:1; }
+  #lightbox img {
+    max-width:92vw; max-height:88vh; width:auto; height:auto;
+    border-radius:10px; box-shadow:0 30px 90px rgba(0,0,0,0.6);
+    -webkit-user-select:none; user-select:none;
+  }
+  #lightbox .lb-btn {
+    position:absolute; display:flex; align-items:center; justify-content:center;
+    background:rgba(18,26,34,0.72); border:1px solid rgba(255,255,255,0.22);
+    color:#ECEBE6; cursor:pointer; border-radius:999px;
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    transition:background 160ms ease, transform 160ms ease, border-color 160ms ease;
+  }
+  #lightbox .lb-btn:hover { background:rgba(40,52,62,0.92); border-color:rgba(255,255,255,0.4); }
+  #lightbox .lb-close { top:18px; right:18px; width:44px; height:44px; font-size:20px; line-height:1; }
+  #lightbox .lb-nav { top:50%; margin-top:-27px; width:54px; height:54px; }
+  #lightbox .lb-nav svg { width:22px; height:22px; stroke:#ECEBE6; fill:none; stroke-width:2; }
+  #lightbox .lb-prev { left:18px; }
+  #lightbox .lb-next { right:18px; }
+  #lightbox .lb-nav:hover { transform:scale(1.06); }
+  #lightbox .lb-count {
+    position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+    font-size:11px; letter-spacing:0.18em; color:#9FB0BB;
+    background:rgba(18,26,34,0.6); border:1px solid rgba(255,255,255,0.14);
+    border-radius:999px; padding:6px 14px; pointer-events:none;
+  }
+  @media (max-width:620px) {
+    #lightbox img { max-width:94vw; max-height:76vh; }
+    #lightbox .lb-nav { width:44px; height:44px; margin-top:-22px; }
+    #lightbox .lb-prev { left:8px; } #lightbox .lb-next { right:8px; }
+  }
 </style>
 </head>
 <body>
@@ -85,10 +180,28 @@
       </div>
       <div id="cityCardGallery" class="gallery"></div>
     </div>
+    <div class="scrollCue" id="cardScrollCue" aria-hidden="true">
+      <span>
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        Scroll for photos
+      </span>
+    </div>
   </div>
+  <div id="hint"><span class="pin"></span><span><b>Drag</b> to spin &nbsp;&middot;&nbsp; <b>Click a red pin</b> to open its story &amp; photos</span></div>
   <div class="caption">
     <div class="title">Stepping into the unknown</div>
-    <div class="sub">drag to rotate &middot; a journey in four stops</div>
+    <div class="sub">drag to rotate &middot; click a red pin for the story</div>
+  </div>
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <img id="lbImg" alt="">
+    <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo">&#10005;</button>
+    <button class="lb-btn lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button class="lb-btn lb-nav lb-next" id="lbNext" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="lb-count" id="lbCount"></div>
   </div>
   <div id="fallback" role="img" aria-label="Map of my journey">
     <h2>My journey</h2>
@@ -485,7 +598,7 @@
     var dotPositions = PLACES.map(function (p) { return surfacePos(p.lat, p.lon); });
 
     // dots + halos + labels (rest on surface; occlude naturally)
-    var halos = [], dots = [], labels = [], picks = [];
+    var halos = [], dots = [], labels = [], picks = [], pings = [];
     var dotGeo = new THREE.SphereGeometry(0.04, 16, 16), haloGeo = new THREE.SphereGeometry(0.08, 16, 16);
     var pickGeo = new THREE.SphereGeometry(0.12, 12, 12);
     PLACES.forEach(function (p, i2) {
@@ -498,19 +611,56 @@
       var pick = new THREE.Mesh(pickGeo, new THREE.MeshBasicMaterial({ visible: false }));
       pick.position.copy(at); pick.userData.index = i2;
       world.add(pick); picks.push(pick);
+      // expanding "ping" that advertises the dot as a clickable target
+      var ping = new THREE.Mesh(haloGeo, new THREE.MeshBasicMaterial({
+        color: COLORS.dot, transparent: true, opacity: 0, depthWrite: false }));
+      ping.position.copy(at); world.add(ping); pings.push(ping);
       var label = makeLabel(p.name);
-      label.position.copy(at).add(at.clone().normalize().multiplyScalar(0.14));
+      label.position.copy(at).add(at.clone().normalize().multiplyScalar(0.16));
+      label.material.opacity = 1;
       world.add(label); labels.push(label);
     });
+    // Labels are drawn as little "button" pills with a red + badge, so they read
+    // as things you can click rather than as static map type.
+    function roundRectPath(x, rx, ry, w, h, r) {
+      x.beginPath();
+      x.moveTo(rx + r, ry);
+      x.lineTo(rx + w - r, ry); x.quadraticCurveTo(rx + w, ry, rx + w, ry + r);
+      x.lineTo(rx + w, ry + h - r); x.quadraticCurveTo(rx + w, ry + h, rx + w - r, ry + h);
+      x.lineTo(rx + r, ry + h); x.quadraticCurveTo(rx, ry + h, rx, ry + h - r);
+      x.lineTo(rx, ry + r); x.quadraticCurveTo(rx, ry, rx + r, ry);
+      x.closePath();
+    }
     function makeLabel(text) {
-      var pad = 8, fs = 42, c = document.createElement("canvas"), x = c.getContext("2d");
+      var fs = 38, padX = 22, gap = 14, badge = 30, padY = 15;
+      var c = document.createElement("canvas"), x = c.getContext("2d");
       x.font = "500 " + fs + 'px "DM Mono", monospace';
-      var w = x.measureText(text).width; c.width = w + pad*2; c.height = fs + pad*2;
-      x.font = "500 " + fs + 'px "DM Mono", monospace'; x.fillStyle = "rgba(240,246,248,0.98)"; x.textBaseline = "middle";
-      x.fillText(text, pad, c.height/2);
+      var w = x.measureText(text).width;
+      c.width = Math.ceil(w + padX * 2 + gap + badge);
+      c.height = Math.ceil(fs + padY * 2);
+      x = c.getContext("2d");
+      x.font = "500 " + fs + 'px "DM Mono", monospace';
+      // pill background + hairline border
+      roundRectPath(x, 1.5, 1.5, c.width - 3, c.height - 3, (c.height - 3) / 2);
+      x.fillStyle = "rgba(9,20,31,0.74)"; x.fill();
+      x.lineWidth = 2; x.strokeStyle = "rgba(255,255,255,0.32)"; x.stroke();
+      // name
+      x.fillStyle = "rgba(240,246,248,0.98)"; x.textBaseline = "middle";
+      x.fillText(text, padX, c.height / 2 + 1);
+      // red "+" badge => affordance for "opens something"
+      var bx = padX + w + gap + badge / 2, by = c.height / 2;
+      x.beginPath(); x.arc(bx, by, badge / 2, 0, Math.PI * 2);
+      x.fillStyle = "rgba(255,59,48,0.98)"; x.fill();
+      x.strokeStyle = "rgba(255,255,255,0.95)"; x.lineWidth = 3.4; x.lineCap = "round";
+      x.beginPath();
+      x.moveTo(bx - badge * 0.24, by); x.lineTo(bx + badge * 0.24, by);
+      x.moveTo(bx, by - badge * 0.24); x.lineTo(bx, by + badge * 0.24);
+      x.stroke();
       var tex = new THREE.CanvasTexture(c); tex.minFilter = THREE.LinearFilter;
       var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false }));
-      sp.scale.set(c.width*0.0042, c.height*0.0042, 1); sp.renderOrder = 10; return sp;
+      sp.scale.set(c.width * 0.0037, c.height * 0.0037, 1);
+      sp.userData.baseW = sp.scale.x; sp.userData.baseH = sp.scale.y;
+      sp.renderOrder = 10; return sp;
     }
 
     // Great-circle arc between two surface points, lifted on a sine profile so
@@ -568,6 +718,86 @@
     var cardBlurb = document.getElementById("cityCardBlurb");
     var cardFacts = document.getElementById("cityCardFacts");
     var cardGallery = document.getElementById("cityCardGallery");
+    var cardCue = document.getElementById("cardScrollCue");
+    var hintEl = document.getElementById("hint");
+    var hasOpenedACity = false;
+
+    function dismissHint() {
+      if (!hintEl || hintEl.classList.contains("gone")) return;
+      hintEl.classList.add("gone");
+    }
+
+    function updateCue() {
+      if (!cardCue) return;
+      var canScroll = cardScroll.scrollHeight - cardScroll.clientHeight > 8;
+      var atTop = cardScroll.scrollTop < 10;
+      cardCue.classList.toggle("hide", !(canScroll && atTop));
+    }
+    cardScroll.addEventListener("scroll", updateCue);
+
+    // ---------------- lightbox ----------------
+    var lb = document.getElementById("lightbox");
+    var lbImg = document.getElementById("lbImg");
+    var lbCount = document.getElementById("lbCount");
+    var lbPrev = document.getElementById("lbPrev");
+    var lbNext = document.getElementById("lbNext");
+    var lbClose = document.getElementById("lbClose");
+    var lbList = [], lbIndex = 0;
+
+    function lbShow() {
+      if (!lbList.length) return;
+      lbImg.src = lbList[lbIndex];
+      lbCount.textContent = (lbIndex + 1) + " / " + lbList.length;
+      var multi = lbList.length > 1;
+      lbPrev.style.display = multi ? "flex" : "none";
+      lbNext.style.display = multi ? "flex" : "none";
+      lbCount.style.display = multi ? "block" : "none";
+    }
+    function lbOpen(list, i) {
+      lbList = list || []; lbIndex = i || 0;
+      lbImg.alt = (openIndex >= 0 && PLACES[openIndex] ? PLACES[openIndex].name : "") + " photo";
+      lbShow();
+      lb.classList.add("open"); lb.setAttribute("aria-hidden", "false");
+    }
+    function lbHide() {
+      lb.classList.remove("open"); lb.setAttribute("aria-hidden", "true");
+      lbImg.removeAttribute("src");
+    }
+    function lbStep(d) {
+      if (!lbList.length) return;
+      lbIndex = (lbIndex + d + lbList.length) % lbList.length;
+      lbShow();
+    }
+    lbClose.addEventListener("click", function (e) { e.stopPropagation(); lbHide(); });
+    lbPrev.addEventListener("click", function (e) { e.stopPropagation(); lbStep(-1); });
+    lbNext.addEventListener("click", function (e) { e.stopPropagation(); lbStep(1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lbHide(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("open")) {
+        if (e.key === "Escape" && openIndex >= 0) closeCity();
+        return;
+      }
+      if (e.key === "Escape") { lbHide(); e.preventDefault(); }
+      else if (e.key === "ArrowLeft") { lbStep(-1); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { lbStep(1); e.preventDefault(); }
+    });
+    // swipe between photos on touch
+    (function () {
+      var sx = 0, sy = 0, tracking = false;
+      lb.addEventListener("touchstart", function (e) {
+        if (!e.touches[0]) return;
+        tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      }, { passive: true });
+      lb.addEventListener("touchmove", function (e) {
+        if (tracking && e.touches.length === 1 && e.cancelable) e.preventDefault();
+      }, { passive: false });
+      lb.addEventListener("touchend", function (e) {
+        if (!tracking) return; tracking = false;
+        var t = e.changedTouches && e.changedTouches[0]; if (!t) return;
+        var dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbStep(dx < 0 ? 1 : -1);
+      });
+    })();
 
     function pickAt(cx, cy) {
       var rect = canvas.getBoundingClientRect();
@@ -610,19 +840,25 @@
       openIndex = i;
       cardGallery.innerHTML = "";
       var imgs = (typeof CITY_IMAGES !== "undefined" && CITY_IMAGES[i]) ? CITY_IMAGES[i] : [];
-      imgs.forEach(function (src) {
+      imgs.forEach(function (src, gi) {
         var im = document.createElement("img");
         im.src = src; im.alt = p.name + " photo"; im.loading = "lazy";
+        im.setAttribute("role", "button"); im.setAttribute("tabindex", "0");
+        im.title = "Click to view full size";
+        im.addEventListener("click", function (e) { e.stopPropagation(); lbOpen(imgs, gi); });
         cardGallery.appendChild(im);
       });
       cardScroll.scrollTop = 0;
       sizeCardToText();
       positionCard();
       card.classList.add("open");
+      hasOpenedACity = true;
+      dismissHint();
+      requestAnimationFrame(updateCue);
       // Re-measure after first paint: on the very first open the web font may
       // still be loading, so the initial measurement can be too short and clip
       // the last line. This corrects it once the font has applied.
-      requestAnimationFrame(function () { sizeCardToText(); positionCard(); });
+      requestAnimationFrame(function () { sizeCardToText(); positionCard(); updateCue(); });
     }
 
     // Size the card to its text content (the v6 look). Any gallery images
@@ -631,12 +867,13 @@
     function sizeCardToText() {
       if (openIndex < 0) return;
       var cardText = card.querySelector(".cardText");
-      card.style.height = (cardText.offsetHeight + 48) + "px";
+      card.style.height = (cardText.offsetHeight + 54) + "px";
     }
 
     function closeCity() {
       openIndex = -1;
       card.classList.remove("open");
+      if (lb.classList.contains("open")) lbHide();
     }
 
     // If the web fonts finish loading while a card is open, re-measure so the
@@ -662,7 +899,10 @@
     function move(x, y) {
       lastInteraction = performance.now();
       if (!dragging) { updateHover(x, y); return; }
-      if (Math.abs(x - downX) + Math.abs(y - downY) > 6) { moved = true; if (openIndex >= 0) closeCity(); }
+      if (Math.abs(x - downX) + Math.abs(y - downY) > 6) {
+        moved = true;
+        if (openIndex >= 0 && !lb.classList.contains("open")) closeCity();
+      }
       velY = (x - lastX) * 0.005; velX = (y - lastY) * 0.005; lastX = x; lastY = y;
     }
     function up(x, y) {
@@ -705,6 +945,25 @@
         h.scale.setScalar(pulse * (1 - a) + HALO_MAX * a);
         h.material.opacity = 0.22 * (1 - a) + 1 * a;
       });
+
+      // Front-facing test: hide labels/pings on the far side of the globe so the
+      // clickable pins on this side stand out instead of competing with them.
+      var pingStrength = hasOpenedACity ? 0.42 : 1;
+      for (var li = 0; li < labels.length; li++) {
+        var wp = dots[li].getWorldPosition(tmpVec).normalize();
+        var facing = Math.max(0, Math.min(1, (wp.z - 0.02) / 0.32));
+        var lab = labels[li];
+        lab.visible = facing > 0.03;
+        lab.material.opacity = facing;
+        var grow = 1 + 0.16 * hoverAmt[li];
+        lab.scale.set(lab.userData.baseW * grow, lab.userData.baseH * grow, 1);
+        var ping = pings[li];
+        // staggered sonar ping: expands out from the dot and fades
+        var ph = ((t2 * 0.00055) + li * 0.14) % 1;
+        ping.visible = facing > 0.03;
+        ping.scale.setScalar(1 + ph * 2.6);
+        ping.material.opacity = (1 - ph) * (1 - ph) * 0.5 * facing * pingStrength;
+      }
       if (!dragging) {
         if (hovering) {
           velY += (0 - velY) * 0.18;
@@ -723,6 +982,10 @@
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+    updateCue();
+    // The hint stays until a pin is actually opened; if someone spins the globe
+    // for a long while without clicking, it fades on its own after 45s.
+    setTimeout(function () { if (!hasOpenedACity) dismissHint(); }, 45000);
   }
 })();
 </script>
