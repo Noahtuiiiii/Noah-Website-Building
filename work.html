@@ -871,7 +871,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
-          <p>A 13,200-word group investigation for BUSM4415 (Industry Project Investigation) into stakeholder engagement on the $1.6B Caulfield to Dandenong Level Crossing Removal Project, focused on construction disruption for traders in Noble Park's Douglas &amp; Ian Street precinct between 2016 and 2018.</p>
+          <p>A 9,866-word group investigation for BUSM4415 (Industry Project Investigation) into stakeholder engagement on the $1.6B Caulfield to Dandenong Level Crossing Removal Project, focused on construction disruption for traders in Noble Park's Douglas &amp; Ian Street precinct between 2016 and 2018.</p>
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
@@ -894,19 +894,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
       <div class="case-metrics">
         <div class="metric">
-          <div class="value">$53.5M</div>
-          <div class="label">NPV modelled</div>
-          <div class="delta">14% project IRR vs. 12.46% WACC</div>
-        </div>
-        <div class="metric">
-          <div class="value">5</div>
-          <div class="label">Risk categories stress-tested</div>
-          <div class="delta">Construction, demand, financing, regulatory, FX &amp; inflation</div>
+          <div class="value">13.68%</div>
+          <div class="label">Project IRR</div>
+          <div class="delta">Sits between the 12.46% WACC and the 13.85% CAPM hurdle</div>
         </div>
         <div class="metric">
           <div class="value">-$1.16M</div>
-          <div class="label">Monte Carlo mean NPV</div>
-          <div class="delta">10,000-run stress test on the same model</div>
+          <div class="label">NPV at the cost of equity</div>
+          <div class="delta">+$9.15M at WACC, the sign turns on the discount rate</div>
+        </div>
+        <div class="metric">
+          <div class="value">79%</div>
+          <div class="label">Probability of a negative NPV</div>
+          <div class="delta">10,000-run Monte Carlo, &plusmn;5% revenue and &plusmn;10% costs</div>
         </div>
       </div>
       <div class="case-body">
@@ -916,15 +916,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <p>Built the full 20-year financial model in Excel first, cash flows, loan amortisation, NPV, project and equity IRR, WACC, CAPM, DSCR, and interest cover, then wrote a second report that used that same model as the thing to attack. I ran a 10,000-iteration Monte Carlo simulation on revenue and cost assumptions and stress-tested the base case across five risk categories, pairing each with a specific mitigation: EPC contract caps, take-or-pay clauses, debt sculpting, and reserve accounts.</p>
+          <p>Built the full 20-year model in Excel first, cash flows, loan amortisation, NPV, project and equity IRR, WACC, CAPM, DSCR and interest cover, then wrote a second report whose job was to attack it. That second pass found the first one had discounted at the wrong rate, so I restated the NPV, re-ran the coverage ratios year by year, put a 10,000-iteration Monte Carlo over the revenue and cost assumptions, and stress-tested the corrected base case across five risk categories, pairing each with a specific mitigation: EPC contract caps, take-or-pay clauses, debt sculpting and a debt service reserve account.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
-          <p>The base case looked bankable: positive NPV, project IRR above WACC, equity IRR above the CAPM-required return, average DSCR of 6.24. The stress test told a less comfortable story, mean NPV under plausible revenue and cost variation fell to roughly -$1.16M, with debt coverage tightest in the early operating years. I recommended the board proceed, but only alongside active early-year monitoring and the mitigation set the risk assessment specified.</p>
+          <p>The project IRR came out at 13.68%, which falls between the 12.46% WACC and the 13.85% CAPM cost of equity. That single fact decides the case: discounted at WACC the NPV is +$9.15M, discounted at the cost of equity it is -$1.16M. Feasibility turned on a methodological choice rather than on the cash flows, and the first report had made that choice without noticing it. The Monte Carlo put the probability of a negative NPV at 79%, with a 5th to 95th percentile range of -$3.5M to +$1.3M. Debt coverage was the sharper finding: average DSCR of 2.14 across the concession, but 0.76, 0.84 and 0.93 in years one to three, so the project cannot service its own debt from operating cash flow until year four. I recommended proceeding only with sculpted repayments, a reserve account sized to the shortfall, and monitoring through the ramp-up.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Why it matters</span>
-          <p>Board-level appraisal isn't finished when the base case is positive. It's finished when someone has tried to break the model and reported honestly on what it takes to do that, exactly what I'd bring to a business case or investment paper.</p>
+          <p>Board-level appraisal isn't finished when the base case is positive. It's finished when someone has gone back at the model hard enough to find what the first pass got wrong, and has said so. Catching my own error and restating the recommendation is the part of this I'd bring to a business case or investment paper.</p>
         </div>
       </div>
     </article>
