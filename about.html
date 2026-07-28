@@ -1182,15 +1182,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     if (hoverCapable) {
       c.addEventListener('mouseenter', () => {
         cancelClose();
-        if (state !== 'resting' || lock) return;
+        if (state !== 'resting' || lock || innerWidth < 900) return;
         clearTimeout(openTimer); openTimer = setTimeout(() => open(g), OPEN_DELAY);
       });
       c.addEventListener('mouseleave', () => { clearTimeout(openTimer); if (state === 'expanded' || lock) scheduleClose(); });
     }
-    // Touch (and any click on the cover): go straight to the full-screen viewer.
+    // Touch, or any viewport too narrow for a comfortable thumbnail row:
+    // skip the preview panel and go straight to the full-screen viewer.
+    const panelWorthIt = () => hoverCapable && innerWidth >= 900;
     c.addEventListener('click', () => {
       if (pvIsOpen()) return;
-      if (!hoverCapable) { pvOpen(photosOf(g), 0); return; }
+      if (!panelWorthIt()) { pvOpen(photosOf(g), 0); return; }
       if (state === 'resting' && !lock) open(g);
     });
     c.addEventListener('keydown', (e) => {

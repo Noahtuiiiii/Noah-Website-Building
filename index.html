@@ -503,14 +503,36 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery-backdrop.is-shown { opacity: 1; }
 .gallery-overlay { position: fixed; z-index: 240; border-radius: var(--radius-lg); overflow: hidden; background: var(--paper-2); box-shadow: var(--shadow-lg); }
 .gallery-overlay.is-anim { transition: top .28s var(--ease-out), left .28s var(--ease-out), width .28s var(--ease-out), height .28s var(--ease-out); }
-.gallery-grid { height: 100%; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); align-content: center; gap: 8px; padding: 12px; }
-.gallery-cell { position: relative; aspect-ratio: 4 / 5; border: 0; padding: 0; border-radius: var(--radius-md); overflow: hidden; background: var(--stone-2); cursor: pointer; }
+.gallery-grid { height: 100%; display: flex; gap: 8px; padding: 12px; overflow: hidden; }
+.gallery-cell { position: relative; flex: 1 1 0; min-width: 0; height: 100%; border: 0; padding: 0; border-radius: var(--radius-md); overflow: hidden; background: var(--stone-2); cursor: zoom-in; transition: transform .18s var(--ease-out); }
 .gallery-cell img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gallery-cell::after { content: ''; position: absolute; inset: 0; background: rgba(26,24,19,0); transition: background .18s var(--ease-out); }
+.gallery-cell:hover { transform: translateY(-2px); }
+.gallery-cell:hover::after { background: rgba(26,24,19,0.14); }
 .gallery-cell:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
-.gallery-full { position: absolute; inset: 0; z-index: 5; background: var(--ink-surface-1); display: grid; place-items: center; }
-.gallery-full img { max-width: 100%; max-height: 100%; object-fit: contain; }
-.gallery-x { position: absolute; top: 10px; right: 10px; width: 38px; height: 38px; border: 0; border-radius: var(--radius-pill); background: rgba(26,24,19,0.72); color: var(--on-ink-1); font-size: 17px; line-height: 1; cursor: pointer; display: grid; place-items: center; }
-.gallery-x:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
+.gallery-tip { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); z-index: 4; pointer-events: none; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--on-ink-1); background: rgba(26,24,19,0.72); padding: 4px 10px; border-radius: var(--radius-pill); }
+
+/* ---- Full-screen photo viewer (shared by every gallery) ---- */
+.pv { position: fixed; inset: 0; z-index: 300; display: none; align-items: center; justify-content: center; background: rgba(20,19,16,0.95); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; transition: opacity .2s var(--ease-out); overscroll-behavior: contain; }
+.pv.is-open { display: flex; opacity: 1; }
+.pv-img { max-width: 92vw; max-height: 88vh; width: auto; height: auto; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); -webkit-user-select: none; user-select: none; }
+.pv-btn { position: absolute; display: grid; place-items: center; border: 1px solid var(--on-ink-line); background: rgba(26,24,19,0.7); color: var(--on-ink-1); border-radius: var(--radius-pill); cursor: pointer; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background .16s var(--ease-out), transform .16s var(--ease-out); }
+.pv-btn:hover { background: rgba(60,56,48,0.92); transform: scale(1.05); }
+.pv-btn:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
+.pv-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pv-close { top: 18px; right: 18px; width: 44px; height: 44px; }
+.pv-close svg { width: 18px; height: 18px; }
+.pv-nav { top: 50%; margin-top: -28px; width: 56px; height: 56px; }
+.pv-prev { left: 18px; }
+.pv-next { right: 18px; }
+.pv-count { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--track-label); color: var(--on-ink-2); background: rgba(26,24,19,0.6); border: 1px solid var(--on-ink-line); border-radius: var(--radius-pill); padding: 6px 14px; pointer-events: none; }
+@media (max-width: 760px) {
+  .pv-img { max-width: 94vw; max-height: 72vh; }
+  .pv-nav { width: 48px; height: 48px; margin-top: -24px; }
+  .pv-prev { left: 8px; }
+  .pv-next { right: 8px; }
+  .pv-close { top: 10px; right: 10px; }
+}
 
 
 .band-photo { aspect-ratio: 21 / 9; }
@@ -1300,20 +1322,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   const photosOf = (g) => Array.from(g.querySelectorAll('.gallery-source img')).map((im) => ({ src: im.getAttribute('src'), alt: im.getAttribute('alt') || '' }));
   const setRect = (el, r) => { el.style.left = r.left + 'px'; el.style.top = r.top + 'px'; el.style.width = r.width + 'px'; el.style.height = r.height + 'px'; };
 
-  function targetRect(rect) {
-    const vw = innerWidth, vh = innerHeight, m = 16;
-    const W = Math.round(Math.min(Math.max(rect.width * 1.7, 560), vw - m * 2));
-    const H = Math.round(Math.min(Math.max(rect.height * 1.2, 400), vh - m * 2));
+  // Size the panel to the photo row itself (one row of 4:5 thumbs) instead of a
+  // fixed block, so it never opens as a big empty card. The cursor can end up
+  // outside the panel now, so hover-close also watches the cover (see isHovered).
+  function targetRect(rect, n) {
+    const vw = innerWidth, vh = innerHeight, m = 16, pad = 12, gap = 8;
+    const cols = Math.max(1, n);
+    let cellW = Math.min(268, (vw - m * 2 - pad * 2 - gap * (cols - 1)) / cols);
+    let cellH = cellW * 1.25;
+    const maxH = vh - m * 2 - pad * 2;
+    if (cellH > maxH) { cellH = maxH; cellW = cellH / 1.25; }
+    const W = Math.round(cellW * cols + gap * (cols - 1) + pad * 2);
+    const H = Math.round(cellH + pad * 2);
     let left = Math.round(rect.left + rect.width / 2 - W / 2);
     let top = Math.round(rect.top + rect.height / 2 - H / 2);
-    left = Math.min(Math.max(left, m), vw - m - W);
-    top = Math.min(Math.max(top, m), vh - m - H);
-    // guarantee the panel is a SUPERSET of the resting rect (cursor can never fall outside)
-    left = Math.min(left, Math.round(rect.left));
-    top = Math.min(top, Math.round(rect.top));
-    const right = Math.max(left + W, Math.round(rect.right));
-    const bottom = Math.max(top + H, Math.round(rect.bottom));
-    return { left, top, width: right - left, height: bottom - top };
+    left = Math.min(Math.max(left, m), Math.max(m, vw - m - W));
+    top = Math.min(Math.max(top, m), Math.max(m, vh - m - H));
+    return { left, top, width: W, height: H };
   }
 
   function build(g) {
@@ -1328,6 +1353,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       grid.appendChild(cell);
     });
     overlay.appendChild(grid);
+    const tip = document.createElement('span');
+    tip.className = 'gallery-tip'; tip.setAttribute('aria-hidden', 'true');
+    tip.textContent = 'Click a photo to enlarge';
+    overlay.appendChild(tip);
     document.body.appendChild(backdrop); document.body.appendChild(overlay);
     if (hoverCapable) { overlay.addEventListener('mouseenter', cancelClose); overlay.addEventListener('mouseleave', scheduleClose); }
     backdrop.addEventListener('click', requestCloseNow);
@@ -1337,6 +1366,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     if (state !== 'resting' || lock) return;
     active = g; state = 'expanding'; lock = true; pendingClose = false;
     const rect = coverEl(g).getBoundingClientRect();
+    const count = photosOf(g).length;
     build(g);
     setRect(overlay, rect);
     coverEl(g).setAttribute('aria-expanded', 'true');
@@ -1344,7 +1374,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     requestAnimationFrame(() => {
       if (!reduce) overlay.classList.add('is-anim');
       backdrop.classList.add('is-shown');
-      setRect(overlay, targetRect(rect));
+      setRect(overlay, targetRect(rect, count));
     });
     clearTimeout(safety);
     if (reduce) { finishExpand(); }
@@ -1357,12 +1387,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     clearTimeout(safety);
     state = 'expanded'; lock = false;
     // transition lock released: if the cursor already left (or a close was queued), close now
-    if (pendingClose || (hoverCapable && overlay && !overlay.matches(':hover'))) scheduleClose();
+    if (pendingClose || (hoverCapable && !isHovered())) scheduleClose();
+  }
+
+  function isHovered() {
+    const c = active ? coverEl(active) : null;
+    return !!((overlay && overlay.matches(':hover')) || (c && c.matches(':hover')));
   }
 
   function collapse() {
     if (!overlay || state !== 'expanded') return;
-    if (full) closeFull();
     state = 'collapsing'; lock = true;
     const rect = coverEl(active).getBoundingClientRect();
     if (!reduce) overlay.classList.add('is-anim');
@@ -1377,40 +1411,140 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     clearTimeout(safety);
     if (active) coverEl(active).setAttribute('aria-expanded', 'false');
     if (overlay) overlay.remove(); if (backdrop) backdrop.remove();
-    overlay = backdrop = full = null; active = null; state = 'resting'; lock = false;
+    overlay = backdrop = null; full = null; active = null; state = 'resting'; lock = false;
   }
 
   function scheduleClose() { if (state !== 'expanded') { pendingClose = true; return; } clearTimeout(closeTimer); closeTimer = setTimeout(collapse, CLOSE_DELAY); }
   function cancelClose() { pendingClose = false; clearTimeout(closeTimer); }
   function requestCloseNow() { clearTimeout(closeTimer); if (state === 'expanded') collapse(); else pendingClose = true; }
 
-  function openFull(p) {
-    if (!overlay || full) return;
-    full = document.createElement('div'); full.className = 'gallery-full';
-    const im = document.createElement('img'); im.src = p.src; im.alt = p.alt; full.appendChild(im);
-    const x = document.createElement('button'); x.type = 'button'; x.className = 'gallery-x'; x.setAttribute('aria-label', 'Back to grid'); x.textContent = '\u2715';
-    x.addEventListener('click', (ev) => { ev.stopPropagation(); closeFull(); });
-    full.appendChild(x); overlay.appendChild(full);
+  /* ---- Full-screen viewer: lives on <body>, not inside the panel, so photos
+     open at real size. Arrows + counter + keyboard + swipe. ---- */
+  let pv = null, pvImg = null, pvCount = null, pvList = [], pvIndex = 0, pvPrevFocus = null;
+
+  function pvBuild() {
+    if (pv) return;
+    pv = document.createElement('div');
+    pv.className = 'pv';
+    pv.setAttribute('role', 'dialog');
+    pv.setAttribute('aria-modal', 'true');
+    pv.setAttribute('aria-label', 'Photo viewer');
+    pv.innerHTML =
+      '<img class="pv-img" alt="">' +
+      '<button type="button" class="pv-btn pv-close" aria-label="Close photo">' +
+        '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+      '<button type="button" class="pv-btn pv-nav pv-prev" aria-label="Previous photo">' +
+        '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>' +
+      '<button type="button" class="pv-btn pv-nav pv-next" aria-label="Next photo">' +
+        '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>' +
+      '<div class="pv-count" aria-live="polite"></div>';
+    document.body.appendChild(pv);
+    pvImg = pv.querySelector('.pv-img');
+    pvCount = pv.querySelector('.pv-count');
+    pv.querySelector('.pv-close').addEventListener('click', (e) => { e.stopPropagation(); pvClose(); });
+    pv.querySelector('.pv-prev').addEventListener('click', (e) => { e.stopPropagation(); pvStep(-1); });
+    pv.querySelector('.pv-next').addEventListener('click', (e) => { e.stopPropagation(); pvStep(1); });
+    pv.addEventListener('click', (e) => { if (e.target === pv) pvClose(); });
+    let sx = 0, sy = 0, tracking = false;
+    pv.addEventListener('touchstart', (e) => {
+      if (!e.touches[0]) return;
+      tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive: true });
+    pv.addEventListener('touchmove', (e) => {
+      if (tracking && e.touches.length === 1 && e.cancelable) e.preventDefault();
+    }, { passive: false });
+    pv.addEventListener('touchend', (e) => {
+      if (!tracking) return; tracking = false;
+      const t = e.changedTouches && e.changedTouches[0]; if (!t) return;
+      const dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) pvStep(dx < 0 ? 1 : -1);
+    });
   }
-  function closeFull() { if (full) { full.remove(); full = null; } }
+
+  function pvRender() {
+    const p = pvList[pvIndex]; if (!p) return;
+    pvImg.src = p.src; pvImg.alt = p.alt || '';
+    pvCount.textContent = (pvIndex + 1) + ' / ' + pvList.length;
+    const multi = pvList.length > 1;
+    pv.querySelector('.pv-prev').style.display = multi ? 'grid' : 'none';
+    pv.querySelector('.pv-next').style.display = multi ? 'grid' : 'none';
+    pvCount.style.display = multi ? 'block' : 'none';
+  }
+  function pvStep(d) {
+    if (pvList.length < 2) return;
+    pvIndex = (pvIndex + d + pvList.length) % pvList.length;
+    pvRender();
+  }
+  function pvIsOpen() { return !!pv && pv.classList.contains('is-open'); }
+  function pvOpen(list, i) {
+    if (!list || !list.length) return;
+    pvBuild();
+    pvList = list; pvIndex = i || 0;
+    pvRender();
+    pvPrevFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    pv.classList.add('is-open');
+    pv.querySelector('.pv-close').focus({ preventScroll: true });
+  }
+  function pvClose() {
+    if (!pvIsOpen()) return;
+    pv.classList.remove('is-open');
+    pvImg.removeAttribute('src');
+    document.body.style.overflow = '';
+    if (pvPrevFocus && pvPrevFocus.focus) pvPrevFocus.focus({ preventScroll: true });
+    pvPrevFocus = null;
+  }
+  function openFull(p) {
+    const list = active ? photosOf(active) : [p];
+    let i = 0;
+    for (let k = 0; k < list.length; k++) if (list[k].src === p.src) { i = k; break; }
+    requestCloseNow();          // drop the preview panel; the viewer stands alone
+    pvOpen(list, i);
+  }
+  function closeFull() { pvClose(); }
 
   galleries.forEach((g) => {
     const c = coverEl(g);
     if (hoverCapable) {
-      c.addEventListener('mouseenter', () => { if (state !== 'resting' || lock) return; clearTimeout(openTimer); openTimer = setTimeout(() => open(g), OPEN_DELAY); });
-      c.addEventListener('mouseleave', () => clearTimeout(openTimer));
+      c.addEventListener('mouseenter', () => {
+        cancelClose();
+        if (state !== 'resting' || lock || innerWidth < 900) return;
+        clearTimeout(openTimer); openTimer = setTimeout(() => open(g), OPEN_DELAY);
+      });
+      c.addEventListener('mouseleave', () => { clearTimeout(openTimer); if (state === 'expanded' || lock) scheduleClose(); });
     }
-    c.addEventListener('click', () => { if (state === 'resting' && !lock) open(g); });
-    c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (state === 'resting' && !lock) open(g); } });
+    // Touch, or any viewport too narrow for a comfortable thumbnail row:
+    // skip the preview panel and go straight to the full-screen viewer.
+    const panelWorthIt = () => hoverCapable && innerWidth >= 900;
+    c.addEventListener('click', () => {
+      if (pvIsOpen()) return;
+      if (!panelWorthIt()) { pvOpen(photosOf(g), 0); return; }
+      if (state === 'resting' && !lock) open(g);
+    });
+    c.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      if (pvIsOpen()) return;
+      pvOpen(photosOf(g), 0);
+    });
   });
 
   let srAF = null;
   addEventListener('scroll', () => {
+    if (pvIsOpen()) return;
     if (state === 'resting') return;
     if (srAF) return;
     srAF = requestAnimationFrame(() => { srAF = null; if (state === 'expanded') requestCloseNow(); else if (state === 'expanding') pendingClose = true; });
   }, { passive: true });
-  addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (full) closeFull(); else requestCloseNow(); } });
+  addEventListener('keydown', (e) => {
+    if (pvIsOpen()) {
+      if (e.key === 'Escape') { e.preventDefault(); pvClose(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); pvStep(-1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); pvStep(1); }
+      return;
+    }
+    if (e.key === 'Escape') requestCloseNow();
+  });
 })();
 
 /* ============================================================
