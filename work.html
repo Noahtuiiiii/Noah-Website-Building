@@ -283,15 +283,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---- Case index (top of /work) ---- */
 .case-index { margin-top: var(--space-7); border-top: 1px solid var(--line-2); }
-.case-index-row { display: grid; grid-template-columns: 46px minmax(0,1fr) auto; gap: var(--space-4); align-items: center;
+.case-index-row { display: grid; grid-template-columns: 46px minmax(0,1fr) auto; gap: var(--space-4); align-items: baseline;
   padding: 15px 10px 15px 0; border-bottom: 1px solid var(--line-1); text-decoration: none; color: inherit;
   transition: background .18s var(--ease-out), padding .18s var(--ease-out); }
 .case-index-row:hover, .case-index-row:focus-visible { background: var(--paper-2); padding-left: 10px; outline: none; }
 .case-index-n { font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--track-label); color: var(--signal-1); }
 .case-index-main { min-width: 0; }
-.case-index-t { font-weight: 600; font-size: var(--size-body); color: var(--ink-1); }
+.case-index-t { display: block; font-weight: 600; font-size: var(--size-body); color: var(--ink-1); line-height: 1.35; }
 .case-index-row:hover .case-index-t { color: var(--signal-1); }
-.case-index-d { font-size: var(--size-body-sm); color: var(--ink-3); margin-top: 3px; }
+.case-index-d { display: block; font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-3); margin-top: 4px; }
 .case-tag { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: var(--track-label);
   padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--ink-3); white-space: nowrap; }
 .case-tag--pro { border-color: var(--signal-1); color: var(--signal-1); }
@@ -300,13 +300,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---- Case meta strip (role / team / timeline / type) ---- */
 .case .case-head { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: var(--space-5);
-  margin-top: var(--space-6); padding: var(--space-6) 0; border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
+  margin-top: var(--space-6); padding: var(--space-6) 0 calc(var(--space-6) - 3px); border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
 /* .case-metrics ships with bottom padding only; it used to sit under .case-head's
    margin. Now it follows .case-meta, so it needs matching space above its content. */
-.case .case-metrics { margin-top: 0; padding-top: var(--space-6); }
+.case .case-metrics { margin-top: 0; padding-top: calc(var(--space-6) + 7px); }
 .case-meta-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
   letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 7px; }
-.case-meta-v { font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-1); }
+.case-meta-v { display: block; font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-1); }
 
 /* ---- Figures: now sit above the narrative ---- */
 .case-figs { margin-top: var(--space-6); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); border-top: 0; padding-top: 0; }
@@ -330,9 +330,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-decoration: none; color: inherit; }
 .case-next-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
   letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 6px; }
-.case-next-t { font-weight: 600; font-size: var(--size-body); color: var(--ink-1); }
+.case-next-t { display: block; font-weight: 600; font-size: var(--size-body); line-height: 1.35; color: var(--ink-1); }
 .case-next:hover .case-next-t { color: var(--signal-1); }
-.case-next-d { font-size: var(--size-body-sm); color: var(--ink-3); margin-top: 3px; }
+.case-next-d { display: block; font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-3); margin-top: 4px; }
 .case-next-arrow { font-size: 20px; color: var(--ink-4); transition: transform .18s var(--ease-out), color .18s var(--ease-out); }
 .case-next:hover .case-next-arrow { transform: translateX(4px); color: var(--signal-1); }
 @media (max-width: 900px) {
