@@ -279,7 +279,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .figlb-cap { margin-top: var(--space-4); max-width: 86ch; color: var(--on-ink-2); font-size: var(--size-body-sm); line-height: 1.5; }
 .figlb-close { position: absolute; top: var(--space-5); right: var(--space-5); width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--on-ink-line); border-radius: var(--radius-pill); background: rgba(26,24,19,0.72); color: var(--on-ink-1); font-size: 22px; line-height: 1; cursor: pointer; }
 .figlb-close:hover { background: rgba(26,24,19,0.92); }
-@media (max-width: 720px) { .case-figs-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
+@media (max-width: 720px) { .case-figs-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
 
 /* ---- Case index (top of /work) ---- */
 .case-index { margin-top: var(--space-7); border-top: 1px solid var(--line-2); }
@@ -300,13 +300,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---- Case meta strip (role / team / timeline / type) ---- */
 .case .case-head { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: var(--space-5);
-  margin-top: var(--space-6); padding: var(--space-5) 0; border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
+  margin-top: var(--space-6); padding: var(--space-6) 0; border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
+/* .case-metrics ships with bottom padding only; it used to sit under .case-head's
+   margin. Now it follows .case-meta, so it needs matching space above its content. */
+.case .case-metrics { margin-top: 0; padding-top: var(--space-6); }
 .case-meta-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
   letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 7px; }
 .case-meta-v { font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-1); }
 
 /* ---- Figures: now sit above the narrative ---- */
-.case-figs { margin-top: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); border-top: 0; padding-top: 0; }
+.case-figs { margin-top: var(--space-6); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); border-top: 0; padding-top: 0; }
 .case-fig-meta { display: flex; align-items: center; gap: 9px; }
 .case-fig-n { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-label); color: var(--signal-1); }
 .case-fig-type { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-4); }
@@ -323,7 +326,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---- Next case ---- */
 .case-next { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
-  margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--line-1);
+  margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--line-1);
   text-decoration: none; color: inherit; }
 .case-next-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
   letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 6px; }
@@ -332,6 +335,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-next-d { font-size: var(--size-body-sm); color: var(--ink-3); margin-top: 3px; }
 .case-next-arrow { font-size: 20px; color: var(--ink-4); transition: transform .18s var(--ease-out), color .18s var(--ease-out); }
 .case-next:hover .case-next-arrow { transform: translateX(4px); color: var(--signal-1); }
+@media (max-width: 900px) {
+  .fig-toggle { top: 8px; right: 8px; font-size: 9px; padding: 5px 10px; letter-spacing: 0.1em; }
+}
+@media (max-width: 560px) {
+  .case-meta { gap: var(--space-4); }
+  .case-next { flex-wrap: wrap; gap: var(--space-3); }
+  .case-next-arrow { display: none; }
+}
 .case { scroll-margin-top: 96px; }
 
 .more-writeups { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); }

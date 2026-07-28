@@ -745,6 +745,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .teaser-grid { grid-template-columns: 1fr; gap: var(--space-6); }
   .teaser-flip .teaser-shot { order: 0; } .teaser-flip .teaser-text { order: 0; }
 }
+@media (max-width: 520px) {
+  .teaser-metrics { grid-template-columns: 1fr; gap: var(--space-4); }
+}
 
 /* ---- Homepage topic cards (the other five cases) ---- */
 .work-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
