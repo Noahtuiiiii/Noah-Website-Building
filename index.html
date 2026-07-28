@@ -732,8 +732,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .teaser-shot img { display: block; width: 100%; height: auto; }
 .teaser-flip .teaser-shot { order: 2; }
 .teaser-flip .teaser-text { order: 1; }
+.teaser-text .h3 { margin-top: var(--space-3); }
 .teaser-line { font-size: var(--size-body); line-height: 1.6; color: var(--ink-2); margin-top: var(--space-4); }
-.teaser-metrics { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--line-1);
+.teaser-metrics { margin: var(--space-5) 0 0; padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--line-1); border-bottom: 0;
   display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-5); }
 .teaser-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--space-5);
   font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase;

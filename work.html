@@ -298,8 +298,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 620px) { .case-index-row { grid-template-columns: 38px minmax(0,1fr); } .case-index-row .case-tag { display: none; } }
 
 /* ---- Case meta strip (role / team / timeline / type) ---- */
+.case .case-head { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: var(--space-5);
-  margin-top: var(--space-5); padding: var(--space-5) 0; border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
+  margin-top: var(--space-6); padding: var(--space-5) 0; border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
 .case-meta-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
   letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 7px; }
 .case-meta-v { font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-1); }
