@@ -636,9 +636,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .built-gallery .built-no { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
 .built-gallery h3 { color: var(--on-ink-1); text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
 .built-gallery p { color: var(--on-ink-1); text-shadow: 0 1px 6px rgba(0,0,0,0.65); }
+/* Build cards show only the number + title at rest; the blurb opens on hover.
+   Uses the grid 0fr -> 1fr trick so the card height animates without a magic
+   max-height. Devices without hover (touch) get the text permanently. */
+.built-gallery .built-reveal { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .36s var(--ease-out), opacity .24s var(--ease-out); }
+.built-gallery .built-reveal > p { overflow: hidden; min-height: 0; }
 @media (hover: hover) {
   .built-card.built-gallery:hover { transform: scale(1.04); z-index: 4; box-shadow: var(--shadow-lg); }
   .built-card.built-gallery:hover .bg-vignette { opacity: 0.3; }
+  .built-card.built-gallery:hover .built-reveal,
+  .built-card.built-gallery:focus-within .built-reveal { grid-template-rows: 1fr; opacity: 1; }
+  /* deepen the bottom scrim while the blurb is open so it stays legible */
+  .built-card.built-gallery:hover .bg-scrim,
+  .built-card.built-gallery:focus-within .bg-scrim { background: linear-gradient(to top, rgba(26,24,19,0.94) 0%, rgba(26,24,19,0.84) 26%, rgba(26,24,19,0.52) 52%, rgba(26,24,19,0) 74%); }
+}
+@media (hover: none) {
+  .built-gallery .built-reveal { grid-template-rows: 1fr; opacity: 1; }
 }
 
 /* ============================================================
@@ -703,6 +716,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .reveal { opacity: 1; transform: none; transition: none; }
   .built-gallery .bg-img { transition: none !important; }
   .built-card.built-gallery:hover { transform: none !important; }
+  .built-gallery .built-reveal { transition: none !important; }
 }
 
 /* ---- Work CTA (landing page -> /work) ---- */
@@ -1155,21 +1169,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="built-body">
             <span class="built-no">BUILD / 01</span>
             <h3 class="h4">A custom retro arcade machine</h3>
-            <p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p>
+            <div class="built-reveal"><p>After high school I wanted a custom retro arcade machine. The ones on the market were unaffordable and didn't match what I had in my head, so I built my own. I found blueprints, cut and assembled the cabinet with my grandpa, painted and finished it, then set up a Raspberry Pi, programmed it, wired the buttons and speakers, and tested the games. Still one of my favourite projects.</p></div>
           </div>
         </article>
         <article class="card built-card built-gallery reveal">
           <div class="bg-stack">
             <img class="bg-img is-active" src="/images/build-website.jpg" alt="Building this portfolio website in a cafe" decoding="async" />
             <img class="bg-img" src="/images/build-02-2.jpg" alt="A screenshot of this site's interactive 3D journey globe" loading="lazy" decoding="async" />
-            <!-- Add more BUILD / 02 frames here: <img class="bg-img" src="/images/build-02-3.jpg" alt="..." loading="lazy" decoding="async" /> -->
+            <img class="bg-img" src="/images/build-02-3.jpg" alt="A handwritten notebook page planning this site's flow, asking whether the homepage can be digested in 30 seconds" loading="lazy" decoding="async" />
+            <!-- Add more BUILD / 02 frames here: <img class="bg-img" src="/images/build-02-4.jpg" alt="..." loading="lazy" decoding="async" /> -->
           </div>
           <div class="bg-vignette"></div>
           <div class="bg-scrim"></div>
           <div class="built-body">
             <span class="built-no">BUILD / 02</span>
             <h3 class="h4">This website</h3>
-            <p>Built from scratch with Claude.</p>
+            <div class="built-reveal"><p>Designed and built from scratch with Claude &mdash; hand-written HTML and CSS, no template and no site builder. It started on paper, working out whether the homepage could be digested in thirty seconds; that sketch is why the case studies shrank to two here and moved to a page of their own.</p></div>
           </div>
         </article>
         <article class="card built-card built-gallery reveal">
@@ -1184,7 +1199,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="built-body">
             <span class="built-no">BUILD / 03</span>
             <h3 class="h4">The ANZ policy reference set</h3>
-            <p>A self-built reference set of policy and process notes that cut per-case handling time across the team.</p>
+            <div class="built-reveal"><p>A self-built reference set of policy and process notes that cut per-case handling time across the team. The knowledge already existed, but it sat in people&rsquo;s heads and across scattered sources, so I structured it into one audit-ready place. It stayed in use after I left.</p></div>
           </div>
         </article>
       </div>
