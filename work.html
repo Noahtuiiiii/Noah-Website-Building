@@ -265,7 +265,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-figs { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--line-1); }
 .case-figs-k { display: block; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); margin-bottom: var(--space-4); }
 .case-figs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--space-5); }
-.case-fig { display: flex; flex-direction: column; gap: 10px; text-align: left; border: 0; padding: 0; background: none; font: inherit; cursor: zoom-in; }
+.case-fig, .case-fig--wrap { display: flex; flex-direction: column; gap: 10px; text-align: left; border: 0; padding: 0; background: none; font: inherit; cursor: zoom-in; }
 .case-fig-shot { position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius-md); overflow: hidden; background: var(--paper-0); border: 1px solid var(--line-1); transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out); }
 .case-fig-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .case-fig:hover .case-fig-shot { transform: translateY(-2px); box-shadow: var(--shadow-md); }
@@ -280,6 +280,59 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .figlb-close { position: absolute; top: var(--space-5); right: var(--space-5); width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--on-ink-line); border-radius: var(--radius-pill); background: rgba(26,24,19,0.72); color: var(--on-ink-1); font-size: 22px; line-height: 1; cursor: pointer; }
 .figlb-close:hover { background: rgba(26,24,19,0.92); }
 @media (max-width: 720px) { .case-figs-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
+
+/* ---- Case index (top of /work) ---- */
+.case-index { margin-top: var(--space-7); border-top: 1px solid var(--line-2); }
+.case-index-row { display: grid; grid-template-columns: 46px minmax(0,1fr) auto; gap: var(--space-4); align-items: center;
+  padding: 15px 10px 15px 0; border-bottom: 1px solid var(--line-1); text-decoration: none; color: inherit;
+  transition: background .18s var(--ease-out), padding .18s var(--ease-out); }
+.case-index-row:hover, .case-index-row:focus-visible { background: var(--paper-2); padding-left: 10px; outline: none; }
+.case-index-n { font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--track-label); color: var(--signal-1); }
+.case-index-main { min-width: 0; }
+.case-index-t { font-weight: 600; font-size: var(--size-body); color: var(--ink-1); }
+.case-index-row:hover .case-index-t { color: var(--signal-1); }
+.case-index-d { font-size: var(--size-body-sm); color: var(--ink-3); margin-top: 3px; }
+.case-tag { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: var(--track-label);
+  padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--ink-3); white-space: nowrap; }
+.case-tag--pro { border-color: var(--signal-1); color: var(--signal-1); }
+@media (max-width: 620px) { .case-index-row { grid-template-columns: 38px minmax(0,1fr); } .case-index-row .case-tag { display: none; } }
+
+/* ---- Case meta strip (role / team / timeline / type) ---- */
+.case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: var(--space-5);
+  margin-top: var(--space-5); padding: var(--space-5) 0; border-top: 1px solid var(--line-1); border-bottom: 1px solid var(--line-1); }
+.case-meta-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 7px; }
+.case-meta-v { font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-1); }
+
+/* ---- Figures: now sit above the narrative ---- */
+.case-figs { margin-top: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); border-top: 0; padding-top: 0; }
+.case-fig-meta { display: flex; align-items: center; gap: 9px; }
+.case-fig-n { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--track-label); color: var(--signal-1); }
+.case-fig-type { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-4); }
+.case-fig-shot img { transition: opacity .22s var(--ease-out); }
+.case-fig-shot img.is-alt { opacity: 0; }
+.case-fig-shot.show-alt img.is-base { opacity: 0; }
+.case-fig-shot.show-alt img.is-alt { opacity: 1; }
+.fig-toggle { position: absolute; top: 10px; right: 10px; z-index: 4; font-family: var(--font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: var(--track-label); padding: 7px 13px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--paper-0); color: var(--ink-2); cursor: pointer;
+  transition: background .18s var(--ease-out), color .18s var(--ease-out), border-color .18s var(--ease-out); }
+.fig-toggle:hover { border-color: var(--signal-1); color: var(--signal-1); }
+.fig-toggle[aria-pressed="true"] { background: var(--signal-1); border-color: var(--signal-1); color: #fff; }
+
+/* ---- Next case ---- */
+.case-next { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
+  margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--line-1);
+  text-decoration: none; color: inherit; }
+.case-next-k { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: var(--track-label); color: var(--ink-4); margin-bottom: 6px; }
+.case-next-t { font-weight: 600; font-size: var(--size-body); color: var(--ink-1); }
+.case-next:hover .case-next-t { color: var(--signal-1); }
+.case-next-d { font-size: var(--size-body-sm); color: var(--ink-3); margin-top: 3px; }
+.case-next-arrow { font-size: 20px; color: var(--ink-4); transition: transform .18s var(--ease-out), color .18s var(--ease-out); }
+.case-next:hover .case-next-arrow { transform: translateX(4px); color: var(--signal-1); }
+.case { scroll-margin-top: 96px; }
+
 .more-writeups { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); }
 
 /* ============================================================
@@ -778,15 +831,80 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <h1 class="h1">The work behind the <span class="accent accent--signal">numbers</span>.</h1>
       <p class="lead" style="margin-top: var(--space-4);">Seven write-ups: what the situation was, what I did, what changed, and why it matters. Two of them are real roles; the rest are master's work I chose to treat like client engagements.</p>
     </div>
+      <nav class="case-index reveal" aria-label="Case studies">
+        <a class="case-index-row" href="#tutor-ratios">
+          <span class="case-index-n">01</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Finding the real variable</span>
+            <span class="case-index-d">Why weak language results tracked with tutor load, not student ability</span>
+          </span>
+          <span class="case-tag case-tag--pro">Professional</span>
+        </a>
+        <a class="case-index-row" href="#anz-reference-set">
+          <span class="case-index-n">02</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Building the system that moved the throughput</span>
+            <span class="case-index-d">One structured reference set, built in a regulated bank, that outlived me</span>
+          </span>
+          <span class="case-tag case-tag--pro">Professional</span>
+        </a>
+        <a class="case-index-row" href="#lxrp-engagement">
+          <span class="case-index-n">03</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Did the engagement shape the disruption, or explain it?</span>
+            <span class="case-index-d">Separating genuine influence on decisions from documentation of decisions already made</span>
+          </span>
+          <span class="case-tag case-tag--study">Master's</span>
+        </a>
+        <a class="case-index-row" href="#bot-appraisal">
+          <span class="case-index-n">04</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Model the number, then try to break it</span>
+            <span class="case-index-d">A board-level appraisal, and the discount-rate error I caught in my own first pass</span>
+          </span>
+          <span class="case-tag case-tag--study">Master's</span>
+        </a>
+        <a class="case-index-row" href="#myki-governance">
+          <span class="case-index-n">05</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Structure without control: the myki governance gap</span>
+            <span class="case-index-d">Where documented risk stopped short of becoming a binding decision</span>
+          </span>
+          <span class="case-tag case-tag--study">Master's</span>
+        </a>
+        <a class="case-index-row" href="#woody-pmbok">
+          <span class="case-index-n">06</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Six PMBOK domains, one broken project</span>
+            <span class="case-index-d">Working backward from each symptom to the control that was never put in place</span>
+          </span>
+          <span class="case-tag case-tag--study">Master's</span>
+        </a>
+        <a class="case-index-row" href="#netflix-agile">
+          <span class="case-index-n">07</span>
+          <span class="case-index-main">
+            <span class="case-index-t">Finding the bottleneck in a content engine, not applying Agile by default</span>
+            <span class="case-index-d">Value-stream mapping first, then matching the framework to the constraint</span>
+          </span>
+          <span class="case-tag case-tag--study">Master's</span>
+        </a>
+      </nav>
+
   </div>
 </header>
 
 <section class="section" id="projects" style="padding-top: 0;">
   <div class="container">
-    <article class="card case reveal">
+    <article class="card case reveal" id="tutor-ratios">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
         <h3 class="h3">Finding the real variable</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Academic Program Coordinator</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Individual analysis, raised unprompted</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">Mar - Dec 2024, IB Tutoring Australia</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Professional work</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -805,6 +923,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">Down from 1 in 3</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="Spanish and French carried 8.5 students per tutor against roughly 4 elsewhere. After reallocation, band 7 attainment in those subjects went from 27% to 59% for the same cohort.">
+            <span class="case-fig-shot"><img src="/images/ibt-tutor-ratio.png" alt="Tutor-to-student ratio by subject group, and band outcomes before and after reallocation" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 1.1</span><span class="case-fig-type">Chart</span></span>
+            <span class="case-fig-cap">Spanish and French carried 8.5 students per tutor against roughly 4 elsewhere. After reallocation, band 7 attainment in those subjects went from 27% to 59% for the same cohort.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -812,7 +940,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <p>The signal came from Spanish, a subject I know deeply, so weak results there didn't sit right. I pulled the outcome data across cohorts and found the same shape in the language subjects: the problem tracked with tutor-to-student ratios, not student ability. Spanish and French were carrying around 8.5 students per tutor against roughly 4 elsewhere. I wrote it up for management with a specific fix: reallocate two tutors to the stretched language subjects, refresh their materials, and add subject-specific tutor guides.</p>
+          <p>The signal came from Spanish, a subject I know deeply, so weak results there didn't sit right. I pulled the outcome data across cohorts and found the same shape in the language subjects: the problem tracked with tutor-to-student ratios, not student ability. Spanish and French were carrying around 8.5 students per tutor against roughly 4 elsewhere (Fig. 1.1). I wrote it up for management with a specific fix: reallocate two tutors to the stretched language subjects, refresh their materials, and add subject-specific tutor guides.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
@@ -823,11 +951,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <p>It's how I work everywhere: notice what doesn't fit, ask why before deciding what to do, and let the data point to the real lever, then hand back something a team can act on.</p>
         </div>
       </div>
+      <a class="case-next" href="#anz-reference-set">
+        <span>
+          <span class="case-next-k">Next case / 02</span>
+          <span class="case-next-t">Building the system that moved the throughput</span>
+          <span class="case-next-d">One structured reference set, built in a regulated bank, that outlived me</span>
+        </span>
+        <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </article>
-    <article class="card case reveal">
+    <article class="card case reveal" id="anz-reference-set">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 02</span>
         <h3 class="h3">Building the system that moved the throughput</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Small Business Consultant</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Built solo, adopted across the team</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">May 2025 - Feb 2026, ANZ</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Professional work</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -846,6 +988,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">Held on the team</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <div class="case-fig case-fig--wrap">
+            <span class="case-fig-shot">
+              <img class="is-base" src="/images/anz-reference-set.png" alt="The policy and process reference set: one structured source routing a case to a compliant resolution" loading="lazy">
+              <img class="is-alt" src="/images/anz-reference-set-before.png" alt="Before: policy knowledge scattered across an intranet, PDFs, email threads, colleagues and personal notes" loading="lazy">
+              <button class="fig-toggle" type="button" aria-pressed="false" data-fig-toggle>Show the before</button>
+            </span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 2.1</span><span class="case-fig-type">Interactive</span></span>
+            <span class="case-fig-cap">The reference set replaced the reassembly. Structure only, sanitised: no ANZ policy content, client data or internal system detail.</span>
+          </div>
+          <button class="case-fig" type="button" data-cap="Targets rose from a 30-case benchmark to 45+ four months in. Throughput reached 45+ a day, peaking at 60, while escalation stayed among the lowest on the team.">
+            <span class="case-fig-shot"><img src="/images/anz-throughput.png" alt="Cases resolved per day against the original 30-case benchmark" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 2.2</span><span class="case-fig-type">Chart</span></span>
+            <span class="case-fig-cap">Targets rose from a 30-case benchmark to 45+ four months in. Throughput reached 45+ a day, peaking at 60, while escalation stayed among the lowest on the team.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -853,7 +1014,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <p>I treated it as an analysis problem before a speed problem. I mapped where handling time actually went, then built a working reference set of policy and process notes, a single, structured source that standardised how complex scenarios got resolved and sharpened which cases to prioritise. I kept the documentation audit-ready and engaged cross-functional stakeholders to align on compliant resolutions, so the reference set held up under governance, not just at my own desk.</p>
+          <p>I treated it as an analysis problem before a speed problem. I mapped where handling time actually went, then built a working reference set of policy and process notes (Fig. 2.1), a single, structured source that standardised how complex scenarios got resolved and sharpened which cases to prioritise. I kept the documentation audit-ready and engaged cross-functional stakeholders to align on compliant resolutions, so the reference set held up under governance, not just at my own desk.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
@@ -864,11 +1025,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <p>This is the PMO half of how I work. Finding the real lever is step one; the value is in turning it into a repeatable system with the governance, documentation, and stakeholder alignment that lets other people rely on it. Process improvement that survives an audit and outlives the person who built it.</p>
         </div>
       </div>
+      <a class="case-next" href="#lxrp-engagement">
+        <span>
+          <span class="case-next-k">Next case / 03</span>
+          <span class="case-next-t">Did the engagement shape the disruption, or explain it?</span>
+          <span class="case-next-d">Separating genuine influence on decisions from documentation of decisions already made</span>
+        </span>
+        <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </article>
-    <article class="card case reveal">
+    <article class="card case reveal" id="lxrp-engagement">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 03</span>
         <h3 class="h3">Did the engagement shape the disruption, or explain it?</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Co-author: research design, VAGO and survey analysis</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Group investigation, BUSM4415 Group 24</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">Semester 1, 2026 - 9,866 words</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Master's coursework, treated as a client engagement</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -887,6 +1062,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">From outcome evaluation to a cross-agency director role</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="Noble Park precinct: the construction zone, both level crossing removal sites and the Douglas and Ian Street trader strip, mid-2016 to 2018.">
+            <span class="case-fig-shot"><img src="/images/lxrp-precinct-map.png" alt="Map of the Noble Park station precinct" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 3.1</span><span class="case-fig-type">Map</span></span>
+            <span class="case-fig-cap">Noble Park precinct: the construction zone, both level crossing removal sites and the Douglas and Ian Street trader strip, mid-2016 to 2018.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="Engagement intensity peaked before construction; trader disruption peaked during it. The gap between the two curves is the finding.">
+            <span class="case-fig-shot"><img src="/images/lxrp-engagement-timing.png" alt="Engagement intensity and trader disruption intensity over time" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 3.2</span><span class="case-fig-type">Chart</span></span>
+            <span class="case-fig-cap">Engagement intensity peaked before construction; trader disruption peaked during it. The gap between the two curves is the finding.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="Every mechanism the project ran sat in the informing and consultation rungs of Arnstein&#x27;s ladder. Nothing reached partnership or above.">
+            <span class="case-fig-shot"><img src="/images/lxrp-arnstein-ladder.png" alt="Engagement mechanisms mapped against Arnstein&#x27;s ladder" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 3.3</span><span class="case-fig-type">Framework</span></span>
+            <span class="case-fig-cap">Every mechanism the project ran sat in the informing and consultation rungs of Arnstein&#x27;s ladder. Nothing reached partnership or above.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="EY Sweeney surveyed 144 traders before construction: 88% knew about the project, but only 17% of Noble Park rail users had noticed its communications.">
+            <span class="case-fig-shot"><img src="/images/lxrp-trader-sentiment.png" alt="Pre-construction trader sentiment and awareness" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 3.4</span><span class="case-fig-type">Cited data</span></span>
+            <span class="case-fig-cap">EY Sweeney surveyed 144 traders before construction: 88% knew about the project, but only 17% of Noble Park rail users had noticed its communications.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -898,39 +1098,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
-          <p>Found four linked weaknesses: high engagement activity but only 17% pre-construction awareness among rail users, engagement front-loaded before construction and weakest during the disruption itself, no measurement of commercial impact on traders, and community-outcome accountability split from authority over delivery decisions. The clearest evidence of what was left unresolved: a $3.5M trader revitalisation package committed three years after completion. We delivered five recommendations, including an outcome-oriented evaluation framework and a unified cross-agency Community Outcomes Director role.</p>
+          <p>Found four linked weaknesses: high engagement activity but only 17% pre-construction awareness among rail users, engagement front-loaded before construction and weakest during the disruption itself (Fig. 3.2), no measurement of commercial impact on traders, and community-outcome accountability split from authority over delivery decisions. The clearest evidence of what was left unresolved: a $3.5M trader revitalisation package committed three years after completion. We delivered five recommendations, including an outcome-oriented evaluation framework and a unified cross-agency Community Outcomes Director role.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Why it matters</span>
           <p>Engagement is easy to measure by activity count and easy to get wrong that way. I know how to separate genuine influence on decisions from documentation of decisions already made, and to turn that gap into recommendations a delivery authority could actually implement.</p>
         </div>
       </div>
-      <div class="case-figs">
-        <span class="case-figs-k">Figures</span>
-        <div class="case-figs-grid">
-          <button class="case-fig" type="button" data-cap="Noble Park precinct: the construction zone, both level crossing removal sites and the Douglas and Ian Street trader strip, mid-2016 to 2018.">
-            <span class="case-fig-shot"><img src="/images/lxrp-precinct-map.png" alt="Map of the Noble Park station precinct" loading="lazy"></span>
-            <span class="case-fig-cap">Noble Park precinct: the construction zone, both level crossing removal sites and the Douglas and Ian Street trader strip, mid-2016 to 2018.</span>
-          </button>
-          <button class="case-fig" type="button" data-cap="Engagement intensity peaked before construction; trader disruption peaked during it. The gap between the two curves is the finding.">
-            <span class="case-fig-shot"><img src="/images/lxrp-engagement-timing.png" alt="Engagement intensity and trader disruption intensity over time" loading="lazy"></span>
-            <span class="case-fig-cap">Engagement intensity peaked before construction; trader disruption peaked during it. The gap between the two curves is the finding.</span>
-          </button>
-          <button class="case-fig" type="button" data-cap="Every mechanism the project ran sat in the informing and consultation rungs of Arnstein's ladder. Nothing reached partnership or above.">
-            <span class="case-fig-shot"><img src="/images/lxrp-arnstein-ladder.png" alt="Engagement mechanisms mapped against Arnstein's ladder" loading="lazy"></span>
-            <span class="case-fig-cap">Every mechanism the project ran sat in the informing and consultation rungs of Arnstein's ladder. Nothing reached partnership or above.</span>
-          </button>
-          <button class="case-fig" type="button" data-cap="EY Sweeney surveyed 144 traders before construction: 88% knew about the project, but only 17% of Noble Park rail users had noticed its communications.">
-            <span class="case-fig-shot"><img src="/images/lxrp-trader-sentiment.png" alt="Pre-construction trader sentiment and awareness" loading="lazy"></span>
-            <span class="case-fig-cap">EY Sweeney surveyed 144 traders before construction: 88% knew about the project, but only 17% of Noble Park rail users had noticed its communications.</span>
-          </button>
-        </div>
-      </div>
+      <a class="case-next" href="#bot-appraisal">
+        <span>
+          <span class="case-next-k">Next case / 04</span>
+          <span class="case-next-t">Model the number, then try to break it</span>
+          <span class="case-next-d">A board-level appraisal, and the discount-rate error I caught in my own first pass</span>
+        </span>
+        <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </article>
-    <article class="card case reveal">
+    <article class="card case reveal" id="bot-appraisal">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 04</span>
         <h3 class="h3">Model the number, then try to break it</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Sole author: model, appraisal and risk assessment</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Two linked individual reports</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">BUSM4417 and BUSM1276, 2025</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Master's coursework, treated as a client engagement</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -949,6 +1142,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">10,000-run Monte Carlo, &plusmn;5% revenue and &plusmn;10% costs</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <div class="case-fig case-fig--wrap">
+            <span class="case-fig-shot">
+              <img class="is-base" src="/images/bot-npv-discount-rate.png" alt="Net present value of the project against the discount rate applied" loading="lazy">
+              <img class="is-alt" src="/images/bot-npv-discount-rate-annotated.png" alt="The same curve with the 1.39-point band between WACC and cost of equity highlighted" loading="lazy">
+              <button class="fig-toggle" type="button" aria-pressed="false" data-fig-toggle>Show the decision band</button>
+            </span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 4.1</span><span class="case-fig-type">Interactive</span></span>
+            <span class="case-fig-cap">The project IRR of 13.68% falls between the 12.46% WACC and the 13.85% cost of equity, so the sign of the NPV turns on which rate you use.</span>
+          </div>
+          <button class="case-fig" type="button" data-cap="Average DSCR of 2.14 across the concession, but 0.76, 0.84 and 0.93 in years one to three. The project cannot service its own debt from operating cash flow until year four.">
+            <span class="case-fig-shot"><img src="/images/bot-dscr-by-year.png" alt="Debt service cover ratio for each year of the concession" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 4.2</span><span class="case-fig-type">Model output</span></span>
+            <span class="case-fig-cap">Average DSCR of 2.14 across the concession, but 0.76, 0.84 and 0.93 in years one to three. The project cannot service its own debt from operating cash flow until year four.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="Rebuilt from the corrected model: 10,000 runs, revenue varied ±5% and costs ±10% a year. Mean NPV -$1.17M, with 79% of runs below breakeven.">
+            <span class="case-fig-shot"><img src="/images/bot-monte-carlo-npv.png" alt="Monte Carlo distribution of project NPV" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 4.3</span><span class="case-fig-type">Model output</span></span>
+            <span class="case-fig-cap">Rebuilt from the corrected model: 10,000 runs, revenue varied ±5% and costs ±10% a year. Mean NPV -$1.17M, with 79% of runs below breakeven.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -960,27 +1177,32 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
-          <p>The project IRR came out at 13.68%, which falls between the 12.46% WACC and the 13.85% CAPM cost of equity. That single fact decides the case: discounted at WACC the NPV is +$9.15M, discounted at the cost of equity it is -$1.16M. Feasibility turned on a methodological choice rather than on the cash flows, and the first report had made that choice without noticing it. The Monte Carlo put the probability of a negative NPV at 79%, with a 5th to 95th percentile range of -$3.5M to +$1.3M. Debt coverage was the sharper finding: average DSCR of 2.14 across the concession, but 0.76, 0.84 and 0.93 in years one to three, so the project cannot service its own debt from operating cash flow until year four. I recommended proceeding only with sculpted repayments, a reserve account sized to the shortfall, and monitoring through the ramp-up.</p>
+          <p>The project IRR came out at 13.68%, which falls between the 12.46% WACC and the 13.85% CAPM cost of equity. That single fact decides the case: discounted at WACC the NPV is +$9.15M, discounted at the cost of equity it is -$1.16M (Fig. 4.1). Feasibility turned on a methodological choice rather than on the cash flows, and the first report had made that choice without noticing it. The Monte Carlo put the probability of a negative NPV at 79% (Fig. 4.3), with a 5th to 95th percentile range of -$3.5M to +$1.3M. Debt coverage was the sharper finding: average DSCR of 2.14 across the concession, but 0.76, 0.84 and 0.93 in years one to three (Fig. 4.2), so the project cannot service its own debt from operating cash flow until year four. I recommended proceeding only with sculpted repayments, a reserve account sized to the shortfall, and monitoring through the ramp-up.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Why it matters</span>
           <p>Board-level appraisal isn't finished when the base case is positive. It's finished when someone has gone back at the model hard enough to find what the first pass got wrong, and has said so. Catching my own error and restating the recommendation is the part of this I'd bring to a business case or investment paper.</p>
         </div>
       </div>
-      <div class="case-figs">
-        <span class="case-figs-k">Figure</span>
-        <div class="case-figs-grid">
-          <button class="case-fig" type="button" data-cap="Rebuilt from the corrected model: 10,000 runs, revenue varied ±5% and costs ±10% a year. Mean NPV -$1.17M, with 79% of runs below breakeven.">
-            <span class="case-fig-shot"><img src="/images/bot-monte-carlo-npv.png" alt="Monte Carlo distribution of project NPV" loading="lazy"></span>
-            <span class="case-fig-cap">Rebuilt from the corrected model: 10,000 runs, revenue varied ±5% and costs ±10% a year. Mean NPV -$1.17M, with 79% of runs below breakeven.</span>
-          </button>
-        </div>
-      </div>
+      <a class="case-next" href="#myki-governance">
+        <span>
+          <span class="case-next-k">Next case / 05</span>
+          <span class="case-next-t">Structure without control: the myki governance gap</span>
+          <span class="case-next-d">Where documented risk stopped short of becoming a binding decision</span>
+        </span>
+        <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </article>
-    <article class="card case reveal">
+    <article class="card case reveal" id="myki-governance">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 05</span>
         <h3 class="h3">Structure without control: the myki governance gap</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Sole author of the maturity report; ILM and benefits framing on the group work</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Individual report, paired with group benchmarking</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">BUSM2654, Semester 1 2026 - 4,100 words</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Master's coursework, treated as a client engagement</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -999,6 +1221,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">London 2012, Sydney 2017, Melbourne delayed to 2028</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="The Investment Logic Map I built for the $1.96B, 15-year myki contract: drivers, problems, benefits and required changes, against VAGO’s 2026 audit findings.">
+            <span class="case-fig-shot"><img src="/images/myki-ilm.png" alt="Investment Logic Map for the myki modernisation project" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 5.1</span><span class="case-fig-type">Artefact</span></span>
+            <span class="case-fig-cap">The Investment Logic Map I built for the $1.96B, 15-year myki contract: drivers, problems, benefits and required changes, against VAGO’s 2026 audit findings.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -1006,7 +1238,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <p>Assessed six organisations against a P3M3-style maturity lens (ATO vs. NDIA at federal, Transport for NSW vs. Victoria's DTP at state, two councils at local), then built the Investment Logic Map for the $1.96B, 15-year myki contract, mapping drivers, problems, benefits and required changes against VAGO's audit of why known delivery risk was accepted at contract signing instead of resolved.</p>
+          <p>Assessed six organisations against a P3M3-style maturity lens (ATO vs. NDIA at federal, Transport for NSW vs. Victoria's DTP at state, two councils at local), then built the Investment Logic Map for the $1.96B, 15-year myki contract (Fig. 5.1), mapping drivers, problems, benefits and required changes against VAGO's audit of why known delivery risk was accepted at contract signing instead of resolved.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
@@ -1017,11 +1249,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <p>This is the version of governance analysis I'd bring to a delivery-PMO role: don't accept an optimistic schedule at contract award, and know how to find the exact point where structure stopped producing control.</p>
         </div>
       </div>
+      <a class="case-next" href="#woody-pmbok">
+        <span>
+          <span class="case-next-k">Next case / 06</span>
+          <span class="case-next-t">Six PMBOK domains, one broken project</span>
+          <span class="case-next-d">Working backward from each symptom to the control that was never put in place</span>
+        </span>
+        <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </article>
-    <article class="card case reveal">
+    <article class="card case reveal" id="woody-pmbok">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 06</span>
         <h3 class="h3">Six PMBOK domains, one broken project</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Sole author</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Individual consultancy report</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">BUSM1278, 2025 - ~2,870 words</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Master's coursework, treated as a client engagement</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -1040,6 +1286,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">A systemic breakdown, not one bad call</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="The full diagnostic: each of the six domains traced from symptom, to the governance control that was absent, to the fix and its owner.">
+            <span class="case-fig-shot"><img src="/images/woody-pmbok-matrix.png" alt="Six PMBOK domains mapped to what failed, the missing control and the recommended fix" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 6.1</span><span class="case-fig-type">Framework</span></span>
+            <span class="case-fig-cap">The full diagnostic: each of the six domains traced from symptom, to the governance control that was absent, to the fix and its owner.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -1047,7 +1303,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <p>Applied a PMBOK 6th-edition diagnostic across the full delivery lifecycle, PM authority, stakeholder and communications management, scope, cost, schedule, and project close-out, tracing each failure back to its root governance gap and pairing it with a specific fix: a formal scope statement and change-control board, a communications matrix by audience and frequency, earned-value tracking, and a mandated close-out checklist.</p>
+          <p>Applied a PMBOK 6th-edition diagnostic across the full delivery lifecycle, PM authority, stakeholder and communications management, scope, cost, schedule, and project close-out, tracing each failure back to its root governance gap and pairing it with a specific fix (Fig. 6.1): a formal scope statement and change-control board, a communications matrix by audience and frequency, earned-value tracking, and a mandated close-out checklist.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
@@ -1058,11 +1314,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <p>This is the PMBOK toolkit applied end to end rather than module by module, the same lens I'd use to diagnose a struggling program: work backward from the symptom to the missing control, and give the fix an owner.</p>
         </div>
       </div>
+      <a class="case-next" href="#netflix-agile">
+        <span>
+          <span class="case-next-k">Next case / 07</span>
+          <span class="case-next-t">Finding the bottleneck in a content engine, not applying Agile by default</span>
+          <span class="case-next-d">Value-stream mapping first, then matching the framework to the constraint</span>
+        </span>
+        <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </article>
-    <article class="card case reveal">
+    <article class="card case reveal" id="netflix-agile">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 07</span>
         <h3 class="h3">Finding the bottleneck in a content engine, not applying Agile by default</h3>
+      </div>
+      <div class="case-meta">
+        <div><span class="case-meta-k">My role</span><span class="case-meta-v">Value-stream and bottleneck analysis, TO-BE workflow design</span></div>
+        <div><span class="case-meta-k">Team</span><span class="case-meta-v">Four-person group, BUSM4764</span></div>
+        <div><span class="case-meta-k">Timeline</span><span class="case-meta-v">Semester 1, 2026 - graded 82/100</span></div>
+        <div><span class="case-meta-k">Type</span><span class="case-meta-v">Master's coursework, treated as a client engagement</span></div>
       </div>
       <div class="case-metrics">
         <div class="metric">
@@ -1081,6 +1351,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <div class="delta">Value-stream mapped, root-cause led</div>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">At a glance</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="Where the fragmentation actually lived: six production stages narrowing at the bottleneck, with the five delay points named and a Lean waste category against each.">
+            <span class="case-fig-shot"><img src="/images/agile-value-stream.png" alt="Value stream and bottleneck analysis of Netflix content production" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 7.1</span><span class="case-fig-type">Artefact</span></span>
+            <span class="case-fig-cap">Where the fragmentation actually lived: six production stages narrowing at the bottleneck, with the five delay points named and a Lean waste category against each.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="The TO-BE workflow: a shared Scrum cadence across creative, production and tech, with two feedback loops running back into the backlog and into planning.">
+            <span class="case-fig-shot"><img src="/images/agile-tobe-workflow.png" alt="Proposed Agile-Lean TO-BE content production workflow" loading="lazy"></span>
+            <span class="case-fig-meta"><span class="case-fig-n">FIG. 7.2</span><span class="case-fig-type">Artefact</span></span>
+            <span class="case-fig-cap">The TO-BE workflow: a shared Scrum cadence across creative, production and tech, with two feedback loops running back into the backlog and into planning.</span>
+          </button>
+        </div>
+      </div>
       <div class="case-body">
         <div class="case-block">
           <span class="case-k">Context</span>
@@ -1088,7 +1373,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="case-block">
           <span class="case-k">What I did</span>
-          <p>Used value-stream mapping and root-cause and bottleneck analysis to locate where the fragmentation actually lived, sequential handoffs, low visibility, and reactive late-stage decisions, then designed the fix: a shared Scrum cadence across creative, production and tech with regular reviews to surface issues earlier, supported by Lean and Kanban for waste elimination and real-time flow visibility.</p>
+          <p>Used value-stream mapping and root-cause and bottleneck analysis to locate where the fragmentation actually lived (Fig. 7.1), sequential handoffs, low visibility, and reactive late-stage decisions, then designed the fix (Fig. 7.2): a shared Scrum cadence across creative, production and tech with regular reviews to surface issues earlier, supported by Lean and Kanban for waste elimination and real-time flow visibility.</p>
         </div>
         <div class="case-block">
           <span class="case-k">Result</span>
@@ -1568,6 +1853,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---- Footer year auto-update ---- */
 document.getElementById('year').textContent = new Date().getFullYear();
 
+
+  /* ---- Before/after figure toggles ---- */
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-fig-toggle]') : null;
+    if (!t) return;
+    e.preventDefault(); e.stopPropagation();
+    var shot = t.closest('.case-fig-shot');
+    var on = shot.classList.toggle('show-alt');
+    t.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+
   /* ---- Case figure lightbox ---- */
   (function () {
     var lb = null, lastFocus = null;
@@ -1593,11 +1889,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
       if (lastFocus) { lastFocus.focus(); lastFocus = null; }
     }
     document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('[data-fig-toggle]')) return;
       var b = e.target.closest ? e.target.closest('.case-fig') : null;
       if (!b) return;
       e.preventDefault(); lastFocus = b;
-      var im = b.querySelector('img');
-      open(im.getAttribute('src'), im.getAttribute('alt'), b.getAttribute('data-cap'));
+      var shot = b.querySelector('.case-fig-shot');
+      var im = shot.classList.contains('show-alt') ? shot.querySelector('img.is-alt') : b.querySelector('img');
+      var cap = b.getAttribute('data-cap') || (b.querySelector('.case-fig-cap') || {}).textContent;
+      open(im.getAttribute('src'), im.getAttribute('alt'), cap);
     });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();

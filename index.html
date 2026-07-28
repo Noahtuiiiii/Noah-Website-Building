@@ -720,6 +720,48 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ---- Work CTA (landing page -> /work) ---- */
+
+/* ---- Homepage work teaser ---- */
+.case-teaser { display: block; text-decoration: none; color: inherit;
+  transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), border-color .2s var(--ease-out); }
+.case-teaser:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.teaser-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: var(--space-7); align-items: center; }
+.teaser-shot { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--line-1);
+  background: var(--paper-0); line-height: 0; }
+.teaser-shot img { display: block; width: 100%; height: auto; }
+.teaser-flip .teaser-shot { order: 2; }
+.teaser-flip .teaser-text { order: 1; }
+.teaser-line { font-size: var(--size-body); line-height: 1.6; color: var(--ink-2); margin-top: var(--space-4); }
+.teaser-metrics { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--line-1);
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-5); }
+.teaser-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: var(--space-5);
+  font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase;
+  letter-spacing: var(--track-label); color: var(--signal-1); }
+.case-teaser:hover .cta-arrow { transform: translateX(4px); }
+.teaser-cta .cta-arrow { transition: transform .18s var(--ease-out); }
+@media (max-width: 900px) {
+  .teaser-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .teaser-flip .teaser-shot { order: 0; } .teaser-flip .teaser-text { order: 0; }
+}
+
+/* ---- Homepage topic cards (the other five cases) ---- */
+.work-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: var(--space-5); margin-top: var(--space-6); }
+.topic-card { display: flex; flex-direction: column; gap: 11px; text-decoration: none; color: inherit;
+  transition: transform .18s var(--ease-out); }
+.topic-card:hover { transform: translateY(-2px); }
+.topic-shot { display: block; border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--line-1); background: var(--paper-0); aspect-ratio: 16 / 10; position: relative;
+  transition: box-shadow .18s var(--ease-out), border-color .18s var(--ease-out); }
+.topic-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.topic-card:hover .topic-shot { box-shadow: var(--shadow-md); border-color: var(--line-2); }
+.topic-k { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: var(--track-label); color: var(--signal-1); }
+.topic-t { font-size: var(--size-body-sm); font-weight: 600; line-height: 1.4; color: var(--ink-1); }
+.topic-card:hover .topic-t { color: var(--signal-1); }
+.topic-d { font-size: var(--size-micro); color: var(--ink-3); line-height: 1.45; }
+
 .work-cta { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; margin-top: var(--space-7); }
 .work-cta .btn { font-size: var(--size-body-sm); }
 .work-cta .work-cta-note { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); max-width: 46ch; }
@@ -1077,77 +1119,84 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <h2 class="h2">The work behind the <span class="accent accent--signal">numbers</span>.</h2>
     </div>
 
-    <article class="card case reveal">
-      <div class="case-head">
-        <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
-        <h3 class="h3">Finding the real variable</h3>
-      </div>
-      <div class="case-metrics">
-        <div class="metric">
-          <div class="value">59<span class="unit">%</span></div>
-          <div class="label">Band 7 attainment</div>
-          <div class="delta">Up from 27%, same cohort</div>
-        </div>
-        <div class="metric">
-          <div class="value">8.5 vs 4</div>
-          <div class="label">Tutor-student ratio</div>
-          <div class="delta">Spanish &amp; French vs. other subjects</div>
-        </div>
-        <div class="metric">
-          <div class="value">1 in 10</div>
-          <div class="label">Finished band 5 or below</div>
-          <div class="delta">Down from 1 in 3</div>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="case-block">
-          <span class="case-k">Context</span>
-          <p>As Academic Program Coordinator at IB Tutoring Australia I owned student-outcome analysis across 50+ IB subjects, four of which I had tutored myself.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-k">Result</span>
-          <p>I traced weak language results to tutor-to-student ratios rather than student ability and recommended a specific reallocation. Band 7 attainment across Spanish and French rose from 27% to 59% for the same cohort, and the one-off analysis became a recurring program-wide review.</p>
+    <a class="card case case-teaser reveal" href="/work#tutor-ratios">
+      <div class="teaser-grid">
+        <div class="teaser-shot"><img src="/images/ibt-tutor-ratio.png" alt="Tutor-to-student ratio by subject group, and band outcomes before and after reallocation" loading="lazy"></div>
+        <div class="teaser-text">
+          <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
+          <h3 class="h3">Finding the real variable</h3>
+          <p class="teaser-line">Weak language results tracked with tutor-to-student ratios, not student ability. I said so unprompted, and the reallocation moved the next set of results.</p>
+          <div class="case-metrics teaser-metrics">
+            <div class="metric">
+              <div class="value">59<span class="unit">%</span></div>
+              <div class="label">Band 7 attainment</div>
+              <div class="delta">Up from 27%, same cohort</div>
+            </div>
+            <div class="metric">
+              <div class="value">8.5 vs 4</div>
+              <div class="label">Tutor-student ratio</div>
+              <div class="delta">Spanish &amp; French vs. other subjects</div>
+            </div>
+          </div>
+          <span class="teaser-cta">Read the case <span class="cta-arrow">&rarr;</span></span>
         </div>
       </div>
-    </article>
+    </a>
 
-    <article class="card case reveal">
-      <div class="case-head">
-        <span class="eyebrow"><span class="idx">CASE</span> / 02</span>
-        <h3 class="h3">Building the system that moved the throughput</h3>
-      </div>
-      <div class="case-metrics">
-        <div class="metric">
-          <div class="value">50<span class="unit">%</span></div>
-          <div class="label">Throughput gain</div>
-          <div class="delta">vs the 30-case benchmark</div>
-        </div>
-        <div class="metric">
-          <div class="value">45<span class="unit">+</span></div>
-          <div class="label">Cases resolved / day</div>
-          <div class="delta">Peaking at 60</div>
-        </div>
-        <div class="metric">
-          <div class="value">Lowest</div>
-          <div class="label">Escalation-rate band</div>
-          <div class="delta">Held on the team</div>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="case-block">
-          <span class="case-k">Context</span>
-          <p>At ANZ, KPI targets rose from a 30-case daily benchmark toward 45+ in an environment where every resolution has to be compliant and defensible on audit.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-k">Result</span>
-          <p>I mapped where handling time actually went and built a structured policy and process reference set the whole team could work from. Throughput reached 45+ cases a day, peaking at 60, while I held one of the lowest escalation rates on the team.</p>
+    <a class="card case case-teaser reveal" href="/work#anz-reference-set">
+      <div class="teaser-grid teaser-flip">
+        <div class="teaser-shot"><img src="/images/anz-reference-set.png" alt="The policy and process reference set: one structured source routing a case to a compliant resolution" loading="lazy"></div>
+        <div class="teaser-text">
+          <span class="eyebrow"><span class="idx">CASE</span> / 02</span>
+          <h3 class="h3">Building the system that moved the throughput</h3>
+          <p class="teaser-line">The volume was not the problem; the time each case took was. I mapped where it went and built one structured reference set the whole team could work from.</p>
+          <div class="case-metrics teaser-metrics">
+            <div class="metric">
+              <div class="value">50<span class="unit">%</span></div>
+              <div class="label">Throughput gain</div>
+              <div class="delta">vs the 30-case benchmark</div>
+            </div>
+            <div class="metric">
+              <div class="value">45<span class="unit">+</span></div>
+              <div class="label">Cases resolved / day</div>
+              <div class="delta">Peaking at 60</div>
+            </div>
+          </div>
+          <span class="teaser-cta">Read the case <span class="cta-arrow">&rarr;</span></span>
         </div>
       </div>
-    </article>
+    </a>
+
+    <div class="work-topics reveal">
+      <a class="topic-card" href="/work#bot-appraisal">
+        <span class="topic-shot"><img src="/images/bot-npv-discount-rate-annotated.png" alt="Net present value against the discount rate applied" loading="lazy"></span>
+        <span class="topic-k">Case / 04</span>
+        <span class="topic-t">Model the number, then try to break it</span>
+        <span class="topic-d">Project financial modelling &amp; board appraisal</span>
+      </a>
+      <a class="topic-card" href="/work#myki-governance">
+        <span class="topic-shot"><img src="/images/myki-ilm.png" alt="Investment Logic Map for the myki modernisation project" loading="lazy"></span>
+        <span class="topic-k">Case / 05</span>
+        <span class="topic-t">Structure without control: the myki governance gap</span>
+        <span class="topic-d">Public-sector governance &amp; benefits realisation</span>
+      </a>
+      <a class="topic-card" href="/work#lxrp-engagement">
+        <span class="topic-shot"><img src="/images/lxrp-arnstein-ladder.png" alt="Engagement mechanisms mapped against Arnstein&#39;s ladder" loading="lazy"></span>
+        <span class="topic-k">Case / 03</span>
+        <span class="topic-t">Did the engagement shape the disruption?</span>
+        <span class="topic-d">Stakeholder engagement on a $1.6B program</span>
+      </a>
+      <a class="topic-card" href="/work#netflix-agile">
+        <span class="topic-shot"><img src="/images/agile-value-stream.png" alt="Value stream and bottleneck analysis of Netflix content production" loading="lazy"></span>
+        <span class="topic-k">Case / 07</span>
+        <span class="topic-t">Finding the bottleneck, not applying Agile</span>
+        <span class="topic-d">Agile, Lean &amp; value-stream mapping</span>
+      </a>
+    </div>
 
     <div class="work-cta reveal">
       <a href="/work" class="btn btn--signal">See all seven case studies <span class="cta-arrow">&rarr;</span></a>
-      <p class="work-cta-note">Financial modelling &middot; Public-sector governance &middot; PMBOK diagnostics &middot; Stakeholder engagement &middot; Agile</p>
+      <p class="work-cta-note">Two real roles &middot; five master&rsquo;s projects treated as client engagements</p>
     </div>
 
     <!-- Things I've built (moved here so the page closes on "a team that teaches") -->
