@@ -135,6 +135,7 @@
   #lightbox.open { display:flex; opacity:1; }
   #lightbox img {
     max-width:92vw; max-height:88vh; width:auto; height:auto;
+    transition:opacity 140ms ease;
     border-radius:10px; box-shadow:0 30px 90px rgba(0,0,0,0.6);
     -webkit-user-select:none; user-select:none;
   }
@@ -744,9 +745,26 @@
     var lbClose = document.getElementById("lbClose");
     var lbList = [], lbIndex = 0;
 
+    // The embedded photos are ~660px wide, so plain max-width/height would leave
+    // them small on a big screen. Scale up to fill the viewport, but never past
+    // MAX_UP x natural size, so they don't turn to mush.
+    var MAX_UP = 1.8;
+    function lbFit() {
+      var nw = lbImg.naturalWidth, nh = lbImg.naturalHeight;
+      if (!nw || !nh) return;
+      var availW = window.innerWidth * 0.92, availH = window.innerHeight * 0.88;
+      var k = Math.min(availW / nw, availH / nh, MAX_UP);
+      lbImg.style.width = Math.round(nw * k) + "px";
+      lbImg.style.height = Math.round(nh * k) + "px";
+    }
+    lbImg.addEventListener("load", lbFit);
+    window.addEventListener("resize", function () { if (lb.classList.contains("open")) lbFit(); });
+
     function lbShow() {
       if (!lbList.length) return;
+      lbImg.style.width = ""; lbImg.style.height = "";
       lbImg.src = lbList[lbIndex];
+      if (lbImg.complete) lbFit();
       lbCount.textContent = (lbIndex + 1) + " / " + lbList.length;
       var multi = lbList.length > 1;
       lbPrev.style.display = multi ? "flex" : "none";
