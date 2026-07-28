@@ -261,6 +261,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-block p { color: var(--ink-2); font-size: var(--size-body-sm); }
 /* Metric-stat row inside a case card: reuses .metric/.value/.unit/.label/.delta from the metric strip (lines ~345-349) */
 .case-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-bottom: var(--space-6); padding-bottom: var(--space-6); border-bottom: 1px solid var(--line-1); }
+/* Case figures: thumbnail strip + lightbox. Reusable on any .case article. */
+.case-figs { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--line-1); }
+.case-figs-k { display: block; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); margin-bottom: var(--space-4); }
+.case-figs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--space-5); }
+.case-fig { display: flex; flex-direction: column; gap: 10px; text-align: left; border: 0; padding: 0; background: none; font: inherit; cursor: zoom-in; }
+.case-fig-shot { position: relative; aspect-ratio: 16 / 10; border-radius: var(--radius-md); overflow: hidden; background: var(--paper-0); border: 1px solid var(--line-1); transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out); }
+.case-fig-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.case-fig:hover .case-fig-shot { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.case-fig:focus-visible { outline: none; }
+.case-fig:focus-visible .case-fig-shot { box-shadow: 0 0 0 3px var(--signal-1); }
+.case-fig-cap { font-size: var(--size-body-sm); line-height: 1.45; color: var(--ink-3); }
+.figlb { position: fixed; inset: 0; z-index: 300; display: none; place-items: center; padding: var(--space-6); background: rgba(26,24,19,0.86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.figlb.is-open { display: grid; }
+.figlb-inner { max-width: min(1180px, 94vw); }
+.figlb-inner img { display: block; width: 100%; height: auto; max-height: 76vh; object-fit: contain; border-radius: var(--radius-md); background: var(--paper-0); }
+.figlb-cap { margin-top: var(--space-4); max-width: 86ch; color: var(--on-ink-2); font-size: var(--size-body-sm); line-height: 1.5; }
+.figlb-close { position: absolute; top: var(--space-5); right: var(--space-5); width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--on-ink-line); border-radius: var(--radius-pill); background: rgba(26,24,19,0.72); color: var(--on-ink-1); font-size: 22px; line-height: 1; cursor: pointer; }
+.figlb-close:hover { background: rgba(26,24,19,0.92); }
+@media (max-width: 720px) { .case-figs-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
 .more-writeups { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); }
 
 /* ============================================================
@@ -886,6 +905,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <p>Engagement is easy to measure by activity count and easy to get wrong that way. I know how to separate genuine influence on decisions from documentation of decisions already made, and to turn that gap into recommendations a delivery authority could actually implement.</p>
         </div>
       </div>
+      <div class="case-figs">
+        <span class="case-figs-k">Figures</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="Noble Park precinct: the construction zone, both level crossing removal sites and the Douglas and Ian Street trader strip, mid-2016 to 2018.">
+            <span class="case-fig-shot"><img src="/images/lxrp-precinct-map.png" alt="Map of the Noble Park station precinct" loading="lazy"></span>
+            <span class="case-fig-cap">Noble Park precinct: the construction zone, both level crossing removal sites and the Douglas and Ian Street trader strip, mid-2016 to 2018.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="Engagement intensity peaked before construction; trader disruption peaked during it. The gap between the two curves is the finding.">
+            <span class="case-fig-shot"><img src="/images/lxrp-engagement-timing.png" alt="Engagement intensity and trader disruption intensity over time" loading="lazy"></span>
+            <span class="case-fig-cap">Engagement intensity peaked before construction; trader disruption peaked during it. The gap between the two curves is the finding.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="Every mechanism the project ran sat in the informing and consultation rungs of Arnstein's ladder. Nothing reached partnership or above.">
+            <span class="case-fig-shot"><img src="/images/lxrp-arnstein-ladder.png" alt="Engagement mechanisms mapped against Arnstein's ladder" loading="lazy"></span>
+            <span class="case-fig-cap">Every mechanism the project ran sat in the informing and consultation rungs of Arnstein's ladder. Nothing reached partnership or above.</span>
+          </button>
+          <button class="case-fig" type="button" data-cap="EY Sweeney surveyed 144 traders before construction: 88% knew about the project, but only 17% of Noble Park rail users had noticed its communications.">
+            <span class="case-fig-shot"><img src="/images/lxrp-trader-sentiment.png" alt="Pre-construction trader sentiment and awareness" loading="lazy"></span>
+            <span class="case-fig-cap">EY Sweeney surveyed 144 traders before construction: 88% knew about the project, but only 17% of Noble Park rail users had noticed its communications.</span>
+          </button>
+        </div>
+      </div>
     </article>
     <article class="card case reveal">
       <div class="case-head">
@@ -925,6 +965,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="case-block">
           <span class="case-k">Why it matters</span>
           <p>Board-level appraisal isn't finished when the base case is positive. It's finished when someone has gone back at the model hard enough to find what the first pass got wrong, and has said so. Catching my own error and restating the recommendation is the part of this I'd bring to a business case or investment paper.</p>
+        </div>
+      </div>
+      <div class="case-figs">
+        <span class="case-figs-k">Figure</span>
+        <div class="case-figs-grid">
+          <button class="case-fig" type="button" data-cap="Rebuilt from the corrected model: 10,000 runs, revenue varied ±5% and costs ±10% a year. Mean NPV -$1.17M, with 79% of runs below breakeven.">
+            <span class="case-fig-shot"><img src="/images/bot-monte-carlo-npv.png" alt="Monte Carlo distribution of project NPV" loading="lazy"></span>
+            <span class="case-fig-cap">Rebuilt from the corrected model: 10,000 runs, revenue varied ±5% and costs ±10% a year. Mean NPV -$1.17M, with 79% of runs below breakeven.</span>
+          </button>
         </div>
       </div>
     </article>
@@ -1518,6 +1567,40 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---- Footer year auto-update ---- */
 document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- Case figure lightbox ---- */
+  (function () {
+    var lb = null, lastFocus = null;
+    function ensure() {
+      if (lb) return lb;
+      lb = document.createElement('div');
+      lb.className = 'figlb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+      lb.innerHTML = '<button class="figlb-close" type="button" aria-label="Close figure">&times;</button>' +
+                     '<div class="figlb-inner"><img alt=""><p class="figlb-cap"></p></div>';
+      document.body.appendChild(lb);
+      lb.addEventListener('click', function (e) { if (e.target === lb || e.target.closest('.figlb-close')) close(); });
+      return lb;
+    }
+    function open(src, alt, cap) {
+      var el = ensure(), im = el.querySelector('img');
+      im.src = src; im.alt = alt || ''; el.querySelector('.figlb-cap').textContent = cap || '';
+      el.classList.add('is-open'); document.body.style.overflow = 'hidden';
+      el.querySelector('.figlb-close').focus();
+    }
+    function close() {
+      if (!lb || !lb.classList.contains('is-open')) return;
+      lb.classList.remove('is-open'); document.body.style.overflow = '';
+      if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+    }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.case-fig') : null;
+      if (!b) return;
+      e.preventDefault(); lastFocus = b;
+      var im = b.querySelector('img');
+      open(im.getAttribute('src'), im.getAttribute('alt'), b.getAttribute('data-cap'));
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
 </script>
 </body>
 </html>
