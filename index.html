@@ -614,7 +614,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 #about h2 { color: var(--on-ink-1); }
 #about .accent--signal { color: var(--signal-3); }
 #about .lead { color: var(--on-ink-2); }
-@media (max-width: 760px) { #about::before { filter: blur(11px) saturate(0.92) brightness(0.86); background-position: 50% 45%; } }
+@media (max-width: 760px) {
+  #about::before { filter: blur(11px) saturate(0.92) brightness(0.86); background-position: 50% 45%; }
+  /* copy runs full-width here, so drop the left-hand wash and even out the vertical scrim */
+  #about::after { background: linear-gradient(to bottom,
+      rgba(26,24,19,0.82) 0%,
+      rgba(26,24,19,0.58) 25%,
+      rgba(26,24,19,0.62) 55%,
+      rgba(26,24,19,0.80) 78%,
+      rgba(26,24,19,0.96) 92%,
+      #1A1813 100%); }
+}
 @media (prefers-reduced-motion: reduce) { #about::before { transform: none; } }
 
 .contact-panel { background: rgba(26,24,19,0.82); color: var(--on-ink-1); border-radius: var(--radius-xl); padding: var(--space-9); box-shadow: var(--shadow-lg); }
