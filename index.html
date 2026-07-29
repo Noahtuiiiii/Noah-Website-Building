@@ -589,31 +589,37 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 #about::before {
   content: ""; position: absolute; inset: -8%; z-index: 0;
   background-image: url("/images/globe-bg.webp");
-  background-size: cover; background-position: 62% 38%;
-  filter: blur(16px) saturate(0.9) brightness(0.92);
+  background-size: cover; background-position: 58% 42%;
+  filter: blur(12px) saturate(0.95);
   transform: scale(1.06);
 }
 #about::after {
   content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to bottom,
-    rgba(26,24,19,0.90) 0%,
-    rgba(26,24,19,0.74) 22%,
-    rgba(26,24,19,0.76) 52%,
-    rgba(26,24,19,0.92) 80%,
-    rgba(26,24,19,0.99) 94%,
-    #1A1813 100%);
+  background:
+    linear-gradient(to right,
+      rgba(26,24,19,0.80) 0%,
+      rgba(26,24,19,0.52) 40%,
+      rgba(26,24,19,0.20) 68%,
+      rgba(26,24,19,0.24) 100%),
+    linear-gradient(to bottom,
+      rgba(26,24,19,0.80) 0%,
+      rgba(26,24,19,0.42) 20%,
+      rgba(26,24,19,0.42) 50%,
+      rgba(26,24,19,0.74) 76%,
+      rgba(26,24,19,0.96) 92%,
+      #1A1813 100%);
 }
 #about .eyebrow { color: var(--on-ink-2); }
 #about .eyebrow .idx { color: var(--signal-3); }
 #about h2 { color: var(--on-ink-1); }
 #about .accent--signal { color: var(--signal-3); }
 #about .lead { color: var(--on-ink-2); }
-@media (max-width: 760px) { #about::before { filter: blur(12px) saturate(0.9) brightness(0.92); background-position: 60% 40%; } }
+@media (max-width: 760px) { #about::before { filter: blur(10px) saturate(0.95); background-position: 58% 42%; } }
 @media (prefers-reduced-motion: reduce) { #about::before { transform: none; } }
 
 .contact-panel { background: rgba(26,24,19,0.82); color: var(--on-ink-1); border-radius: var(--radius-xl); padding: var(--space-9); box-shadow: var(--shadow-lg); }
 /* Contact section background: photo + the same filter used on the Build cards */
-#contact { background-image: linear-gradient(to bottom, rgba(26,24,19,0.86) 0%, rgba(26,24,19,0.42) 20%, rgba(26,24,19,0.34) 40%, rgba(26,24,19,0.34) 60%, rgba(26,24,19,0.42) 80%, rgba(26,24,19,0.86) 100%), url("/images/contact-bg-v4.jpg"); background-size: cover; background-position: center; aspect-ratio: 4032 / 2272; display: flex; flex-direction: column; justify-content: center; }
+#contact { background-image: linear-gradient(to bottom, rgba(26,24,19,1) 0%, rgba(26,24,19,0.74) 9%, rgba(26,24,19,0.42) 22%, rgba(26,24,19,0.34) 40%, rgba(26,24,19,0.34) 60%, rgba(26,24,19,0.42) 80%, rgba(26,24,19,0.86) 100%), url("/images/contact-bg-v4.jpg"); background-size: cover; background-position: center; aspect-ratio: 4032 / 2272; display: flex; flex-direction: column; justify-content: center; }
 .contact-center { max-width: 640px; margin-inline: auto; text-align: center; }
 .contact-panel .eyebrow { color: var(--on-ink-2); justify-content: center; }
 .contact-panel .eyebrow .idx { color: var(--signal-3); }
