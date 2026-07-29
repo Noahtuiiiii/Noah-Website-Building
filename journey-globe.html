@@ -127,17 +127,23 @@
   }
 
   /* ---- Full-size image lightbox ---- */
+  /* --lb-top reserves room for the HOST page's fixed nav pill, which floats over this
+     iframe. --lb-maxw/h are shared with lbFit() in JS: if the two disagree, CSS clamps
+     one axis of the sized box and the photo comes out stretched. */
+  :root { --lb-top:96px; --lb-maxw:0.92; --lb-maxh:0.88; }
   #lightbox {
     position:fixed; inset:0; z-index:20; display:none;
     align-items:center; justify-content:center;
     background:rgba(6,11,16,0.94);
+    padding-top:var(--lb-top); box-sizing:border-box;
     -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
     opacity:0; transition:opacity 200ms ease;
   }
   #lightbox.open { display:flex; opacity:1; }
   #lightbox { overscroll-behavior:contain; }
   #lightbox img {
-    max-width:92vw; max-height:88vh; width:auto; height:auto;
+    max-width:calc(var(--lb-maxw) * 100vw); max-height:calc(var(--lb-maxh) * 100vh - var(--lb-top));
+    width:auto; height:auto; object-fit:contain;
     transition:opacity 140ms ease;
     border-radius:10px; box-shadow:0 30px 90px rgba(0,0,0,0.6);
     -webkit-user-select:none; user-select:none;
@@ -150,8 +156,8 @@
     transition:background 160ms ease, transform 160ms ease, border-color 160ms ease;
   }
   #lightbox .lb-btn:hover { background:rgba(40,52,62,0.92); border-color:rgba(255,255,255,0.4); }
-  #lightbox .lb-close { top:18px; right:18px; width:44px; height:44px; font-size:20px; line-height:1; }
-  #lightbox .lb-nav { top:50%; margin-top:-27px; width:54px; height:54px; }
+  #lightbox .lb-close { top:calc(var(--lb-top) + 8px); right:18px; width:44px; height:44px; font-size:20px; line-height:1; }
+  #lightbox .lb-nav { top:calc(50% + var(--lb-top) / 2); margin-top:-27px; width:54px; height:54px; }
   #lightbox .lb-nav svg { width:22px; height:22px; stroke:#ECEBE6; fill:none; stroke-width:2; }
   #lightbox .lb-prev { left:18px; }
   #lightbox .lb-next { right:18px; }
@@ -163,12 +169,10 @@
     border-radius:999px; padding:6px 14px; pointer-events:none;
   }
   @media (max-width:620px) {
-    #lightbox img { max-width:94vw; max-height:76vh; }
+    :root { --lb-top:88px; --lb-maxw:0.94; --lb-maxh:0.82; }
     #lightbox .lb-nav { width:44px; height:44px; margin-top:-22px; }
     #lightbox .lb-prev { left:8px; } #lightbox .lb-next { right:8px; }
-    /* On mobile the host page's fixed nav pill spans nearly the full width and covers
-       the iframe's top-right corner, hiding this button. Drop it clear of the nav. */
-    #lightbox .lb-close { top:90px; right:12px; }
+    #lightbox .lb-close { right:12px; }
   }
 </style>
 </head>
@@ -749,7 +753,11 @@
     function lbFit() {
       var nw = lbImg.naturalWidth, nh = lbImg.naturalHeight;
       if (!nw || !nh) return;
-      var availW = window.innerWidth * 0.92, availH = window.innerHeight * 0.88;
+      var cs = getComputedStyle(document.documentElement);
+      var lbTop = parseFloat(cs.getPropertyValue("--lb-top")) || 96;
+      var maxW = parseFloat(cs.getPropertyValue("--lb-maxw")) || 0.92;
+      var maxH = parseFloat(cs.getPropertyValue("--lb-maxh")) || 0.88;
+      var availW = window.innerWidth * maxW, availH = window.innerHeight * maxH - lbTop;
       var k = Math.min(availW / nw, availH / nh, MAX_UP);
       lbImg.style.width = Math.round(nw * k) + "px";
       lbImg.style.height = Math.round(nh * k) + "px";
