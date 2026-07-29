@@ -636,6 +636,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .contact-panel h2 { color: var(--on-ink-1); margin-block: var(--space-4) var(--space-5); }
 .contact-panel .lead { color: var(--on-ink-2); margin-bottom: var(--space-2); }
 .contact-buttons { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
+/* Secondary row under the two CTAs: the address in plain copyable text (mailto: silently
+   fails on machines with no mail client) and the CV, offered without competing with the pills. */
+.contact-alt { margin-top: var(--space-5); font-size: var(--size-body-sm); color: var(--on-ink-2); }
+.contact-alt a { color: var(--on-ink-1); text-decoration: underline; text-decoration-color: var(--on-ink-line); text-underline-offset: 3px; transition: text-decoration-color var(--dur-base) var(--ease-out); }
+.contact-alt a:hover { text-decoration-color: var(--on-ink-1); }
+.contact-alt .sep { margin-inline: var(--space-3); color: var(--on-ink-line); }
+@media (max-width: 520px) { .contact-alt .sep { display: block; height: 0; margin: var(--space-2) 0; overflow: hidden; } }
 .contact-loc { margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--on-ink-2); }
 
 /* ============================================================
@@ -1410,6 +1417,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             LinkedIn
           </a>
         </div>
+
+        <p class="contact-alt">
+          <a href="mailto:noahtui@gmail.com">noahtui@gmail.com</a>
+          <span class="sep" aria-hidden="true">&middot;</span>
+          <a href="/Noah_McGill_CV.pdf" target="_blank" rel="noopener">Download my CV (PDF)</a>
+        </p>
 
         <p class="contact-loc">Melbourne, VIC</p>
       </div>
