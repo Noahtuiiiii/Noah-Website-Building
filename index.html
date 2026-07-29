@@ -418,6 +418,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .exp-points li { display: flex; gap: var(--space-3); color: var(--ink-2); font-size: var(--size-body-sm); }
 .exp-points li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--signal-1); margin-top: 9px; flex-shrink: 0; }
 .exp-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* Organisation & institution logos (experience, education, case teasers) */
+.org-mark { display: block; width: auto; height: 24px; margin-bottom: var(--space-1); }
+.edu-deg .org-mark { height: 28px; }
+.teaser-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.case-mark { width: auto; height: 20px; flex-shrink: 0; }
+@media (max-width: 760px) { .org-mark { height: 21px; } .edu-deg .org-mark { height: 24px; } .case-mark { height: 18px; } }
 /* Niseko photo breaking the experience timeline */
 .timeline-photo { display: flex; flex-direction: column; gap: var(--space-3); max-width: 380px; align-self: center; }
 /* Education sub-section (elevated, distinct from experience entries) */
@@ -1025,6 +1031,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Experience entry: ANZ (anchored) -->
       <article class="exp reveal">
         <div class="exp-meta">
+          <img class="org-mark" src="/images/logo-anz.webp" alt="ANZ" width="132" height="44" loading="lazy" decoding="async">
           <span class="exp-period">May 2025 – Feb 2026</span>
           <span class="exp-org">ANZ / Melbourne</span>
         </div>
@@ -1048,6 +1055,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Experience entry: IBT Coordinator (anchored) -->
       <article class="exp reveal">
         <div class="exp-meta">
+          <img class="org-mark" src="/images/logo-ibt.webp" alt="IB Tutoring Australia" width="113" height="44" loading="lazy" decoding="async">
           <span class="exp-period">Mar 2024 – Dec 2024</span>
           <span class="exp-org">IB Tutoring Australia / Remote</span>
         </div>
@@ -1070,6 +1078,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Experience entry: Private Tutor (condensed to a single line) -->
       <article class="exp reveal">
         <div class="exp-meta">
+          <img class="org-mark" src="/images/logo-ibt.webp" alt="IB Tutoring Australia" width="113" height="44" loading="lazy" decoding="async">
           <span class="exp-period">Jan 2022 – Mar 2024</span>
           <span class="exp-org">IB Tutoring Australia / Sydney</span>
         </div>
@@ -1084,6 +1093,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <h3 class="h3 edu-title">Education</h3>
         <div class="edu-item">
           <div class="edu-deg">
+            <img class="org-mark" src="/images/logo-rmit.webp" alt="RMIT University" width="127" height="44" loading="lazy" decoding="async">
             <span class="exp-period">June 2026</span>
             <h4 class="h4">Master of Project Management</h4>
             <span class="exp-org">RMIT University</span>
@@ -1094,6 +1104,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="edu-item">
           <div class="edu-deg">
+            <img class="org-mark" src="/images/logo-usyd.webp" alt="The University of Sydney" width="127" height="44" loading="lazy" decoding="async">
             <span class="exp-period">2023</span>
             <h4 class="h4">Bachelor of Arts, International Business &amp; Germanic Studies</h4>
             <span class="exp-org">University of Sydney, Business School</span>
@@ -1120,7 +1131,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="teaser-grid">
         <div class="teaser-shot"><img src="/images/ibt-tutor-ratio.png" alt="Tutor-to-student ratio by subject group, and band outcomes before and after reallocation" loading="lazy"></div>
         <div class="teaser-text">
-          <span class="eyebrow"><span class="idx">CASE</span> / 01</span>
+          <div class="teaser-head"><span class="eyebrow"><span class="idx">CASE</span> / 01</span><img class="case-mark" src="/images/logo-ibt.webp" alt="IB Tutoring Australia" width="113" height="44" loading="lazy" decoding="async"></div>
           <h3 class="h3">Finding the real variable</h3>
           <p class="teaser-line">Weak language results tracked with tutor-to-student ratios, not student ability. I said so unprompted, and the reallocation moved the next set of results.</p>
           <div class="case-metrics teaser-metrics">
@@ -1144,7 +1155,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="teaser-grid teaser-flip">
         <div class="teaser-shot"><img src="/images/anz-reference-set.png" alt="The policy and process reference set: one structured source routing a case to a compliant resolution" loading="lazy"></div>
         <div class="teaser-text">
-          <span class="eyebrow"><span class="idx">CASE</span> / 02</span>
+          <div class="teaser-head"><span class="eyebrow"><span class="idx">CASE</span> / 02</span><img class="case-mark" src="/images/logo-anz.webp" alt="ANZ" width="132" height="44" loading="lazy" decoding="async"></div>
           <h3 class="h3">Building the system that moved the throughput</h3>
           <p class="teaser-line">The volume was not the problem; the time each case took was. I mapped where it went and built one structured reference set the whole team could work from.</p>
           <div class="case-metrics teaser-metrics">
@@ -1171,23 +1182,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <span class="topic-t">Model the number, then try to break it</span>
         <span class="topic-d">Project financial modelling &amp; board appraisal</span>
       </a>
-      <a class="topic-card" href="/work#myki-governance">
-        <span class="topic-shot"><img src="/images/myki-ilm.png" alt="Investment Logic Map for the myki modernisation project" loading="lazy"></span>
-        <span class="topic-k">Case / 05</span>
-        <span class="topic-t">Structure without control: the myki governance gap</span>
-        <span class="topic-d">Public-sector governance &amp; benefits realisation</span>
-      </a>
       <a class="topic-card" href="/work#lxrp-engagement">
         <span class="topic-shot"><img src="/images/lxrp-arnstein-ladder.png" alt="Engagement mechanisms mapped against Arnstein&#39;s ladder" loading="lazy"></span>
         <span class="topic-k">Case / 03</span>
         <span class="topic-t">Did the engagement shape the disruption?</span>
         <span class="topic-d">Stakeholder engagement on a $1.6B program</span>
-      </a>
-      <a class="topic-card" href="/work#netflix-agile">
-        <span class="topic-shot"><img src="/images/agile-value-stream.png" alt="Value stream and bottleneck analysis of Netflix content production" loading="lazy"></span>
-        <span class="topic-k">Case / 07</span>
-        <span class="topic-t">Finding the bottleneck, not applying Agile</span>
-        <span class="topic-d">Agile, Lean &amp; value-stream mapping</span>
       </a>
     </div>
 
