@@ -811,9 +811,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   #contact { aspect-ratio: auto; background-position: center top; }
   .section { padding-block: var(--space-9); }
   .hero { padding-top: 6rem; }
-  /* Mobile: soft white halo behind the transparent Download CV button so it stays legible over the image */
-  .hero-actions .btn--ghost { position: relative; }
-  .hero-actions .btn--ghost::before { content: ""; position: absolute; z-index: -1; inset: -2px -6px; background: var(--paper-1); opacity: 0.85; filter: blur(14px); border-radius: var(--radius-pill); }
+  /* Mobile: the Download CV button is the only hero action with no surface, so over the photo it
+     reads as a caption rather than a button. Give it the same frosted pill the mobile nav uses:
+     translucent paper + backdrop blur + hairline border. Stays visually third behind View work. */
+  .hero-actions .btn--ghost {
+    background: rgba(251, 250, 246, 0.78);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line-2);
+    color: var(--ink-1);
+    padding-inline: var(--space-5);
+    box-shadow: var(--shadow-sm);
+  }
 }
 @media (max-width: 420px) {
   .hero-actions { flex-direction: column; align-items: stretch; }
