@@ -878,6 +878,7 @@
         cardGallery.appendChild(im);
       });
       cardScroll.scrollTop = 0;
+      userInteracted = true; // park the globe so the open card can't chase its pin
       sizeCardToText();
       positionCard();
       card.classList.add("open");
@@ -925,12 +926,13 @@
 
     var downX = 0, downY = 0, moved = false, pointerActive = false;
     var lastInteraction = performance.now();
-    function down(x, y) { dragging = true; pointerActive = true; lastX = x; lastY = y; downX = x; downY = y; moved = false; userInteracted = true; lastInteraction = performance.now(); }
+    function down(x, y) { dragging = true; pointerActive = true; lastX = x; lastY = y; downX = x; downY = y; moved = false; lastInteraction = performance.now(); }
     function move(x, y) {
       lastInteraction = performance.now();
       if (!dragging) { updateHover(x, y); return; }
       if (Math.abs(x - downX) + Math.abs(y - downY) > 6) {
-        moved = true;
+        // Only a real drag stops the idle spin; a bare tap leaves it turning.
+        moved = true; userInteracted = true;
         if (openIndex >= 0 && !lb.classList.contains("open")) closeCity();
       }
       velY = (x - lastX) * 0.005; velX = (y - lastY) * 0.005; lastX = x; lastY = y;
@@ -960,7 +962,7 @@
       renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix();
       // On narrow screens sit the globe lower so top-of-globe pin labels (New York,
       // Niseko) clear the site's floating nav. ~9% of the visible height.
-      world.position.y = (w <= 620) ? -0.5 : 0;
+      world.position.y = (w <= 620) ? -0.25 : 0;
     }
     window.addEventListener("resize", resize); resize();
 
