@@ -122,7 +122,12 @@
   #hint.gone { opacity:0; transform:translateY(10px); }
   @media (max-width:620px) {
     #hint { font-size:9px; letter-spacing:0.1em; padding:9px 13px; white-space:normal;
-      left:16px; right:16px; bottom:74px; justify-content:center; text-align:center; }
+      left:16px; right:16px; bottom:96px; justify-content:center; text-align:center; }
+    /* Both the hint and the caption wrap to two lines on a phone, so they collided.
+       The caption's sub-line repeats the hint word for word — drop it here. */
+    .caption { left:16px; right:16px; bottom:18px; }
+    .caption .title { font-size:14px; }
+    .caption .sub { display:none; }
   }
 
   /* ---- Full-size image lightbox ---- */
@@ -945,7 +950,13 @@
       up(t ? t.clientX : downX, t ? t.clientY : downY);
     });
 
-    function resize() { var w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix(); }
+    function resize() {
+      var w = canvas.clientWidth, h = canvas.clientHeight;
+      renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix();
+      // On narrow screens sit the globe lower so top-of-globe pin labels (New York,
+      // Niseko) clear the site's floating nav. ~9% of the visible height.
+      world.position.y = (w <= 620) ? -0.5 : 0;
+    }
     window.addEventListener("resize", resize); resize();
 
     var start = performance.now();
