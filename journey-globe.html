@@ -122,12 +122,8 @@
   #hint.gone { opacity:0; transform:translateY(10px); }
   @media (max-width:620px) {
     #hint { font-size:9px; letter-spacing:0.1em; padding:9px 13px; white-space:normal;
-      left:16px; right:16px; bottom:96px; justify-content:center; text-align:center; }
-    /* Both the hint and the caption wrap to two lines on a phone, so they collided.
-       The caption's sub-line repeats the hint word for word — drop it here. */
+      left:16px; right:16px; bottom:112px; justify-content:center; text-align:center; }
     .caption { left:16px; right:16px; bottom:18px; }
-    .caption .title { font-size:14px; }
-    .caption .sub { display:none; }
   }
 
   /* ---- Full-size image lightbox ---- */
@@ -195,7 +191,7 @@
       </span>
     </div>
   </div>
-  <div id="hint"><span class="pin"></span><span><b>Drag</b> to spin &nbsp;&middot;&nbsp; <b>Click a red pin</b> to open its story &amp; photos</span></div>
+  <div id="hint"><span class="pin"></span><span><b>Drag</b> to rotate &nbsp;&middot;&nbsp; <b>Click a red pin</b> to open its story &amp; photos</span></div>
   <div class="caption">
     <div class="title">Stepping into the unknown</div>
     <div class="sub">drag to rotate &middot; click a red pin for the story</div>
@@ -628,7 +624,7 @@
       label.material.opacity = 1;
       world.add(label); labels.push(label);
     });
-    // Labels are drawn as little "button" pills with a red + badge, so they read
+    // Labels are drawn as little "button" pills, so they read
     // as things you can click rather than as static map type.
     function roundRectPath(x, rx, ry, w, h, r) {
       x.beginPath();
@@ -640,11 +636,11 @@
       x.closePath();
     }
     function makeLabel(text) {
-      var fs = 38, padX = 22, gap = 14, badge = 30, padY = 15;
+      var fs = 38, padX = 22, padY = 15;
       var c = document.createElement("canvas"), x = c.getContext("2d");
       x.font = "500 " + fs + 'px "DM Mono", monospace';
       var w = x.measureText(text).width;
-      c.width = Math.ceil(w + padX * 2 + gap + badge);
+      c.width = Math.ceil(w + padX * 2);
       c.height = Math.ceil(fs + padY * 2);
       x = c.getContext("2d");
       x.font = "500 " + fs + 'px "DM Mono", monospace';
@@ -655,15 +651,6 @@
       // name
       x.fillStyle = "rgba(240,246,248,0.98)"; x.textBaseline = "middle";
       x.fillText(text, padX, c.height / 2 + 1);
-      // red "+" badge => affordance for "opens something"
-      var bx = padX + w + gap + badge / 2, by = c.height / 2;
-      x.beginPath(); x.arc(bx, by, badge / 2, 0, Math.PI * 2);
-      x.fillStyle = "rgba(255,59,48,0.98)"; x.fill();
-      x.strokeStyle = "rgba(255,255,255,0.95)"; x.lineWidth = 3.4; x.lineCap = "round";
-      x.beginPath();
-      x.moveTo(bx - badge * 0.24, by); x.lineTo(bx + badge * 0.24, by);
-      x.moveTo(bx, by - badge * 0.24); x.lineTo(bx, by + badge * 0.24);
-      x.stroke();
       var tex = new THREE.CanvasTexture(c); tex.minFilter = THREE.LinearFilter;
       var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false }));
       sp.scale.set(c.width * 0.0037, c.height * 0.0037, 1);
@@ -836,15 +823,32 @@
       return -1;
     }
 
+    // The globe runs in an iframe and the site's floating nav sits on top of it.
+    // Same-origin, so measure how far the nav actually overlaps this frame rather
+    // than guessing; falls back to a sane constant if the parent isn't reachable.
+    function navInset() {
+      try {
+        var nav = window.parent.document.querySelector(".nav-wrap, .nav");
+        var frame = window.frameElement;
+        if (!nav || !frame) return 8;
+        var overlap = nav.getBoundingClientRect().bottom - frame.getBoundingClientRect().top;
+        return Math.max(8, Math.min(overlap + 14, window.innerHeight * 0.4));
+      } catch (e) { return 96; }
+    }
+
     function positionCard() {
       if (openIndex < 0) return;
       var rect = canvas.getBoundingClientRect();
       tmpVec.copy(dots[openIndex].getWorldPosition(new THREE.Vector3())).project(camera);
       var sx = (tmpVec.x * 0.5 + 0.5) * rect.width + rect.left;
       var sy = (-tmpVec.y * 0.5 + 0.5) * rect.height + rect.top;
+      var topMin = navInset(), bottomMax = window.innerHeight - 8;
+      // keep the card inside the band the nav leaves free, shrinking it if needed
+      var maxH = bottomMax - topMin;
+      if (card.offsetHeight > maxH) card.style.height = maxH + "px";
       var cw = card.offsetWidth, ch = card.offsetHeight;
       var left = Math.max(8, Math.min(window.innerWidth - cw - 8, sx - cw / 2));
-      var top = Math.max(8, Math.min(window.innerHeight - ch - 8, sy - ch / 2));
+      var top = Math.min(bottomMax - ch, Math.max(topMin, sy - ch / 2));
       card.style.left = left + "px";
       card.style.top = top + "px";
     }
@@ -892,7 +896,8 @@
     function sizeCardToText() {
       if (openIndex < 0) return;
       var cardText = card.querySelector(".cardText");
-      card.style.height = (cardText.offsetHeight + 54) + "px";
+      var maxH = window.innerHeight - 8 - navInset();
+      card.style.height = Math.min(cardText.offsetHeight + 54, maxH) + "px";
     }
 
     function closeCity() {
