@@ -296,7 +296,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .nav-link:hover { background: var(--stone-1); color: var(--ink-1); }
 .nav-link.is-active { background: var(--ink-1); color: var(--on-ink-1); }
-.nav-cta { margin-left: var(--space-2); }
+.nav-cta { margin-left: var(--space-1); }
 
 /* Mobile nav toggle */
 .nav-toggle { display: none; width: 36px; height: 36px; border-radius: var(--radius-md); align-items: center; justify-content: center; color: var(--ink-1); }
@@ -783,7 +783,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     box-shadow: var(--shadow-lg); display: none; }
   .nav-links.open { display: flex; }
   .nav-link { padding: var(--space-3) var(--space-4); }
-  .nav-cta { display: flex; justify-content: center; margin-left: 0; margin-top: var(--space-2); }
+  /* Contact is the whole point of the site, so the CTA stays in the bar rather than
+     hiding inside the collapsed menu. Compact pill: fits beside the monogram and
+     the hamburger down to 320px. */
+  .nav-cta { margin-left: 0; margin-right: var(--space-1); padding: var(--space-2) var(--space-4); flex: 0 0 auto; }
   .nav-toggle { display: flex; }
   .metrics { grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-4); }
   .do-grid { grid-template-columns: 1fr; }
@@ -918,8 +921,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a href="#experience" class="nav-link">Experience</a>
       <a href="/work" class="nav-link">Work</a>
       <a href="/about" class="nav-link">About</a>
-      <a href="#contact" class="btn btn--signal nav-cta">Let's talk</a>
     </div>
+    <a href="#contact" class="btn btn--signal nav-cta">Let's talk</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -1482,8 +1485,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     const open = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
   });
-  // Close menu after choosing a link (mobile)
-  links.querySelectorAll('a').forEach((a) =>
+  // Close menu after choosing a link (mobile). The CTA now lives in the bar rather than
+  // inside the menu, so include it explicitly or an open menu would stay open over the page.
+  const cta = document.querySelector('.nav-cta');
+  [...links.querySelectorAll('a'), ...(cta ? [cta] : [])].forEach((a) =>
     a.addEventListener('click', () => {
       links.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
