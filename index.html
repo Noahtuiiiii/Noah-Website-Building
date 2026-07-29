@@ -1887,6 +1887,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     const active = list.findIndex(im => im.classList.contains('is-active'));
     idx = active < 0 ? 0 : active;
     originCard = card;
+    clearTimeout(timers.get(card));   // viewing counts as interaction: pause the idle countdown
     lastFocus = document.activeElement;
     render();
     lb.classList.add('open');
