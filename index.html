@@ -666,6 +666,56 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .built-gallery .built-reveal { grid-template-rows: 1fr; opacity: 1; }
 }
 
+/* --- Build cards on small screens: collapsed to the title, tap to expand, tap again to view ---
+   Placed after the (hover:none) rule above so it wins on touch phones. The card auto-collapses
+   again after 20s of no interaction (handled in JS). */
+@media (max-width: 760px) {
+  .built-card.built-gallery { min-height: 232px; transition: min-height .38s var(--ease-out); }
+  .built-card.built-gallery.is-open { min-height: 460px; }
+  .built-card.built-gallery .built-reveal { grid-template-rows: 0fr; opacity: 0; }
+  .built-card.built-gallery.is-open .built-reveal { grid-template-rows: 1fr; opacity: 1; }
+  .built-card.built-gallery.is-open .bg-scrim { background: linear-gradient(to top, rgba(26,24,19,0.94) 0%, rgba(26,24,19,0.84) 26%, rgba(26,24,19,0.52) 52%, rgba(26,24,19,0) 74%); }
+}
+.built-card.built-gallery { cursor: pointer; }
+
+/* --- Build-card image viewer --- */
+/* --blb-* are shared with the JS fit(): if they drift apart, CSS clamps one axis of the
+   sized box and the photo renders stretched. --blb-top clears the fixed nav pill. */
+:root { --blb-top: 96px; --blb-maxw: 0.92; --blb-maxh: 0.88; }
+#buildLb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center;
+  background: rgba(20,18,14,0.94); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity .2s var(--ease-out); padding-top: var(--blb-top); box-sizing: border-box;
+  overscroll-behavior: contain; }
+#buildLb.open { display: flex; opacity: 1; }
+#buildLb img { max-width: calc(var(--blb-maxw) * 100vw); max-height: calc(var(--blb-maxh) * 100vh - var(--blb-top));
+  width: auto; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+  -webkit-user-select: none; user-select: none; }
+.blb-btn { position: absolute; display: flex; align-items: center; justify-content: center;
+  background: rgba(30,27,21,0.72); border: 1px solid rgba(255,255,255,0.22); color: var(--on-ink-1);
+  cursor: pointer; border-radius: 999px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  transition: background .16s var(--ease-out), transform .16s var(--ease-out), border-color .16s var(--ease-out); }
+.blb-btn:hover { background: rgba(56,50,40,0.92); border-color: rgba(255,255,255,0.4); }
+.blb-btn:focus-visible { outline: 2px solid var(--signal-1); outline-offset: 2px; }
+.blb-close { top: calc(var(--blb-top) + 8px); right: 18px; width: 44px; height: 44px; font-size: 20px; line-height: 1; }
+.blb-nav { top: calc(50% + var(--blb-top) / 2); margin-top: -27px; width: 54px; height: 54px; }
+.blb-nav svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+.blb-prev { left: 18px; } .blb-next { right: 18px; }
+.blb-nav:hover { transform: scale(1.06); }
+.blb-count { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--track-label); color: var(--on-ink-2);
+  background: rgba(30,27,21,0.6); border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px; padding: 6px 14px; pointer-events: none; }
+@media (max-width: 620px) {
+  :root { --blb-top: 88px; --blb-maxw: 0.94; --blb-maxh: 0.82; }
+  .blb-nav { width: 44px; height: 44px; margin-top: -22px; }
+  .blb-prev { left: 8px; } .blb-next { right: 8px; }
+  .blb-close { right: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .built-card.built-gallery { transition: none !important; }
+  #buildLb { transition: none !important; }
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -1764,8 +1814,150 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   hint.addEventListener('touchstart', dismiss, { passive: true });
 })();
 
+/* ============================================================
+   BUILD CARDS: tap-to-expand on mobile + full-size image viewer
+   Mobile (<=760px): card sits collapsed at the title. First tap expands it and
+   starts a 20s idle timer; a second tap opens the viewer. Desktop is unchanged
+   except that a click opens the viewer.
+   ============================================================ */
+(function buildCardViewer() {
+  const cards = Array.from(document.querySelectorAll('.built-gallery'));
+  const lb = document.getElementById('buildLb');
+  if (!cards.length || !lb) return;
+
+  const lbImg   = document.getElementById('blbImg');
+  const lbCount = document.getElementById('blbCount');
+  const lbPrev  = document.getElementById('blbPrev');
+  const lbNext  = document.getElementById('blbNext');
+  const lbClose = document.getElementById('blbClose');
+
+  const COLLAPSE_MS = 20000;
+  const MAX_UP = 1.8;                       // never upscale a photo past this
+  const isMobile = () => matchMedia('(max-width: 760px)').matches;
+
+  let list = [], idx = 0, originCard = null, lastFocus = null;
+
+  /* Size the photo with the same limits the CSS uses, so neither axis gets clamped. */
+  function fit() {
+    const nw = lbImg.naturalWidth, nh = lbImg.naturalHeight;
+    if (!nw || !nh) return;
+    const cs  = getComputedStyle(document.documentElement);
+    const top = parseFloat(cs.getPropertyValue('--blb-top'))  || 96;
+    const mw  = parseFloat(cs.getPropertyValue('--blb-maxw')) || 0.92;
+    const mh  = parseFloat(cs.getPropertyValue('--blb-maxh')) || 0.88;
+    const k = Math.min(window.innerWidth * mw / nw, (window.innerHeight * mh - top) / nh, MAX_UP);
+    lbImg.style.width  = Math.round(nw * k) + 'px';
+    lbImg.style.height = Math.round(nh * k) + 'px';
+  }
+  lbImg.addEventListener('load', fit);
+  window.addEventListener('resize', () => { if (lb.classList.contains('open')) fit(); });
+
+  function render() {
+    const src = list[idx];
+    lbImg.style.width = ''; lbImg.style.height = '';
+    lbImg.src = src.currentSrc || src.src;
+    lbImg.alt = src.alt || '';
+    if (lbImg.complete) fit();
+    const multi = list.length > 1;
+    lbCount.textContent = (idx + 1) + ' / ' + list.length;
+    lbPrev.style.display  = multi ? 'flex'  : 'none';
+    lbNext.style.display  = multi ? 'flex'  : 'none';
+    lbCount.style.display = multi ? 'block' : 'none';
+  }
+  function step(d) { idx = (idx + d + list.length) % list.length; render(); }
+
+  function openViewer(card) {
+    list = Array.from(card.querySelectorAll('.bg-img'));
+    if (!list.length) return;
+    const active = list.findIndex(im => im.classList.contains('is-active'));
+    idx = active < 0 ? 0 : active;
+    originCard = card;
+    lastFocus = document.activeElement;
+    render();
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+  function closeViewer() {
+    if (!lb.classList.contains('open')) return;
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    if (originCard) arm(originCard);        // card stays open; restart its idle timer
+  }
+
+  lbClose.addEventListener('click', closeViewer);
+  lbPrev.addEventListener('click', () => step(-1));
+  lbNext.addEventListener('click', () => step(1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeViewer(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     { e.preventDefault(); closeViewer(); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); step(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+  });
+
+  /* --- per-card idle timer --- */
+  const timers = new Map();
+  function collapse(card) {
+    card.classList.remove('is-open');
+    card.setAttribute('aria-expanded', 'false');
+    clearTimeout(timers.get(card)); timers.delete(card);
+  }
+  function arm(card) {
+    clearTimeout(timers.get(card));
+    if (!isMobile() || !card.classList.contains('is-open')) return;
+    timers.set(card, setTimeout(() => collapse(card), COLLAPSE_MS));
+  }
+
+  cards.forEach(card => {
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-expanded', 'false');
+
+    const activate = () => {
+      if (!isMobile()) { openViewer(card); return; }
+      if (!card.classList.contains('is-open')) {
+        card.classList.add('is-open');
+        card.setAttribute('aria-expanded', 'true');
+        arm(card);
+      } else {
+        openViewer(card);
+      }
+    };
+    card.addEventListener('click', activate);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
+    // any touch or pointer contact counts as interaction and resets the countdown
+    card.addEventListener('pointerdown', () => arm(card));
+  });
+
+  // Leaving mobile width should not strand a card in the collapsed state
+  matchMedia('(max-width: 760px)').addEventListener('change', (e) => {
+    if (!e.matches) cards.forEach(collapse);
+  });
+})();
+
 /* ---- Footer year auto-update ---- */
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
+<!-- ============================================================
+     BUILD-CARD IMAGE VIEWER
+     ============================================================ -->
+<div id="buildLb" role="dialog" aria-modal="true" aria-label="Build photo viewer" aria-hidden="true">
+  <img id="blbImg" alt="">
+  <button class="blb-btn blb-close" id="blbClose" type="button" aria-label="Close photo">&#10005;</button>
+  <button class="blb-btn blb-nav blb-prev" id="blbPrev" type="button" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="blb-btn blb-nav blb-next" id="blbNext" type="button" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <div class="blb-count" id="blbCount"></div>
+</div>
 </body>
 </html>
