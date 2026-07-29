@@ -423,7 +423,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .edu-deg .org-mark { height: 32px; }
 .teaser-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .case-mark { width: auto; height: 22px; flex-shrink: 0; }
-@media (max-width: 760px) { .org-mark { height: 24px; } .edu-deg .org-mark { height: 28px; } .case-mark { height: 20px; } }
+@media (max-width: 760px) {
+  .org-mark { height: 24px; } .edu-deg .org-mark { height: 28px; } .case-mark { height: 20px; }
+  /* Mobile: float the org logo beside the period/org text instead of stacking it, to save vertical space */
+  .exp-meta { display: grid; grid-template-columns: 1fr auto; column-gap: var(--space-4); row-gap: var(--space-2); align-items: start; }
+  .exp-meta .exp-period { grid-column: 1; grid-row: 1; }
+  .exp-meta .exp-org { grid-column: 1; grid-row: 2; }
+  .exp-meta .org-mark { grid-column: 2; grid-row: 1 / span 2; align-self: center; justify-self: end; margin-top: 0; }
+}
 /* Niseko photo breaking the experience timeline */
 .timeline-photo { display: flex; flex-direction: column; gap: var(--space-3); max-width: 380px; align-self: center; }
 /* Education sub-section (elevated, distinct from experience entries) */
