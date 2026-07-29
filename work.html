@@ -1876,6 +1876,56 @@ document.getElementById('year').textContent = new Date().getFullYear();
     t.setAttribute('aria-pressed', on ? 'true' : 'false');
   });
 
+
+  /* ---- In-page case navigation ----
+     The index and next-case links are plain #anchors. Relying on the browser's
+     own anchor scroll drifts: it computes the destination, then the smooth
+     scroll runs while lazy figures, webfonts and reveal transitions are still
+     settling, so the case can land well below the nav. Take it over: scroll
+     ourselves, then re-assert the position until the layout stops moving. */
+  (function () {
+    function navOffset() {
+      var nav = document.querySelector('.nav-wrap') || document.querySelector('.nav');
+      if (!nav) return 96;
+      var r = nav.getBoundingClientRect();
+      return Math.round(r.height + Math.max(0, r.top) + 16);
+    }
+    function targetY(el) {
+      return Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - navOffset());
+    }
+    function goTo(el, smooth) {
+      window.scrollTo({ top: targetY(el), behavior: smooth ? 'smooth' : 'auto' });
+      // Correct once the smooth scroll and any late layout have settled.
+      var n = 0;
+      var id = setInterval(function () {
+        var want = targetY(el);
+        if (Math.abs(want - window.pageYOffset) > 2) {
+          window.scrollTo({ top: want, behavior: 'auto' });
+        }
+        if (++n >= 8) clearInterval(id);
+      }, smooth ? 140 : 90);
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+      if (!a) return;
+      var hash = a.getAttribute('href');
+      if (!hash || hash === '#') return;
+      var el = document.getElementById(hash.slice(1));
+      if (!el) return;
+      e.preventDefault();
+      if (history.replaceState) history.replaceState(null, '', hash);
+      goTo(el, true);
+    });
+    // Landing directly on /work#case-slug should honour the same offset.
+    if (location.hash.length > 1) {
+      var el0 = document.getElementById(location.hash.slice(1));
+      if (el0) {
+        window.addEventListener('load', function () { setTimeout(function () { goTo(el0, false); }, 50); });
+        setTimeout(function () { goTo(el0, false); }, 120);
+      }
+    }
+  })();
+
   /* ---- Case figure lightbox ---- */
   (function () {
     var lb = null, lastFocus = null;
