@@ -454,6 +454,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-narrative p { font-size: var(--size-body-lg); color: var(--ink-2); line-height: var(--lh-relaxed); }
 /* About intro: paragraphs left, feature photo right (photo moves above paragraphs on mobile) */
 .about-journey { margin-bottom: var(--space-9); }
+
+/* --- Volunteering band (three entries, sits between the narrative and the tile grid) --- */
+.vol-band { margin-bottom: var(--space-9); }
+.vol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-6); }
+.vol-card { display: flex; flex-direction: column; gap: var(--space-4); }
+.vol-card .photo { aspect-ratio: 4 / 3; }
+.vol-card h3 { font-size: var(--size-h4); }
+.vol-card p { font-size: var(--size-body-sm); color: var(--ink-2); }
+.vol-meta { display: flex; flex-direction: column; gap: var(--space-2); }
+.vol-org { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); }
+@media (max-width: 900px) { .vol-grid { grid-template-columns: 1fr; gap: var(--space-7); } .vol-card .photo { aspect-ratio: 16 / 10; } }
 .about-intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-7); align-items: start; margin-bottom: var(--space-8); background: var(--paper-2); border-radius: var(--radius-xl); padding: var(--space-7); }
 .about-intro .about-narrative { max-width: none; margin-bottom: 0; }
 .photo.about-intro-img { aspect-ratio: 2 / 3; border: 0; background: transparent; border-radius: var(--radius-xl);
@@ -828,6 +839,56 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </figure>
     </div>
+
+    <!-- ============================================================
+         VOLUNTEERING BAND
+         EDIT: three entries, chronological, closes on the present
+         ============================================================ -->
+    <section class="vol-band" aria-labelledby="volunteering-head">
+      <div class="section-head measure reveal">
+        <span class="eyebrow">/ Volunteering</span>
+        <h2 class="h2" id="volunteering-head">Not everything worth doing is a <span class="accent accent--signal">job</span>.</h2>
+        <p class="lead" style="margin-top: var(--space-4);">Three commitments across twelve years, none of them paid, all of them formative.</p>
+      </div>
+
+      <div class="vol-grid">
+        <!-- 01 Bondi -->
+        <article class="vol-card reveal">
+          <div class="photo">
+            <img src="/images/volunteer-bondi.webp" alt="North Bondi Surf Life Saving Club patrol team in Surf Rescue yellow and red on the sand at Bondi Beach" loading="lazy" onerror="this.classList.add('is-missing')" />
+          </div>
+          <div class="vol-meta">
+            <span class="vol-org">North Bondi SLSC &middot; Four years</span>
+            <h3 class="h4">Patrolling Bondi.</h3>
+          </div>
+          <p>A Bronze Medallion surf lifesaver through high school, on patrol at one of the busiest beaches in the country. Four years of reading a crowded surf and acting on incomplete information, usually before anyone signalled that something was wrong.</p>
+        </article>
+
+        <!-- 02 Cambodia -->
+        <article class="vol-card reveal">
+          <div class="photo">
+            <img src="/images/volunteer-cambodia.webp" style="object-position: center 40%;" alt="Volunteers kneeling on red earth painting corrugated roofing sheets beside a Cambodian stilt village" loading="lazy" onerror="this.classList.add('is-missing')" />
+          </div>
+          <div class="vol-meta">
+            <span class="vol-org">Antipodeans &middot; Cambodia, 2017</span>
+            <h3 class="h4">A month building in Cambodia.</h3>
+          </div>
+          <p>A month with a team constructing sustainable housing for families in stilt villages most exposed to climate risk, work aligned to UN Sustainable Development Goal target 4.7. It was the first time I saw how much of an outcome is decided before anyone picks up a tool.</p>
+        </article>
+
+        <!-- 03 Fostering -->
+        <article class="vol-card reveal">
+          <div class="photo">
+            <img src="/images/volunteer-foster.webp" alt="Noah holding a small grey tabby foster kitten up beside his face" loading="lazy" onerror="this.classList.add('is-missing')" />
+          </div>
+          <div class="vol-meta">
+            <span class="vol-org">The Lost Dogs&rsquo; Home &middot; This past year</span>
+            <h3 class="h4">Five foster kittens.</h3>
+          </div>
+          <p>The North Melbourne shelter was over capacity, so the kittens came to me instead. Five rescues over twelve months, taken in between two and six weeks old and handed back once they were big enough to be desexed and rehomed. All five found homes, which is the point, and I miss every one of them.</p>
+        </article>
+      </div>
+    </section>
 
     <div class="about-grid">
       <!-- Tall lead tile: operating principle -->
