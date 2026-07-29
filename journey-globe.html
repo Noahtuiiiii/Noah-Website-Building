@@ -166,6 +166,9 @@
     #lightbox img { max-width:94vw; max-height:76vh; }
     #lightbox .lb-nav { width:44px; height:44px; margin-top:-22px; }
     #lightbox .lb-prev { left:8px; } #lightbox .lb-next { right:8px; }
+    /* On mobile the host page's fixed nav pill spans nearly the full width and covers
+       the iframe's top-right corner, hiding this button. Drop it clear of the nav. */
+    #lightbox .lb-close { top:90px; right:12px; }
   }
 </style>
 </head>
