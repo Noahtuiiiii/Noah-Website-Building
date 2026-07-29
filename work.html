@@ -1920,11 +1920,18 @@ document.getElementById('year').textContent = new Date().getFullYear();
       if (history.replaceState) history.replaceState(null, '', hash);
       goTo(el);
     });
-    // Landing directly on /work#case-slug should honour the same offset.
-    if (location.hash.length > 1) {
+    // Landing directly on /work#case-slug (a shared link) has to fight the
+    // browser's own anchor jump plus images still loading, so re-apply a few
+    // times as the page settles rather than once.
+    function honourHash() {
+      if (location.hash.length < 2) return;
       var el0 = document.getElementById(location.hash.slice(1));
-      if (el0) setTimeout(function () { goTo(el0); }, 120);
+      if (!el0) return;
+      [80, 400, 900, 1600].forEach(function (d) { setTimeout(function () { goTo(el0); }, d); });
     }
+    honourHash();
+    window.addEventListener('load', honourHash);
+    window.addEventListener('hashchange', honourHash);
   })();
 
   /* ---- Case figure lightbox ---- */
