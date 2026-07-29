@@ -1878,12 +1878,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 
   /* ---- In-page case navigation ----
-     The index and next-case links are plain #anchors. Relying on the browser's
-     own anchor scroll drifts: it computes the destination, then the smooth
-     scroll runs while lazy figures, webfonts and reveal transitions are still
-     settling, so the case can land well below the nav. Take it over: scroll
-     ourselves, then re-assert the position until the layout stops moving. */
+     The index and next-case links are plain #anchors. The browser's own anchor
+     scroll drifts here: it picks a destination, then the smooth scroll runs
+     while lazy figures and reveal transitions are still settling, so the case
+     lands well below the nav. Take it over, then re-assert once things settle.
+     Note: window.scrollTo({...}) is unreliable on this page, so drive
+     documentElement.scrollTop directly (CSS scroll-behavior gives the easing). */
   (function () {
+    var de = document.documentElement;
     function navOffset() {
       var nav = document.querySelector('.nav-wrap') || document.querySelector('.nav');
       if (!nav) return 96;
@@ -1891,19 +1893,21 @@ document.getElementById('year').textContent = new Date().getFullYear();
       return Math.round(r.height + Math.max(0, r.top) + 16);
     }
     function targetY(el) {
-      return Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - navOffset());
+      return Math.max(0, el.getBoundingClientRect().top + de.scrollTop - navOffset());
     }
-    function goTo(el, smooth) {
-      window.scrollTo({ top: targetY(el), behavior: smooth ? 'smooth' : 'auto' });
-      // Correct once the smooth scroll and any late layout have settled.
-      var n = 0;
-      var id = setInterval(function () {
-        var want = targetY(el);
-        if (Math.abs(want - window.pageYOffset) > 2) {
-          window.scrollTo({ top: want, behavior: 'auto' });
-        }
-        if (++n >= 8) clearInterval(id);
-      }, smooth ? 140 : 90);
+    function goTo(el) {
+      de.scrollTop = targetY(el);
+      // Once the eased scroll has landed, snap out any drift from late layout.
+      setTimeout(function () {
+        var prev = de.style.scrollBehavior;
+        de.style.scrollBehavior = 'auto';
+        var n = 0;
+        var id = setInterval(function () {
+          var want = targetY(el);
+          if (Math.abs(want - de.scrollTop) > 2) de.scrollTop = want;
+          if (++n >= 6) { clearInterval(id); de.style.scrollBehavior = prev; }
+        }, 100);
+      }, 650);
     }
     document.addEventListener('click', function (e) {
       var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
@@ -1914,15 +1918,12 @@ document.getElementById('year').textContent = new Date().getFullYear();
       if (!el) return;
       e.preventDefault();
       if (history.replaceState) history.replaceState(null, '', hash);
-      goTo(el, true);
+      goTo(el);
     });
     // Landing directly on /work#case-slug should honour the same offset.
     if (location.hash.length > 1) {
       var el0 = document.getElementById(location.hash.slice(1));
-      if (el0) {
-        window.addEventListener('load', function () { setTimeout(function () { goTo(el0, false); }, 50); });
-        setTimeout(function () { goTo(el0, false); }, 120);
-      }
+      if (el0) setTimeout(function () { goTo(el0); }, 120);
     }
   })();
 
