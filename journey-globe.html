@@ -939,6 +939,12 @@
     }
     function up(x, y) {
       lastInteraction = performance.now();
+      // Decide drag-vs-tap on the whole gesture, not just on intermediate moves:
+      // if the pointer finished more than the threshold from where it started it
+      // was a drag, even when no move events landed in between.
+      if (pointerActive && Math.abs(x - downX) + Math.abs(y - downY) > 6) {
+        moved = true; userInteracted = true;
+      }
       if (pointerActive && !moved) handleClick(downX, downY);
       dragging = false; pointerActive = false;
     }
