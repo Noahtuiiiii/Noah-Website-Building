@@ -298,11 +298,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .case-tag { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: var(--track-label);
   padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--ink-3); white-space: nowrap; }
 .case-tag--pro { border-color: var(--signal-1); color: var(--signal-1); }
+.case-index-legend { display: none; }
 @media (max-width: 620px) {
-  /* Keep the professional / master’s signal on mobile: drop the pill onto its own line
-     under the title block rather than hiding it. */
-  .case-index-row { grid-template-columns: 38px minmax(0,1fr); row-gap: var(--space-2); }
-  .case-index-row .case-tag { grid-column: 2; justify-self: start; padding: 3px 9px; font-size: 9px; }
+  /* Mobile: one legend above the index, then a coloured dot per row where the pill sits on desktop.
+     Keeps the professional / master’s signal at zero extra vertical cost. */
+  .case-index-legend { display: flex; justify-content: flex-end; align-items: center; gap: var(--space-2);
+    margin-top: var(--space-7); margin-bottom: var(--space-3); }
+  .case-index-legend .case-tag { padding: 3px 9px; font-size: 9px; }
+  .case-index { margin-top: 0; }
+  .case-index-row { grid-template-columns: 38px minmax(0,1fr) auto; }
+  .case-index-row .case-tag { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%;
+    font-size: 0; line-height: 0; overflow: hidden; background: var(--ink-3);
+    align-self: start; margin-top: 7px; }
+  .case-index-row .case-tag--pro { background: var(--signal-1); }
 }
 
 /* ---- Case meta strip (role / team / timeline / type) ---- */
@@ -851,6 +859,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <h1 class="h1">The work behind the <span class="accent accent--signal">numbers</span>.</h1>
       <p class="lead" style="margin-top: var(--space-4);">Seven write-ups: what the situation was, what I did, what changed, and why it matters. Two of them are real roles; the rest are master's work I chose to treat like client engagements.</p>
     </div>
+      <div class="case-index-legend reveal" aria-hidden="true">
+        <span class="case-tag case-tag--pro">Professional</span>
+        <span class="case-tag case-tag--study">Master&rsquo;s</span>
+      </div>
       <nav class="case-index reveal" aria-label="Case studies">
         <a class="case-index-row" href="#tutor-ratios">
           <span class="case-index-n">01</span>
