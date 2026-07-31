@@ -1474,6 +1474,56 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    MOBILE NAV TOGGLE
    ============================================================ */
+/* ============================================================
+   ANCHOR ACCURACY
+   Lazy images and late-swapping web fonts can grow the document while a
+   smooth scroll is already running, so the browser animates to a position
+   that has since moved and lands short of the target. Intrinsic width/height
+   on the images removes most of that; this corrects whatever is left, and
+   also fixes deep links that arrive with a hash before layout has settled.
+   ============================================================ */
+(function anchorAccuracy() {
+  const PAD = parseInt(getComputedStyle(document.documentElement).scrollPaddingTop, 10) || 0;
+
+  function correct(el, passes) {
+    let n = 0;
+    (function step() {
+      const want = el.getBoundingClientRect().top + window.scrollY - PAD;
+      if (Math.abs(window.scrollY - want) > 4) {
+        window.scrollTo({ top: Math.max(0, want), behavior: 'auto' });
+      }
+      if (++n < passes) setTimeout(step, 200);
+    })();
+  }
+
+  function afterScroll(el) {
+    let done = false;
+    const go = () => { if (done) return; done = true; correct(el, 4); };
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', go, { once: true });
+      setTimeout(go, 1200);
+    } else {
+      setTimeout(go, 700);
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) afterScroll(el);
+  });
+
+  window.addEventListener('load', () => {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) correct(el, 4);
+  });
+})();
+
 (function navToggle() {
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
