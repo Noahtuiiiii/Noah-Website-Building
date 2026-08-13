@@ -799,6 +799,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 420px) {
   .hero-actions { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; }
+  .nav-cta { width: auto; } /* the .btn rule above is for stacked hero/section buttons; without this the pill CTA stretches to 100% and overflows the nav on phones */
 }
 
 @media (prefers-reduced-motion: reduce) {
