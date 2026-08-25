@@ -439,6 +439,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .edu-item { display: grid; grid-template-columns: 300px 1fr; gap: var(--space-6); align-items: start; }
 .edu-deg { display: flex; flex-direction: column; gap: var(--space-2); }
 .edu-copy p { color: var(--ink-2); font-size: var(--size-body-sm); }
+.edu-copy p + p { margin-top: var(--space-3); }
+.edu-certs { margin-top: var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-2); }
 @media (max-width: 760px) { .edu-item { grid-template-columns: 1fr; gap: var(--space-3); } .timeline-photo { max-width: 100%; } }
 
 /* ============================================================
@@ -1100,7 +1102,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <p>Turning raw operational and outcome data into the clear story that tells leaders what to do next, and why.</p>
         <ul class="do-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Excel, Power BI &amp; SQL</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Insight development</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>AI-assisted analysis &amp; agent workflows</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Stakeholder-ready reporting</li>
         </ul>
       </div>
@@ -1219,7 +1221,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <!-- Education sub-section (elevated) -->
       <div class="edu reveal">
-        <h3 class="h3 edu-title">Education</h3>
+        <h3 class="h3 edu-title">Education &amp; certification</h3>
         <div class="edu-item">
           <div class="edu-deg">
             <span class="exp-period">June 2026</span>
@@ -1229,6 +1231,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           </div>
           <div class="edu-copy">
             <p>High Distinctions in Project Risk, Leadership, Procurement &amp; Ethics, and Research Design &amp; Methods. I chose this degree deliberately, and moved from Sydney to Melbourne to do it.</p>
+            <p>The Information &amp; Technology Management coursework is where the AI work started: agent design, prompt engineering and workflow automation, built and tested against real delivery and reporting tasks.</p>
+            <div class="edu-certs">
+              <span class="tag tag--signal">ICAgile Certified Professional (ICP)</span>
+            </div>
           </div>
         </div>
         <div class="edu-item">
@@ -1238,7 +1244,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             <span class="exp-org">University of Sydney, Business School</span>
             <img class="org-mark" src="/images/logo-usyd-v2.webp" alt="The University of Sydney" width="277" height="96" loading="lazy" decoding="async">
           </div>
-          <div class="edu-copy"></div>
+          <div class="edu-copy">
+            <p>Majors in International Business and Germanic Studies. This is where the professional German came from, and where I got used to looking at how business works somewhere other than here.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1418,7 +1426,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             Email me
           </a>
           <!-- EDIT: LinkedIn URL -->
-          <a class="btn btn--on-ink" href="https://www.linkedin.com/in/noah-mcgill-5a022b172/" target="_blank" rel="noopener">
+          <a class="btn btn--on-ink" href="https://www.linkedin.com/in/noah-mcgill/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             LinkedIn
           </a>
@@ -1458,7 +1466,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="footer-col">
           <span class="fk">Elsewhere</span>
           <!-- EDIT: social links -->
-          <a href="https://www.linkedin.com/in/noah-mcgill-5a022b172/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/noah-mcgill/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:noahtui@gmail.com">Email</a>
           <a href="/Noah_McGill_CV.pdf" target="_blank" rel="noopener">CV / PDF</a>
         </div>
