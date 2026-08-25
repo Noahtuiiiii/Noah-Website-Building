@@ -478,7 +478,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .about-intro-img img { object-position: 72% center; }
 
 /* Things I've built */
-.built { margin-top: var(--space-9); border-top: 1px solid var(--line-1); padding-top: var(--space-8); }
+/* "A pattern in how I work" closes the Selected work section. It had 116px of dead space
+   above it (68 margin + 48 padding) which left it stranded from the CTA above, and the
+   section's full 88px bottom padding under it. Tightened both so it reads as part of the
+   section it belongs to. #projects beats .section on specificity, so this holds everywhere. */
+.built { margin-top: var(--space-7); border-top: 1px solid var(--line-1); padding-top: var(--space-6); }
+#projects { padding-bottom: var(--space-9); }
 .built-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-6); }
 .built-card { display: flex; flex-direction: column; gap: var(--space-3); justify-content: center; }
 .built-no { font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--signal-2); }
