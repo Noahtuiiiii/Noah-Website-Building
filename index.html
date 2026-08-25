@@ -811,11 +811,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .cap-head-photo { margin-top: 0; }
   .cap-img { height: auto; aspect-ratio: 4 / 3; }
   .about-grid { column-count: 1; }
-  /* Cases 03 and 04 are secondary teasers whose full write-ups live on /work.
-     On a phone their figures cost a lot of vertical scroll for a skimming
-     recruiter, so hide them there; the "See all seven case studies" CTA
-     directly below still reaches them. Desktop is unchanged. */
-  .work-topics { display: none; }
   .case-body { grid-template-columns: 1fr; }
   .case-metrics { grid-template-columns: 1fr; gap: var(--space-4); }
   .built-grid { grid-template-columns: 1fr; }
@@ -920,6 +915,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .page-back { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); margin-bottom: var(--space-5); }
 .page-back:hover { color: var(--ink-1); }
 @media (max-width: 760px) { .page-head { padding-top: 116px; } }
+/* Cases 03 and 04 are secondary teasers whose full write-ups live on /work. On a phone
+   their figures cost a lot of vertical scroll for a skimming recruiter, so hide them there;
+   the "See all seven case studies" CTA directly below still reaches them. Desktop unchanged.
+   NOTE: this must stay after the base .work-topics rule above - same specificity, so source
+   order decides. */
+@media (max-width: 760px) { .work-topics { display: none; } }
 </style>
 </head>
 
