@@ -811,6 +811,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .cap-head-photo { margin-top: 0; }
   .cap-img { height: auto; aspect-ratio: 4 / 3; }
   .about-grid { column-count: 1; }
+  /* Cases 03 and 04 are secondary teasers whose full write-ups live on /work.
+     On a phone their figures cost a lot of vertical scroll for a skimming
+     recruiter, so hide them there; the "See all seven case studies" CTA
+     directly below still reaches them. Desktop is unchanged. */
+  .work-topics { display: none; }
   .case-body { grid-template-columns: 1fr; }
   .case-metrics { grid-template-columns: 1fr; gap: var(--space-4); }
   .built-grid { grid-template-columns: 1fr; }
