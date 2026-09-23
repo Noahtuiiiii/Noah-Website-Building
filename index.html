@@ -894,6 +894,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding-inline: var(--space-5);
     box-shadow: var(--shadow-sm);
   }
+  /* Mobile only: lead with Download CV so the most important action sits on the top button
+     row (topmost when stacked at <=420px), keeping it above the fold. Desktop order
+     (View work -> Let's talk -> Download CV) is unchanged. */
+  .hero-actions .btn--cv { order: 1; }
+  .hero-actions .btn--signal-soft { order: 2; }
+  .hero-actions .btn--primary { order: 3; }
 }
 @media (max-width: 420px) {
   .hero-actions { flex-direction: column; align-items: stretch; }
@@ -1028,13 +1034,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <!-- EDIT: Human-sounding bio / sub-statement -->
         <p class="lead hero-sub">
           I'm Noah. I find the real cause of a problem before anyone asks me to.
-          At ANZ I executed across 45+ regulated client cases a day; at IBT
-          Education I traced a drop in student outcomes to tutor ratios, not ability,
-          and the fix moved top-grade attainment from 30% to 60%. I've just finished a
-          Master of Project Management at RMIT, and I think in three languages. I'm best
-          in unfamiliar systems, where people work in very different ways and nobody has
-          framed the problem yet. Business Analyst and delivery-focused PMO roles,
-          Melbourne &amp; Sydney.
+          I'm best in unfamiliar systems, where people work in very different ways
+          and nobody has framed the problem yet. Business Analyst and delivery-focused
+          PMO roles, Melbourne &amp; Sydney.
         </p>
 
         <div class="hero-actions">
