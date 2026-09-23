@@ -201,6 +201,37 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .btn--on-ink { background: var(--ink-surface-2); color: var(--on-ink-1); border: 1px solid var(--on-ink-line); }
 .btn--on-ink:hover { background: #322d22; color: var(--on-ink-1); }
 
+/* Blue-tint secondary: echoes the signal CTA in a lighter weight (hero "Let's talk"). */
+.btn--signal-soft { background: var(--signal-tint); color: var(--signal-2); border: 1px solid var(--signal-1); }
+.btn--signal-soft:hover { background: var(--signal-1); color: #fff; box-shadow: var(--shadow-md); }
+
+/* Attention treatment for the two blue CTAs. An infrequent light-sweep shimmer plays on the
+   nav "Let's talk" and the hero "Download CV", and the CV's download icon bobs down periodically
+   so the primary hero action stops getting missed. Each motion is brief with a long idle gap,
+   and all of it is disabled under prefers-reduced-motion. */
+.nav-cta, .btn--cv { position: relative; overflow: hidden; }
+.nav-cta::before, .btn--cv::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.40) 50%, transparent 100%);
+  transform: translateX(-170%) skewX(-18deg); pointer-events: none;
+  animation: btnShimmer 8s var(--ease-out) infinite;
+}
+.btn--cv::before { animation-duration: 6s; }   /* CV shimmers a touch more often than the nav CTA */
+.btn--cv svg { animation: cvBob 4.5s var(--ease-out) infinite; }
+@keyframes btnShimmer {
+  0%   { transform: translateX(-170%) skewX(-18deg); }
+  9%   { transform: translateX(320%)  skewX(-18deg); }
+  100% { transform: translateX(320%)  skewX(-18deg); }
+}
+@keyframes cvBob {
+  0%, 78%, 100% { transform: translateY(0); }
+  86%           { transform: translateY(3.5px); }
+  93%           { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-cta::before, .btn--cv::before, .btn--cv svg { animation: none; }
+}
+
 /* ============================================================
    TAGS & BADGES
    ============================================================ */
@@ -993,10 +1024,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             View work
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="#contact" class="btn btn--secondary">Let's talk</a>
+          <a href="#contact" class="btn btn--signal-soft">Let's talk</a>
           <!-- CV: hosted PDF at the static root. Drop Noah_McGill_CV.pdf into the
                public/static root and this works immediately. -->
-          <a href="/Noah_McGill_CV.pdf" class="btn btn--ghost" target="_blank" rel="noopener">
+          <a href="/Noah_McGill_CV.pdf" class="btn btn--signal btn--cv" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download CV
           </a>
