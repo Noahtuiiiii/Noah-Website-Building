@@ -205,28 +205,44 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .btn--signal-soft { background: var(--signal-tint); color: var(--signal-2); border: 1px solid var(--signal-1); }
 .btn--signal-soft:hover { background: var(--signal-1); color: #fff; box-shadow: var(--shadow-md); }
 
-/* Attention treatment for the two blue CTAs. An infrequent light-sweep shimmer plays on the
-   nav "Let's talk" and the hero "Download CV", and the CV's download icon bobs down periodically
-   so the primary hero action stops getting missed. Each motion is brief with a long idle gap,
-   and all of it is disabled under prefers-reduced-motion. */
-.nav-cta, .btn--cv { position: relative; overflow: hidden; }
-.nav-cta::before, .btn--cv::before {
+/* Attention treatment for the two blue CTAs.
+   Nav "Let's talk": a slow, languid light-sweep shimmer on a long loop.
+   Hero "Download CV": the download icon bobs, and locked to the same 5s cycle a thin ring
+   line appears at the pill's edge and travels outward as it fades — the same expanding,
+   disappearing line the green availability dot uses. It grows by a fixed-px inset (not
+   transform:scale) so it never adds horizontal overflow to the full-width mobile button.
+   All of it is disabled under prefers-reduced-motion. */
+.nav-cta { position: relative; overflow: hidden; }
+.nav-cta::before {
   content: ""; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
   background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.40) 50%, transparent 100%);
   transform: translateX(-170%) skewX(-18deg); pointer-events: none;
-  animation: btnShimmer 8s var(--ease-out) infinite;
+  animation: navShimmer 8s var(--ease-out) infinite;
 }
-.btn--cv::before { animation-duration: 6s; }   /* CV shimmers a touch more often than the nav CTA */
-.btn--cv svg { animation: cvBob 4.5s var(--ease-out) infinite; }
-@keyframes btnShimmer {
+@keyframes navShimmer {
   0%   { transform: translateX(-170%) skewX(-18deg); }
-  9%   { transform: translateX(320%)  skewX(-18deg); }
+  20%  { transform: translateX(320%)  skewX(-18deg); }   /* slow sweep (~1.6s), then long idle */
   100% { transform: translateX(320%)  skewX(-18deg); }
 }
+.btn--cv { position: relative; }
+.btn--cv svg { animation: cvBob 5s var(--ease-out) infinite; }
+.btn--cv::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  border: 1.5px solid var(--signal-1); opacity: 0;
+  z-index: -1; pointer-events: none;
+  animation: cvPulse 5s var(--ease-out) infinite;
+}
 @keyframes cvBob {
-  0%, 78%, 100% { transform: translateY(0); }
-  86%           { transform: translateY(3.5px); }
-  93%           { transform: translateY(0); }
+  0%   { transform: translateY(0); }
+  5%   { transform: translateY(3.5px); }   /* down */
+  11%  { transform: translateY(0); }        /* and back up (bob done ~0.55s in) */
+  100% { transform: translateY(0); }
+}
+@keyframes cvPulse {
+  0%, 6% { inset: 0;     opacity: 0;   }
+  12%    { inset: 0;     opacity: 0.6; }   /* the line appears at the pill edge, in step with the bob */
+  48%    { inset: -11px; opacity: 0;   }   /* then travels outward and fades, like the availability dot */
+  100%   { inset: -11px; opacity: 0;   }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-cta::before, .btn--cv::before, .btn--cv svg { animation: none; }
