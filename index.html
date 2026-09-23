@@ -214,15 +214,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    All of it is disabled under prefers-reduced-motion. */
 .nav-cta { position: relative; overflow: hidden; }
 .nav-cta::before {
-  content: ""; position: absolute; top: 0; left: 0; width: 55%; height: 100%;
-  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.40) 50%, transparent 100%);
-  transform: translateX(-170%) skewX(-18deg); pointer-events: none;
-  animation: navShimmer 8s var(--ease-out) infinite;
+  content: ""; position: absolute; top: 0; left: 0; width: 70%; height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  transform: translateX(-180%) skewX(-18deg); pointer-events: none;
+  animation: navShimmer 7s linear infinite;
 }
+/* Linear (not eased) so the glint glides across at a steady, unmissable pace rather than
+   flicking. Sweep spans 0->40% of the 7s cycle (~2.8s crossing), then idles. */
 @keyframes navShimmer {
-  0%   { transform: translateX(-170%) skewX(-18deg); }
-  20%  { transform: translateX(320%)  skewX(-18deg); }   /* slow sweep (~1.6s), then long idle */
-  100% { transform: translateX(320%)  skewX(-18deg); }
+  0%   { transform: translateX(-180%) skewX(-18deg); }
+  40%  { transform: translateX(330%)  skewX(-18deg); }
+  100% { transform: translateX(330%)  skewX(-18deg); }
 }
 .btn--cv { position: relative; }
 .btn--cv svg { animation: cvBob 5s var(--ease-out) infinite; }
