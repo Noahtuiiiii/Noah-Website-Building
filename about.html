@@ -499,10 +499,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery--inline { margin: var(--space-2) 0 0; }
 .gallery-cover { display: block; position: relative; width: 100%; border: 0; padding: 0; background: var(--stone-1); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; outline: none; text-align: left; -webkit-tap-highlight-color: transparent; transition: transform .2s var(--ease-out); }
 .gallery-cover:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
-/* Hover only bulges the cover slightly to signal it is clickable; the multi-photo
-   panel opens on click / tap / Enter, not on hover. */
+/* Hover expands the whole tile (outline and all), matching the "A pattern in how I work"
+   build cards. The multi-photo panel still opens on click / tap / Enter, not on hover. */
+.about-tile.gallery--bleed { transition: transform .3s var(--ease-out), box-shadow .3s var(--ease-out); }
 @media (hover: hover) and (pointer: fine) {
-  .gallery-cover:hover { transform: scale(1.02); }
+  .about-tile.gallery--bleed:hover { transform: scale(1.04); z-index: 4; box-shadow: var(--shadow-lg); }
 }
 .gallery-cover-img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gallery-badge { position: absolute; right: 10px; bottom: 10px; z-index: 3; font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--track-label); color: var(--on-ink-1); background: rgba(26,24,19,0.72); padding: 4px 9px; border-radius: var(--radius-pill); pointer-events: none; }
