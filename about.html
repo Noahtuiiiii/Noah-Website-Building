@@ -625,6 +625,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid var(--on-ink-line); border-radius: 999px;
   padding: var(--space-3) var(--space-5);
 }
+/* Scroll cue: a bobbing down-chevron centered at the bottom of the full-height globe.
+   Hidden until the visitor dismisses the "Drag to rotate" overlay, then revealed after a
+   5s delay (see JS). Desktop only. Fade-in via transition so it still appears under
+   reduced-motion; the bob is an animation, which reduced-motion disables. */
+.globe-scroll-cue {
+  position: absolute; left: 50%; bottom: var(--space-5); transform: translateX(-50%);
+  z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  background: none; border: 0; color: var(--on-ink-1); cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.globe-scroll-cue.is-visible { opacity: 0.9; pointer-events: auto; }
+.globe-scroll-cue svg { width: 30px; height: 30px; }
+.globe-scroll-cue.is-visible svg { animation: chevBob 1.6s var(--ease-out) infinite; }
+@keyframes chevBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@media (max-width: 760px) { .globe-scroll-cue { display: none; } }
 .footer-bottom { margin-top: var(--space-8); padding-top: var(--space-5); border-top: 1px solid var(--line-1); display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
 
 /* ============================================================
@@ -775,6 +791,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   <div class="globe-hint" id="globeHint">
     <span class="globe-hint-label">Drag to rotate</span>
   </div>
+  <button class="globe-scroll-cue" id="globeScrollCue" type="button" aria-label="Scroll down to read more">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
 </section>
 
 <!-- ============================================================
@@ -1008,7 +1027,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="footer-col">
           <span class="fk">Location</span>
-          <span>Melbourne, AU</span>
+          <span>Sydney, AU</span>
           <span>GMT+11</span>
         </div>
       </div>
@@ -1478,14 +1497,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   }, { threshold: 0.4 });
   obs.observe(section);
 
+  const cue = document.getElementById('globeScrollCue');
   const dismiss = () => {
     if (dismissed) return;
     dismissed = true;
     hint.classList.remove('is-visible');
     obs.disconnect();
+    // Once the visitor has engaged with the globe, wait 5s then reveal a bobbing scroll
+    // cue so they know there's more content below the full-height globe.
+    if (cue) setTimeout(() => cue.classList.add('is-visible'), 5000);
   };
   hint.addEventListener('pointerdown', dismiss);
   hint.addEventListener('touchstart', dismiss, { passive: true });
+  if (cue) cue.addEventListener('click', () => {
+    const next = document.getElementById('about');
+    if (next) next.scrollIntoView({ behavior: 'smooth' });
+  });
 })();
 
 /* ---- Footer year auto-update ---- */
