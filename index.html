@@ -298,6 +298,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--ink-1); max-width: 24ch;
   padding-left: var(--space-5); border-left: 3px solid var(--signal-1);
 }
+/* Eyebrow label sitting above the signature pull-quote (aligned to the quote's text inset). */
+.signature-label { display: block; font-family: var(--font-mono); font-size: var(--size-label); text-transform: uppercase; letter-spacing: var(--track-label-wide); color: var(--ink-3); margin-bottom: var(--space-3); padding-left: var(--space-5); }
 
 /* ============================================================
    CASE STUDY CARD
@@ -1109,7 +1111,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
      ============================================================ -->
 <section class="section" style="padding-block: var(--space-9) 0;">
   <div class="container">
-    <p class="signature reveal">Find the real <span class="accent accent--signal">variable</span>, then make it clear.</p>
+    <div class="reveal">
+      <span class="signature-label">Operating principle</span>
+      <p class="signature">Find the real <span class="accent accent--signal">variable</span>, then make it clear.</p>
+    </div>
   </div>
 </section>
 
