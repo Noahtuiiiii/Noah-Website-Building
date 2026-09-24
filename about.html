@@ -511,6 +511,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery--bleed { position: relative; overflow: hidden; min-height: 500px; padding: 0; margin: 0 0 var(--space-4); border-color: transparent; background: var(--ink-surface-1); }
 .gallery--bleed .gallery-cover { position: absolute; inset: 0; height: 100%; border-radius: inherit; background: var(--ink-surface-1); }
 .gallery--bleed .gallery-bleed-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to bottom, rgba(26,24,19,0.16), rgba(26,24,19,0.30) 52%, rgba(26,24,19,0.80)); }
+/* Brighter photos (e.g. snow) need a heavier scrim at the top so the white title reads. */
+.gallery--bright .gallery-bleed-scrim { background: linear-gradient(to bottom, rgba(20,19,16,0.52) 0%, rgba(20,19,16,0.20) 42%, rgba(20,19,16,0.34) 62%, rgba(20,19,16,0.84) 100%); }
 .gallery--bleed .gallery-bleed-text { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
 .gallery--bleed .about-eyebrow { color: var(--on-ink-2); text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
 .gallery--bleed .gallery-bleed-text p { color: var(--on-ink-1); font-size: var(--size-body-sm); text-shadow: 0 1px 6px rgba(0,0,0,0.65); margin: 0; }
@@ -932,26 +934,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <p>It's the same instinct that takes me to new places and makes me want to build things: find the shape of something unfamiliar, then give it structure.</p>
       </div>
 
-      <!-- Skiing / adventure tile -->
-      <div class="about-tile stone reveal">
-        <h3 class="h4">Skiing</h3>
-        <p>My favourite thing in the world. Nothing like a fresh dump of powder (seen below).</p>
-        <!-- Hover/tap-expand ski gallery. Rest: feature only. Desktop hover/keyboard expands to the full row; touch = horizontal-scroll filmstrip. -->
-        <figure class="gallery gallery--inline" aria-label="Skiing photos from Niseko, Japan">
-          <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
-               aria-label="Open the skiing photos (4 photos). Click, tap, or press Enter, then use the arrows to browse.">
-            <img class="gallery-cover-img" src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" />
-            <span class="gallery-badge" aria-hidden="true">+3</span>
+      <!-- Skiing / adventure tile: full-bleed image with overlaid text (matches Surfing) -->
+      <figure class="gallery gallery--bleed gallery--bright about-tile reveal" aria-label="Skiing photos from Niseko, Japan">
+        <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
+             aria-label="Open the skiing photos (4 photos). Click, tap, or press Enter, then use the arrows to browse.">
+          <img class="gallery-cover-img" src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" />
+          <div class="gallery-bleed-scrim" aria-hidden="true"></div>
+          <div class="gallery-bleed-title"><h3 class="h4">Skiing</h3></div>
+          <div class="gallery-bleed-text">
+            <span class="about-eyebrow">Niseko, Japan</span>
+            <p>My favourite thing in the world. Nothing like a fresh dump of powder.</p>
           </div>
-          <figcaption class="gallery-cap">Niseko, Japan</figcaption>
-          <div class="gallery-source" hidden aria-hidden="true">
-            <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" />
-            <img src="/images/ski-02.jpg" alt="Noah in ski helmet and mirrored goggles on a snowy day in Niseko" />
-            <img src="/images/ski-03.jpg" alt="Noah and friends at the top of a ski run, snowy peaks behind" />
-            <img src="/images/ski-04.jpg" alt="Noah sitting on a snowy slope in ski gear, mountains behind" />
-          </div>
-        </figure>
-      </div>
+          <span class="gallery-badge" aria-hidden="true">+3</span>
+        </div>
+        <div class="gallery-source" hidden aria-hidden="true">
+          <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" />
+          <img src="/images/ski-02.jpg" alt="Noah in ski helmet and mirrored goggles on a snowy day in Niseko" />
+          <img src="/images/ski-03.jpg" alt="Noah and friends at the top of a ski run, snowy peaks behind" />
+          <img src="/images/ski-04.jpg" alt="Noah sitting on a snowy slope in ski gear, mountains behind" />
+        </div>
+      </figure>
 
       <!-- Languages ink tile (trilingual differentiator) -->
       <div class="about-tile ink reveal">

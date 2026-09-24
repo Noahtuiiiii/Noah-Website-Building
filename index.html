@@ -975,12 +975,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .page-back { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); margin-bottom: var(--space-5); }
 .page-back:hover { color: var(--ink-1); }
 @media (max-width: 760px) { .page-head { padding-top: 116px; } }
-/* Cases 03 and 04 are secondary teasers whose full write-ups live on /work. On a phone
-   their figures cost a lot of vertical scroll for a skimming recruiter, so hide them there;
-   the "See all seven case studies" CTA directly below still reaches them. Desktop unchanged.
-   NOTE: this must stay after the base .work-topics rule above - same specificity, so source
-   order decides. */
-@media (max-width: 760px) { .work-topics { display: none; } }
 </style>
 </head>
 
@@ -1267,21 +1261,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
       </div>
     </a>
-
-    <div class="work-topics reveal">
-      <a class="topic-card" href="/work#bot-appraisal">
-        <span class="topic-shot"><img src="/images/bot-npv-discount-rate-annotated.png" alt="Net present value against the discount rate applied" loading="lazy" width="1400" height="780"></span>
-        <span class="topic-k">Case / 04</span>
-        <span class="topic-t">Model the number, then try to break it</span>
-        <span class="topic-d">Project financial modelling &amp; board appraisal</span>
-      </a>
-      <a class="topic-card" href="/work#lxrp-engagement">
-        <span class="topic-shot"><img src="/images/lxrp-arnstein-ladder.png" alt="Engagement mechanisms mapped against Arnstein&#39;s ladder" loading="lazy" width="1400" height="929"></span>
-        <span class="topic-k">Case / 03</span>
-        <span class="topic-t">Did the engagement shape the disruption?</span>
-        <span class="topic-d">Stakeholder engagement on a $1.6B program</span>
-      </a>
-    </div>
 
     <div class="work-cta reveal">
       <a href="/work" class="btn btn--signal">See all seven case studies <span class="cta-arrow">&rarr;</span></a>
