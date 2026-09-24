@@ -497,8 +497,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* === Unified photo gallery (skiing + surfing share this; variant = presentation only) === */
 .gallery--inline { margin: var(--space-2) 0 0; }
-.gallery-cover { display: block; position: relative; width: 100%; border: 0; padding: 0; background: var(--stone-1); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; outline: none; text-align: left; -webkit-tap-highlight-color: transparent; }
+.gallery-cover { display: block; position: relative; width: 100%; border: 0; padding: 0; background: var(--stone-1); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; outline: none; text-align: left; -webkit-tap-highlight-color: transparent; transition: transform .2s var(--ease-out); }
 .gallery-cover:focus-visible { box-shadow: 0 0 0 3px var(--signal-1); }
+/* Hover only bulges the cover slightly to signal it is clickable; the multi-photo
+   panel opens on click / tap / Enter, not on hover. */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-cover:hover { transform: scale(1.02); }
+}
 .gallery-cover-img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gallery-badge { position: absolute; right: 10px; bottom: 10px; z-index: 3; font-family: var(--font-mono); font-size: var(--size-micro); letter-spacing: var(--track-label); color: var(--on-ink-1); background: rgba(26,24,19,0.72); padding: 4px 9px; border-radius: var(--radius-pill); pointer-events: none; }
 .gallery--inline .gallery-cover { aspect-ratio: 16 / 10; }
@@ -934,7 +939,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <!-- Hover/tap-expand ski gallery. Rest: feature only. Desktop hover/keyboard expands to the full row; touch = horizontal-scroll filmstrip. -->
         <figure class="gallery gallery--inline" aria-label="Skiing photos from Niseko, Japan">
           <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
-               aria-label="Open the skiing photos (4 photos). Hover, tap, or press Enter, then use the arrows to browse.">
+               aria-label="Open the skiing photos (4 photos). Click, tap, or press Enter, then use the arrows to browse.">
             <img class="gallery-cover-img" src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" />
             <span class="gallery-badge" aria-hidden="true">+3</span>
           </div>
@@ -962,7 +967,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <!-- Personality line: shared gallery component, bleed variant (full-bleed cover + overlaid text) -->
       <figure class="gallery gallery--bleed about-tile reveal" aria-label="Surfing photos">
         <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
-             aria-label="Open the surfing photos (5 photos). Hover, tap, or press Enter, then use the arrows to browse.">
+             aria-label="Open the surfing photos (5 photos). Click, tap, or press Enter, then use the arrows to browse.">
           <img class="gallery-cover-img" src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" />
           <div class="gallery-bleed-scrim" aria-hidden="true"></div>
           <div class="gallery-bleed-title"><h3 class="h4">Surfing</h3></div>
@@ -1160,7 +1165,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     tip.textContent = 'Click a photo to enlarge';
     overlay.appendChild(tip);
     document.body.appendChild(backdrop); document.body.appendChild(overlay);
-    if (hoverCapable) { overlay.addEventListener('mouseenter', cancelClose); overlay.addEventListener('mouseleave', scheduleClose); }
     backdrop.addEventListener('click', requestCloseNow);
   }
 
@@ -1189,7 +1193,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     clearTimeout(safety);
     state = 'expanded'; lock = false;
     // transition lock released: if the cursor already left (or a close was queued), close now
-    if (pendingClose || (hoverCapable && !isHovered())) scheduleClose();
+    if (pendingClose) scheduleClose();
   }
 
   function isHovered() {
@@ -1307,14 +1311,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
   galleries.forEach((g) => {
     const c = coverEl(g);
-    if (hoverCapable) {
-      c.addEventListener('mouseenter', () => {
-        cancelClose();
-        if (state !== 'resting' || lock || innerWidth < 900) return;
-        clearTimeout(openTimer); openTimer = setTimeout(() => open(g), OPEN_DELAY);
-      });
-      c.addEventListener('mouseleave', () => { clearTimeout(openTimer); if (state === 'expanded' || lock) scheduleClose(); });
-    }
+    // Hover no longer expands the panel; it only bulges the cover (CSS). The panel
+    // opens on click / tap / Enter only.
     // Touch, or any viewport too narrow for a comfortable thumbnail row:
     // skip the preview panel and go straight to the full-screen viewer.
     const panelWorthIt = () => hoverCapable && innerWidth >= 900;
