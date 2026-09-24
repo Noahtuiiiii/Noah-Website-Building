@@ -509,6 +509,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .gallery--bleed .gallery-bleed-text { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
 .gallery--bleed .about-eyebrow { color: var(--on-ink-2); text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
 .gallery--bleed .gallery-bleed-text p { color: var(--on-ink-1); font-size: var(--size-body-sm); text-shadow: 0 1px 6px rgba(0,0,0,0.65); margin: 0; }
+.gallery--bleed .gallery-bleed-title { position: absolute; top: 0; left: 0; z-index: 2; padding: var(--space-6); }
+.gallery--bleed .gallery-bleed-title h3 { margin: 0; color: var(--on-ink-1); text-shadow: 0 1px 8px rgba(0,0,0,0.75); }
 /* shared expanded overlay (fixed; floats above neighbours; JS sets the rect) */
 .gallery-backdrop { position: fixed; inset: 0; z-index: 239; background: rgba(26,24,19,0.30); opacity: 0; transition: opacity .28s var(--ease-out); }
 .gallery-backdrop.is-shown { opacity: 1; }
@@ -927,9 +929,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <!-- Skiing / adventure tile -->
       <div class="about-tile stone reveal">
-        <span class="about-eyebrow">Since I was two</span>
-        <h3 class="h4">Skiing is the through-line.</h3>
-        <p>Skiing has been my favourite thing in the world since I was two. It took me to Argentina and Japan and taught me most of what I know about backing myself in unfamiliar places: four months instructing in Niseko, off the back of an Austrian Level 2 (SIA Antwärter) certification.</p>
+        <h3 class="h4">Skiing</h3>
+        <p>My favourite thing in the world. Nothing like a fresh dump of powder (seen below).</p>
         <!-- Hover/tap-expand ski gallery. Rest: feature only. Desktop hover/keyboard expands to the full row; touch = horizontal-scroll filmstrip. -->
         <figure class="gallery gallery--inline" aria-label="Skiing photos from Niseko, Japan">
           <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
@@ -964,6 +965,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
              aria-label="Open the surfing photos (5 photos). Hover, tap, or press Enter, then use the arrows to browse.">
           <img class="gallery-cover-img" src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" />
           <div class="gallery-bleed-scrim" aria-hidden="true"></div>
+          <div class="gallery-bleed-title"><h3 class="h4">Surfing</h3></div>
           <div class="gallery-bleed-text">
             <span class="about-eyebrow">For the record</span>
             <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
