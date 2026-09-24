@@ -7,8 +7,8 @@
 <!-- ============================================================
      EDIT: Page title + meta description (shown in browser tab & search)
      ============================================================ -->
-<title>About &mdash; Noah McGill</title>
-<meta name="description" content="The path that got Noah McGill here: an interactive 3D journey globe, the timeline from Sydney to Bariloche, Niseko and Melbourne, and the longer version in his own words." />
+<title>Volunteering &mdash; Noah McGill</title>
+<meta name="description" content="Three unpaid commitments across twelve years: surf lifesaving at North Bondi, building sustainable housing in Cambodia, and fostering rescue kittens. The volunteering that shaped how Noah McGill works." />
 
 <!-- Brand fonts (Google Fonts): Space Grotesk / Space Mono / Instrument Serif -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -781,22 +781,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <body>
 <!-- ============================================================
      FLOATING PILL NAVIGATION
-     EDIT: nav links point to section IDs below
      ============================================================ -->
 <div class="nav-wrap">
   <nav class="nav" aria-label="Primary">
     <a href="/" class="nav-brand" aria-label="Home">
-      <!-- EDIT: Replace "NM" with your initials -->
       <span class="nav-monogram">NM</span>
-      <!-- EDIT: Replace with your name -->
       <span class="nav-name">Noah McGill</span>
     </a>
     <div class="nav-links" id="navLinks">
       <a href="/#work-do" class="nav-link">What I do</a>
       <a href="/#experience" class="nav-link">Experience</a>
       <a href="/work" class="nav-link">Work</a>
-      <a href="/about" class="nav-link is-active">About</a>
-      <a href="/volunteering" class="nav-link">Volunteering</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="/volunteering" class="nav-link is-active">Volunteering</a>
     </div>
     <a href="/#contact" class="btn btn--signal nav-cta">Let's talk</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -807,157 +804,72 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 <span id="top"></span>
 <!-- ============================================================
-     INTERACTIVE 3D GLOBE  (self-contained, isolated in an iframe)
-     Asset: /journey-globe.html  -- do NOT inline; do NOT modify that file.
-     Full-bleed: this section sits OUTSIDE the centered .container.
+     VOLUNTEERING: dedicated page
      ============================================================ -->
-<section class="globe-embed" aria-label="Interactive 3D globe of Noah's journey">
-  <iframe src="/journey-globe.html"
-          title="Interactive 3D globe charting Noah's ski and work journey"
-          loading="lazy"></iframe>
-  <div class="globe-hint" id="globeHint">
-    <span class="globe-hint-label">Drag to rotate</span>
-  </div>
-  <button class="globe-scroll-cue" id="globeScrollCue" type="button" aria-label="Scroll down to read more">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-  </button>
-</section>
-
-<!-- ============================================================
-     SECTION 5: INTERESTS / A BIT ABOUT ME
-     EDIT: tiles below, keep them specific and human
-     ============================================================ -->
-<section class="section" id="about" style="padding-top: var(--space-9);">
+<header class="section page-head">
   <div class="container">
-    <a href="/" class="page-back">&larr; Back to home</a>
-    <div class="section-head measure reveal">
-      <span class="eyebrow"><span class="idx">05</span> / A bit about me &middot; The journey</span>
-      <h2 class="h2">The path that got me <span class="accent accent--signal">here</span>.</h2>
+    <a href="/about" class="page-back">&larr; Back to About</a>
+    <div class="section-head measure">
+      <span class="eyebrow">/ Volunteering</span>
+      <h1 class="h1">Not everything worth doing is a <span class="accent accent--signal">job</span>.</h1>
+      <p class="lead" style="margin-top: var(--space-4);">Three commitments across twelve years, none of them paid, all of them formative. The same instinct runs through each one: read a situation you don't fully control, and act before anyone tells you to.</p>
     </div>
-
-    <!-- JOURNEY MAP: the path that got me here (EDIT: each .journey-stop) -->
-    <div id="journey" class="about-journey">
-      <ol class="journey-track reveal">
-        <li class="journey-stop">
-          <span class="journey-dot"></span>
-          <span class="journey-place">Sydney</span>
-          <p class="journey-text">Home, and where I learned to surf. The baseline I keep coming back to.</p>
-          <p class="journey-note">Via Scotland and the US.</p>
-        </li>
-        <li class="journey-stop">
-          <span class="journey-dot"></span>
-          <span class="journey-place">Bariloche, Argentina</span>
-          <p class="journey-text">At 19 I trained for an Austrian Level 2 ski instructor qualification, a long way from anyone I knew.</p>
-        </li>
-        <li class="journey-stop">
-          <span class="journey-dot"></span>
-          <span class="journey-place">Niseko, Japan</span>
-          <p class="journey-text">Four months instructing international clients across language barriers. The best year of my life, and proof I back myself in unfamiliar places.</p>
-        </li>
-        <li class="journey-stop">
-          <span class="journey-dot"></span>
-          <span class="journey-place">Sydney, undergrad</span>
-          <p class="journey-text">Home three weeks before Covid lockdown. A blurry, formative stretch where I learned to manage myself: time, money, relationships.</p>
-        </li>
-        <li class="journey-stop">
-          <span class="journey-dot"></span>
-          <span class="journey-place">Melbourne, master's</span>
-          <p class="journey-text">A deliberate move out of my comfort zone. I put the full weight of adult life on myself on purpose, and came out clearer and steadier.</p>
-        </li>
-        <li class="journey-stop journey-stop--next">
-          <span class="journey-dot journey-dot--open"></span>
-          <span class="journey-place">Next</span>
-          <p class="journey-text">A Business Analyst or delivery PMO role with a team that teaches.</p>
-        </li>
-      </ol>
-    </div>
-
-    <div class="section-head measure reveal" style="margin-bottom: var(--space-6);">
-      <h2 class="h2">The person behind the <span class="accent accent--signal">analysis</span>.</h2>
-    </div>
-
-    <!-- Narrative + feature photo (two columns; photo moves above the paragraphs on mobile) -->
-    <div class="about-intro">
-      <div class="about-narrative reveal">
-      <p>I came to analysis from an unusual direction. At 19 I flew to Bariloche, Argentina on a gap year to train for an Austrian Level 2 ski instructor qualification, which I spent the next four months using and teaching with while living in Niseko, Japan. It was easily the best year of my life. Then I went home to start uni... and, three weeks later... Australia went into full Covid lockdown. That whiplash taught me something I've leaned on since:</p>
-      <p>I am at my best when stepping into something <strong>unfamiliar</strong> and <strong>giving it structure</strong>. I find that <em>genuinely</em> satisfying.</p>
-      <p>Growing up across Houston, Chicago, and 8 years in New York before moving to Sydney aged 13 taught me early that <em>places operate differently</em>. This is often in ways I don't expect, and <em>paying attention to that difference</em> is an advantage. That's also why I love languages. The fastest way to understand a place is to try to speak its language (<em>even badly</em>) and to talk to people. It changes how you place yourself in the world and what you think you're capable of. English and Spanish are native, German took longer, but is professional level.</p>
-      <p>Moving from Sydney to Melbourne for my master's was big. I wanted out of my comfort zone, so... I put the full weight of adult life on myself at once: bills, budgeting, a household, a job search. It was the perfect kind of hard to learn things I didn't know I needed to. It made me clearer, steadier, and more honest.</p>
-      <p>Talking hobbies, Skiing and surfing feel like almost the same sport to me now: I read the environment, commit to a line, and adjust as I go. And yes, I'm aware this is an odd pairing, you may just have to trust me there. But that instinct, and the curiosity that comes from moving a lot, in surfing, skiing, and in living keeps pulling me toward the intersection of business, language, and culture, and eventually (with luck) toward something impactful at a global level.</p>
-      
-      </div>
-      <figure class="about-intro-photo reveal">
-        <div class="photo about-intro-img">
-          <img src="/images/about-feature.jpg" alt="Noah with a colleague at a work celebration, cutting a cake in the office" loading="lazy" onerror="this.classList.add('is-missing')" />
-        </div>
-      </figure>
-    </div>
-
-    <div class="about-grid">
-      <!-- Tall lead tile: operating principle -->
-      <div class="about-tile about-tall reveal">
-        <span class="about-eyebrow">Operating principle</span>
-        <h3 class="h4">Look first, act second.</h3>
-        <p>My instinct is to ask why something's happening before deciding what to do about it, even when no one's asked me to look. The answer is rarely what people assume, and finding it usually points to a different fix than the obvious one. That habit is the through-line in everything I do.</p>
-        <p>It's the same instinct that takes me to new places and makes me want to build things: find the shape of something unfamiliar, then give it structure.</p>
-      </div>
-
-      <!-- Skiing / adventure tile: full-bleed image with overlaid text (matches Surfing) -->
-      <figure class="gallery gallery--bleed gallery--bright about-tile reveal" aria-label="Skiing photos from Niseko, Japan">
-        <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
-             aria-label="Open the skiing photos (4 photos). Click, tap, or press Enter, then use the arrows to browse.">
-          <img class="gallery-cover-img" src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" loading="lazy" />
-          <div class="gallery-bleed-scrim" aria-hidden="true"></div>
-          <div class="gallery-bleed-title"><h3 class="h4">Skiing</h3></div>
-          <div class="gallery-bleed-text">
-            <span class="about-eyebrow">Niseko, Japan</span>
-            <p>My favourite thing in the world. Nothing like a fresh dump of powder.</p>
-          </div>
-          <span class="gallery-badge" aria-hidden="true">+3</span>
-        </div>
-        <div class="gallery-source" hidden aria-hidden="true">
-          <img src="/images/niseko-powder-day.jpg" alt="Noah sitting waist-deep in fresh powder snow, skis standing upright beside him" />
-          <img src="/images/ski-02.jpg" alt="Noah in ski helmet and mirrored goggles on a snowy day in Niseko" />
-          <img src="/images/ski-03.jpg" alt="Noah and friends at the top of a ski run, snowy peaks behind" />
-          <img src="/images/ski-04.jpg" alt="Noah sitting on a snowy slope in ski gear, mountains behind" />
-        </div>
-      </figure>
-
-      <!-- Personality line: shared gallery component, bleed variant (full-bleed cover + overlaid text) -->
-      <figure class="gallery gallery--bleed about-tile reveal" aria-label="Surfing photos">
-        <div class="gallery-cover" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false"
-             aria-label="Open the surfing photos (5 photos). Click, tap, or press Enter, then use the arrows to browse.">
-          <img class="gallery-cover-img" src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" />
-          <div class="gallery-bleed-scrim" aria-hidden="true"></div>
-          <div class="gallery-bleed-title"><h3 class="h4">Surfing</h3></div>
-          <div class="gallery-bleed-text">
-            <span class="about-eyebrow">For the record</span>
-            <p>I'm a Sydney surfer marooned in central Melbourne, which is its own kind of character-building.</p>
-          </div>
-          <span class="gallery-badge" aria-hidden="true">+4</span>
-        </div>
-        <div class="gallery-source" hidden aria-hidden="true">
-          <img src="/images/surf-1.jpg" alt="Noah carrying his surfboard down to a Sydney beach" />
-          <img src="/images/surf-2.jpg" alt="Noah at the beach in a wetsuit with his surfboard" />
-          <img src="/images/surf-3.jpg" alt="A surfboard on the sand at a bright, sunny beach" />
-          <img src="/images/surf-4.jpg" alt="Noah and two friends out on a boat on a sunny day" />
-          <img src="/images/surf-5.jpg" alt="A surfer wading through the shore break at a Brazilian beach" />
-        </div>
-      </figure>
-
-    </div>
-
   </div>
+</header>
+
+<section class="section" id="volunteering" style="padding-top: 0;">
   <div class="container">
-    <div class="work-cta">
+    <div class="vol-grid">
+      <!-- 01 Bondi -->
+      <article class="vol-card reveal">
+        <div class="photo">
+          <img src="/images/volunteer-bondi.webp" alt="North Bondi Surf Life Saving Club patrol team in Surf Rescue yellow and red on the sand at Bondi Beach" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <div class="vol-meta">
+          <span class="vol-org">North Bondi SLSC &middot; Four years</span>
+          <h3 class="h4">Patrolling Bondi.</h3>
+        </div>
+        <p>A Bronze Medallion surf lifesaver through high school, on patrol at one of the busiest beaches in the country. Four years of reading a crowded surf and acting on incomplete information, usually before anyone signalled that something was wrong.</p>
+      </article>
+
+      <!-- 02 Cambodia -->
+      <article class="vol-card reveal">
+        <div class="photo">
+          <img src="/images/volunteer-cambodia.webp" style="object-position: center 40%;" alt="Volunteers kneeling on red earth painting corrugated roofing sheets beside a Cambodian stilt village" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <div class="vol-meta">
+          <span class="vol-org">Antipodeans &middot; Cambodia, 2017</span>
+          <h3 class="h4">A month building in Cambodia.</h3>
+        </div>
+        <p>A month with a team constructing sustainable housing for families in stilt villages most exposed to climate risk, work aligned to UN Sustainable Development Goal target 4.7. It was the first time I saw how much of an outcome is decided before anyone picks up a tool.</p>
+      </article>
+
+      <!-- 03 Fostering -->
+      <article class="vol-card reveal">
+        <div class="photo">
+          <img src="/images/volunteer-foster-v2.webp" style="object-position: center 38%;" alt="A grey tabby foster kitten sitting up on Noah’s lap in his living room" loading="lazy" onerror="this.classList.add('is-missing')" />
+        </div>
+        <div class="vol-meta">
+          <span class="vol-org">The Lost Dogs&rsquo; Home &middot; This past year</span>
+          <h3 class="h4">Five foster kittens.</h3>
+        </div>
+        <p>The North Melbourne shelter was over capacity, so the kittens came to me instead. Five rescues over twelve months, taken in between two and six weeks old and handed back once they were big enough to be desexed and rehomed. All five found homes, which is the point, and I miss every one of them.</p>
+      </article>
+    </div>
+
+    <!-- Closing note -->
+    <div class="measure reveal" style="margin-top: var(--space-8);">
+      <p class="lead">None of it was planned as a theme. Looking back, the thread is obvious. I'm pulled toward situations where noticing something early, and acting on it, changes how things turn out. A crowded beach, a stilt village, a shelter over capacity. The setting keeps changing, the instinct doesn't.</p>
+    </div>
+
+    <div class="work-cta" style="margin-top: var(--space-8);">
       <a href="/" class="btn btn--ghost">&larr; Back to home</a>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     FOOTER: mono metadata
-     EDIT: name, links, location
+     FOOTER
      ============================================================ -->
 <footer class="footer">
   <div class="container">
@@ -977,7 +889,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         </div>
         <div class="footer-col">
           <span class="fk">Elsewhere</span>
-          <!-- EDIT: social links -->
           <a href="https://www.linkedin.com/in/noah-mcgill/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:noahtui@gmail.com">Email</a>
           <a href="/Noah_McGill_CV.pdf" target="_blank" rel="noopener">CV / PDF</a>
@@ -990,7 +901,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
     </div>
     <div class="footer-bottom">
-      <!-- EDIT: name + year (year auto-updates via JS) -->
       <span>© <span id="year"></span> Noah McGill</span>
       <span>Built by hand, no templates</span>
     </div>
@@ -998,59 +908,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </footer>
 
 <script>
-/* ============================================================
-   MOBILE NAV TOGGLE
-   ============================================================ */
-/* ============================================================
-   ANCHOR ACCURACY
-   Lazy images and late-swapping web fonts can grow the document while a
-   smooth scroll is already running, so the browser animates to a position
-   that has since moved and lands short of the target. Intrinsic width/height
-   on the images removes most of that; this corrects whatever is left, and
-   also fixes deep links that arrive with a hash before layout has settled.
-   ============================================================ */
-(function anchorAccuracy() {
-  const PAD = parseInt(getComputedStyle(document.documentElement).scrollPaddingTop, 10) || 0;
-
-  function correct(el, passes) {
-    let n = 0;
-    (function step() {
-      const want = el.getBoundingClientRect().top + window.scrollY - PAD;
-      if (Math.abs(window.scrollY - want) > 4) {
-        window.scrollTo({ top: Math.max(0, want), behavior: 'auto' });
-      }
-      if (++n < passes) setTimeout(step, 200);
-    })();
-  }
-
-  function afterScroll(el) {
-    let done = false;
-    const go = () => { if (done) return; done = true; correct(el, 4); };
-    if ('onscrollend' in window) {
-      window.addEventListener('scrollend', go, { once: true });
-      setTimeout(go, 1200);
-    } else {
-      setTimeout(go, 700);
-    }
-  }
-
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    const id = a.getAttribute('href').slice(1);
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (el) afterScroll(el);
-  });
-
-  window.addEventListener('load', () => {
-    const id = location.hash.slice(1);
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (el) correct(el, 4);
-  });
-})();
-
+/* Mobile nav toggle */
 (function navToggle() {
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
@@ -1059,8 +917,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     const open = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
   });
-  // Close menu after choosing a link (mobile). The CTA now lives in the bar rather than
-  // inside the menu, so include it explicitly or an open menu would stay open over the page.
   const cta = document.querySelector('.nav-cta');
   [...links.querySelectorAll('a'), ...(cta ? [cta] : [])].forEach((a) =>
     a.addEventListener('click', () => {
@@ -1070,300 +926,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   );
 })();
 
-/* ============================================================
-   PHOTO GALLERY (shared): resting -> expanding -> expanded -> collapsing
-   Skiing + surfing use this; variant is presentation-only.
-   ============================================================ */
-(function PhotoGallery() {
-  const galleries = Array.from(document.querySelectorAll('.gallery'));
-  if (!galleries.length) return;
-  const hoverCapable = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const OPEN_DELAY = 180, CLOSE_DELAY = 120, ANIM = 320;
-
-  let state = 'resting', lock = false, active = null;
-  let overlay = null, backdrop = null, full = null;
-  let openTimer = null, closeTimer = null, safety = null, pendingClose = false;
-
-  const coverEl = (g) => g.querySelector('.gallery-cover');
-  const photosOf = (g) => Array.from(g.querySelectorAll('.gallery-source img')).map((im) => ({ src: im.getAttribute('src'), alt: im.getAttribute('alt') || '' }));
-  const setRect = (el, r) => { el.style.left = r.left + 'px'; el.style.top = r.top + 'px'; el.style.width = r.width + 'px'; el.style.height = r.height + 'px'; };
-
-  // Size the panel to the photo row itself (one row of 4:5 thumbs) instead of a
-  // fixed block, so it never opens as a big empty card. The cursor can end up
-  // outside the panel now, so hover-close also watches the cover (see isHovered).
-  function targetRect(rect, n) {
-    const vw = innerWidth, vh = innerHeight, m = 16, pad = 12, gap = 8;
-    const cols = Math.max(1, n);
-    let cellW = Math.min(268, (vw - m * 2 - pad * 2 - gap * (cols - 1)) / cols);
-    let cellH = cellW * 1.25;
-    const maxH = vh - m * 2 - pad * 2;
-    if (cellH > maxH) { cellH = maxH; cellW = cellH / 1.25; }
-    const W = Math.round(cellW * cols + gap * (cols - 1) + pad * 2);
-    const H = Math.round(cellH + pad * 2);
-    let left = Math.round(rect.left + rect.width / 2 - W / 2);
-    let top = Math.round(rect.top + rect.height / 2 - H / 2);
-    left = Math.min(Math.max(left, m), Math.max(m, vw - m - W));
-    top = Math.min(Math.max(top, m), Math.max(m, vh - m - H));
-    return { left, top, width: W, height: H };
-  }
-
-  function build(g) {
-    backdrop = document.createElement('div'); backdrop.className = 'gallery-backdrop';
-    overlay = document.createElement('div'); overlay.className = 'gallery-overlay';
-    overlay.setAttribute('role', 'dialog'); overlay.setAttribute('aria-label', g.getAttribute('aria-label') || 'Photo gallery');
-    const grid = document.createElement('div'); grid.className = 'gallery-grid';
-    photosOf(g).forEach((p) => {
-      const cell = document.createElement('button'); cell.type = 'button'; cell.className = 'gallery-cell'; cell.setAttribute('aria-label', 'View photo');
-      const im = document.createElement('img'); im.src = p.src; im.alt = p.alt; im.loading = 'lazy'; cell.appendChild(im);
-      cell.addEventListener('click', (ev) => { ev.stopPropagation(); openFull(p); });
-      grid.appendChild(cell);
-    });
-    overlay.appendChild(grid);
-    const tip = document.createElement('span');
-    tip.className = 'gallery-tip'; tip.setAttribute('aria-hidden', 'true');
-    tip.textContent = 'Click a photo to enlarge';
-    overlay.appendChild(tip);
-    document.body.appendChild(backdrop); document.body.appendChild(overlay);
-    backdrop.addEventListener('click', requestCloseNow);
-  }
-
-  function open(g) {
-    if (state !== 'resting' || lock) return;
-    active = g; state = 'expanding'; lock = true; pendingClose = false;
-    const rect = coverEl(g).getBoundingClientRect();
-    const count = photosOf(g).length;
-    build(g);
-    setRect(overlay, rect);
-    coverEl(g).setAttribute('aria-expanded', 'true');
-    overlay.getBoundingClientRect(); // force reflow so the start rect sticks
-    requestAnimationFrame(() => {
-      if (!reduce) overlay.classList.add('is-anim');
-      backdrop.classList.add('is-shown');
-      setRect(overlay, targetRect(rect, count));
-    });
-    clearTimeout(safety);
-    if (reduce) { finishExpand(); }
-    else { overlay.addEventListener('transitionend', onExpandEnd); safety = setTimeout(() => { if (state === 'expanding') finishExpand(); }, ANIM + 90); }
-  }
-  function onExpandEnd(e) { if (e.target !== overlay || (e.propertyName !== 'width' && e.propertyName !== 'height')) return; finishExpand(); }
-  function finishExpand() {
-    if (state !== 'expanding') return;
-    if (overlay) overlay.removeEventListener('transitionend', onExpandEnd);
-    clearTimeout(safety);
-    state = 'expanded'; lock = false;
-    // transition lock released: if the cursor already left (or a close was queued), close now
-    if (pendingClose) scheduleClose();
-  }
-
-  function isHovered() {
-    const c = active ? coverEl(active) : null;
-    return !!((overlay && overlay.matches(':hover')) || (c && c.matches(':hover')));
-  }
-
-  function collapse() {
-    if (!overlay || state !== 'expanded') return;
-    state = 'collapsing'; lock = true;
-    const rect = coverEl(active).getBoundingClientRect();
-    if (!reduce) overlay.classList.add('is-anim');
-    backdrop.classList.remove('is-shown');
-    setRect(overlay, rect);
-    clearTimeout(safety);
-    if (reduce) { teardown(); }
-    else { overlay.addEventListener('transitionend', onCollapseEnd); safety = setTimeout(() => { if (state === 'collapsing') teardown(); }, ANIM + 90); }
-  }
-  function onCollapseEnd(e) { if (e.target !== overlay || (e.propertyName !== 'width' && e.propertyName !== 'height')) return; teardown(); }
-  function teardown() {
-    clearTimeout(safety);
-    if (active) coverEl(active).setAttribute('aria-expanded', 'false');
-    if (overlay) overlay.remove(); if (backdrop) backdrop.remove();
-    overlay = backdrop = null; full = null; active = null; state = 'resting'; lock = false;
-  }
-
-  function scheduleClose() { if (state !== 'expanded') { pendingClose = true; return; } clearTimeout(closeTimer); closeTimer = setTimeout(collapse, CLOSE_DELAY); }
-  function cancelClose() { pendingClose = false; clearTimeout(closeTimer); }
-  function requestCloseNow() { clearTimeout(closeTimer); if (state === 'expanded') collapse(); else pendingClose = true; }
-
-  /* ---- Full-screen viewer: lives on <body>, not inside the panel, so photos
-     open at real size. Arrows + counter + keyboard + swipe. ---- */
-  let pv = null, pvImg = null, pvCount = null, pvList = [], pvIndex = 0, pvPrevFocus = null;
-
-  function pvBuild() {
-    if (pv) return;
-    pv = document.createElement('div');
-    pv.className = 'pv';
-    pv.setAttribute('role', 'dialog');
-    pv.setAttribute('aria-modal', 'true');
-    pv.setAttribute('aria-label', 'Photo viewer');
-    pv.innerHTML =
-      '<img class="pv-img" alt="">' +
-      '<button type="button" class="pv-btn pv-close" aria-label="Close photo">' +
-        '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
-      '<button type="button" class="pv-btn pv-nav pv-prev" aria-label="Previous photo">' +
-        '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>' +
-      '<button type="button" class="pv-btn pv-nav pv-next" aria-label="Next photo">' +
-        '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>' +
-      '<div class="pv-count" aria-live="polite"></div>';
-    document.body.appendChild(pv);
-    pvImg = pv.querySelector('.pv-img');
-    pvCount = pv.querySelector('.pv-count');
-    pv.querySelector('.pv-close').addEventListener('click', (e) => { e.stopPropagation(); pvClose(); });
-    pv.querySelector('.pv-prev').addEventListener('click', (e) => { e.stopPropagation(); pvStep(-1); });
-    pv.querySelector('.pv-next').addEventListener('click', (e) => { e.stopPropagation(); pvStep(1); });
-    pv.addEventListener('click', (e) => { if (e.target === pv) pvClose(); });
-    let sx = 0, sy = 0, tracking = false;
-    pv.addEventListener('touchstart', (e) => {
-      if (!e.touches[0]) return;
-      tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
-    }, { passive: true });
-    pv.addEventListener('touchmove', (e) => {
-      if (tracking && e.touches.length === 1 && e.cancelable) e.preventDefault();
-    }, { passive: false });
-    pv.addEventListener('touchend', (e) => {
-      if (!tracking) return; tracking = false;
-      const t = e.changedTouches && e.changedTouches[0]; if (!t) return;
-      const dx = t.clientX - sx, dy = t.clientY - sy;
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) pvStep(dx < 0 ? 1 : -1);
-    });
-  }
-
-  function pvRender() {
-    const p = pvList[pvIndex]; if (!p) return;
-    pvImg.src = p.src; pvImg.alt = p.alt || '';
-    pvCount.textContent = (pvIndex + 1) + ' / ' + pvList.length;
-    const multi = pvList.length > 1;
-    pv.querySelector('.pv-prev').style.display = multi ? 'grid' : 'none';
-    pv.querySelector('.pv-next').style.display = multi ? 'grid' : 'none';
-    pvCount.style.display = multi ? 'block' : 'none';
-  }
-  function pvStep(d) {
-    if (pvList.length < 2) return;
-    pvIndex = (pvIndex + d + pvList.length) % pvList.length;
-    pvRender();
-  }
-  function pvIsOpen() { return !!pv && pv.classList.contains('is-open'); }
-  function pvOpen(list, i) {
-    if (!list || !list.length) return;
-    pvBuild();
-    pvList = list; pvIndex = i || 0;
-    pvRender();
-    pvPrevFocus = document.activeElement;
-    document.body.style.overflow = 'hidden';
-    pv.classList.add('is-open');
-    pv.querySelector('.pv-close').focus({ preventScroll: true });
-  }
-  function pvClose() {
-    if (!pvIsOpen()) return;
-    pv.classList.remove('is-open');
-    pvImg.removeAttribute('src');
-    document.body.style.overflow = '';
-    if (pvPrevFocus && pvPrevFocus.focus) pvPrevFocus.focus({ preventScroll: true });
-    pvPrevFocus = null;
-  }
-  function openFull(p) {
-    const list = active ? photosOf(active) : [p];
-    let i = 0;
-    for (let k = 0; k < list.length; k++) if (list[k].src === p.src) { i = k; break; }
-    requestCloseNow();          // drop the preview panel; the viewer stands alone
-    pvOpen(list, i);
-  }
-  function closeFull() { pvClose(); }
-
-  galleries.forEach((g) => {
-    const c = coverEl(g);
-    // Hover no longer expands the panel; it only bulges the cover (CSS). The panel
-    // opens on click / tap / Enter only.
-    // Touch, or any viewport too narrow for a comfortable thumbnail row:
-    // skip the preview panel and go straight to the full-screen viewer.
-    const panelWorthIt = () => hoverCapable && innerWidth >= 900;
-    c.addEventListener('click', () => {
-      if (pvIsOpen()) return;
-      if (!panelWorthIt()) { pvOpen(photosOf(g), 0); return; }
-      if (state === 'resting' && !lock) open(g);
-    });
-    c.addEventListener('keydown', (e) => {
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      e.preventDefault();
-      if (pvIsOpen()) return;
-      pvOpen(photosOf(g), 0);
-    });
-  });
-
-  let srAF = null;
-  addEventListener('scroll', () => {
-    if (pvIsOpen()) return;
-    if (state === 'resting') return;
-    if (srAF) return;
-    srAF = requestAnimationFrame(() => { srAF = null; if (state === 'expanded') requestCloseNow(); else if (state === 'expanding') pendingClose = true; });
-  }, { passive: true });
-  addEventListener('keydown', (e) => {
-    if (pvIsOpen()) {
-      if (e.key === 'Escape') { e.preventDefault(); pvClose(); }
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); pvStep(-1); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); pvStep(1); }
-      return;
-    }
-    if (e.key === 'Escape') requestCloseNow();
-  });
-})();
-
-/* ============================================================
-   BUILD CARDS: staggered auto-cycling crossfade galleries
-   ============================================================ */
-(function buildGalleries() {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.built-gallery').forEach((card, i) => {
-    const imgs = Array.from(card.querySelectorAll('.bg-img'));
-    if (reduce || imgs.length < 2) return;            // static if no frames to cycle
-    let idx = 0;
-    const interval = 4500 + i * 300;                  // drift: 4.5 / 4.8 / 5.1s ...
-    const startDelay = i * 1600;                       // stagger the starts so they never sync
-    const decode = (n) => { const im = imgs[n]; return (im && im.decode) ? im.decode().catch(() => {}) : Promise.resolve(); };
-    const advance = async () => {
-      const next = (idx + 1) % imgs.length;
-      await decode(next);                              // ensure next frame is ready -> smooth crossfade
-      imgs[idx].classList.remove('is-active');
-      imgs[next].classList.add('is-active');
-      idx = next;
-      decode((next + 1) % imgs.length);               // preload the following one
-    };
-    decode(1);
-    setTimeout(() => { advance(); setInterval(advance, interval); }, startDelay + interval);
-  });
-})();
-
-
-
-/* ============================================================
-   ACTIVE NAV LINK ON SCROLL (scroll-spy)
-   ============================================================ */
-(function scrollSpy() {
-  const map = [
-    ['work-do', 'What I do'], ['experience', 'Experience'], ['projects', 'Work'],
-    ['about', 'About'], ['contact', 'Contact']
-  ];
-  const links = Array.from(document.querySelectorAll('.nav-link'));
-  const byHref = (id) => links.find((l) => l.getAttribute('href') === '#' + id);
-
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        links.forEach((l) => l.classList.remove('is-active'));
-        const active = byHref(e.target.id);
-        if (active) active.classList.add('is-active');
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-
-  map.forEach(([id]) => {
-    const el = document.getElementById(id);
-    if (el) obs.observe(el);
-  });
-})();
-
-/* ============================================================
-   SCROLL REVEAL: fade & rise on enter
-   ============================================================ */
+/* Scroll reveal: fade & rise on enter */
 (function reveals() {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -1376,97 +939,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   document.querySelectorAll('.reveal').forEach((el) => obs.observe(el));
 })();
 
-/* ============================================================
-   STAT COUNTERS: count up from 0 when a metric strip scrolls in
-   (respects prefers-reduced-motion). Targets the leading number in
-   each .metric .value; units like +, %, x stay put. Non-integer
-   values (e.g. "3.2") and non-numeric values (e.g. "Lowest") are
-   left as static text. Runs once per metric container (the hero
-   .metrics strip, plus each case card's .case-metrics row) so
-   every stat animates independently.
-   ============================================================ */
-(function statCounters() {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;                          // leave the real numbers untouched
-  document.querySelectorAll('.metrics, .case-metrics').forEach((container) => {
-    const items = [];
-    container.querySelectorAll('.metric .value').forEach((el) => {
-      const node = el.firstChild;                 // leading text node = the number
-      if (!node || node.nodeType !== 3) return;
-      const raw = node.textContent.trim();
-      const target = parseInt(raw, 10);
-      if (isNaN(target) || String(target) !== raw) return;   // skip decimals/non-integers, e.g. "3.2"
-      items.push({ node, target });
-    });
-    if (!items.length) return;
-    const dur = 1800;            // slower tick-up
-    let started = false;
-    function animate() {
-      if (started) return;
-      started = true;
-      const t0 = performance.now();
-      (function tick(now) {
-        const p = Math.min((now - t0) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 3);       // easeOutCubic
-        items.forEach((it) => { it.node.textContent = Math.round(ease * it.target); });
-        if (p < 1) requestAnimationFrame(tick);
-        else items.forEach((it) => { it.node.textContent = it.target; });
-      })(t0);
-    }
-    // Animate once, the first time this container scrolls into view, then stop
-    // observing. The real numbers sit in the DOM until that moment and are never
-    // reset afterwards, so a jump-scroll, deep link, restored scroll position, or
-    // a container too tall to hit the threshold can no longer leave a stat
-    // reading "0". Worst case is simply no animation, never a wrong number.
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        obs.unobserve(container);
-        animate();
-      });
-    }, { threshold: 0.25 });
-    obs.observe(container);
-  });
-})();
-
-/* ============================================================
-   GLOBE HINT: grey overlay reading "Drag to explore", shown the
-   first time the globe scrolls into view. Dismissed on first
-   interaction (click/tap on the overlay) and never shown again.
-   ============================================================ */
-(() => {
-  const hint = document.getElementById('globeHint');
-  const section = document.querySelector('.globe-embed');
-  if (!hint || !section) return;
-
-  let dismissed = false;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting && !dismissed) hint.classList.add('is-visible');
-    });
-  }, { threshold: 0.4 });
-  obs.observe(section);
-
-  const cue = document.getElementById('globeScrollCue');
-  const dismiss = () => {
-    if (dismissed) return;
-    dismissed = true;
-    hint.classList.remove('is-visible');
-    obs.disconnect();
-    // Once the visitor has engaged with the globe, wait 5s then reveal a bobbing scroll
-    // cue so they know there's more content below the full-height globe.
-    if (cue) setTimeout(() => cue.classList.add('is-visible'), 5000);
-  };
-  hint.addEventListener('pointerdown', dismiss);
-  hint.addEventListener('touchstart', dismiss, { passive: true });
-  if (cue) cue.addEventListener('click', () => {
-    const next = document.getElementById('about');
-    if (next) next.scrollIntoView({ behavior: 'smooth' });
-  });
-})();
-
-/* ---- Footer year auto-update ---- */
-document.getElementById('year').textContent = new Date().getFullYear();
+/* Footer year */
+(function () { const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear(); })();
 </script>
 </body>
 </html>
