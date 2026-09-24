@@ -297,6 +297,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav-link:hover { background: var(--stone-1); color: var(--ink-1); }
 .nav-link.is-active { background: var(--ink-1); color: var(--on-ink-1); }
 .nav-cta { margin-left: var(--space-1); }
+/* Nav "Let's talk": a slow, languid light-sweep shimmer on a long loop.
+   Matches the treatment on the homepage nav CTA. Disabled under prefers-reduced-motion. */
+.nav-cta { position: relative; overflow: hidden; }
+.nav-cta::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 70%; height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  transform: translateX(-180%) skewX(-18deg); pointer-events: none;
+  animation: navShimmer 7s linear infinite;
+}
+/* Linear (not eased) so the glint glides at a steady pace. Sweep spans 0->40% of the 7s cycle, then idles. */
+@keyframes navShimmer {
+  0%   { transform: translateX(-180%) skewX(-18deg); }
+  40%  { transform: translateX(330%)  skewX(-18deg); }
+  100% { transform: translateX(330%)  skewX(-18deg); }
+}
+@media (prefers-reduced-motion: reduce) { .nav-cta::before { animation: none; } }
 
 /* Mobile nav toggle */
 .nav-toggle { display: none; width: 36px; height: 36px; border-radius: var(--radius-md); align-items: center; justify-content: center; color: var(--ink-1); }
