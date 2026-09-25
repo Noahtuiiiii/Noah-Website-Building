@@ -839,6 +839,26 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .page-head { padding-top: 148px; padding-bottom: var(--space-7); }
 .page-back { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); color: var(--ink-3); margin-bottom: var(--space-5); }
 .page-back:hover { color: var(--ink-1); }
+/* Dark "ink" masthead: a strong cover band for the long Work page, reusing the site's ink-panel language (same near-black as the footer / ID card). */
+.page-head--dark { background: var(--ink-surface-1); }
+.page-head--dark .page-back { color: var(--on-ink-2); }
+.page-head--dark .page-back:hover { color: var(--on-ink-1); }
+.page-head--dark .eyebrow { color: var(--on-ink-2); }
+.page-head--dark .eyebrow .idx { color: var(--signal-3); }
+.page-head--dark .h1 { color: var(--on-ink-1); }
+.page-head--dark .accent--signal { color: var(--signal-3); }
+.page-head--dark .lead { color: var(--on-ink-2); }
+.page-head--dark .case-index { border-top-color: var(--on-ink-line); }
+.page-head--dark .case-index-row { border-bottom-color: var(--on-ink-line); }
+.page-head--dark .case-index-row:hover, .page-head--dark .case-index-row:focus-visible { background: var(--ink-surface-2); }
+.page-head--dark .case-index-n { color: var(--signal-3); }
+.page-head--dark .case-index-t { color: var(--on-ink-1); }
+.page-head--dark .case-index-row:hover .case-index-t { color: var(--signal-3); }
+.page-head--dark .case-index-d { color: var(--on-ink-2); }
+.page-head--dark .case-tag { border-color: var(--on-ink-line); color: var(--on-ink-2); }
+.page-head--dark .case-tag--pro { border-color: var(--signal-3); color: var(--signal-3); }
+/* Subtle rhythm: tint alternating case cards to break up the long scroll. */
+.case:nth-of-type(even) { background: var(--paper-2); }
 @media (max-width: 760px) { .page-head { padding-top: 116px; } }
 </style>
 </head>
@@ -874,7 +894,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <!-- ============================================================
      WORK: full case studies
      ============================================================ -->
-<header class="section page-head">
+<header class="section page-head page-head--dark">
   <div class="container">
     <a href="/" class="page-back">&larr; Back to home</a>
     <div class="section-head measure">
@@ -890,7 +910,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <a class="case-index-row" href="#tutor-ratios">
           <span class="case-index-n">01</span>
           <span class="case-index-main">
-            <span class="case-index-t">Finding the real variable</span>
+            <span class="case-index-t">IBT Education - Correlation ≠ Causation</span>
             <span class="case-index-d">Why weak language results tracked with tutor load, not student ability</span>
           </span>
           <span class="case-tag case-tag--pro">Professional</span>
@@ -898,7 +918,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <a class="case-index-row" href="#anz-reference-set">
           <span class="case-index-n">02</span>
           <span class="case-index-main">
-            <span class="case-index-t">Building the system that moved the throughput</span>
+            <span class="case-index-t">ANZ - Building accuracy from disparity</span>
             <span class="case-index-d">One structured reference set, built in a regulated bank, that outlived me</span>
           </span>
           <span class="case-tag case-tag--pro">Professional</span>
@@ -906,7 +926,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <a class="case-index-row" href="#lxrp-engagement">
           <span class="case-index-n">03</span>
           <span class="case-index-main">
-            <span class="case-index-t">Did the engagement shape the disruption, or explain it?</span>
+            <span class="case-index-t">Melbourne LXRP: Noble Park - Ignoble Management</span>
             <span class="case-index-d">Separating genuine influence on decisions from documentation of decisions already made</span>
           </span>
           <span class="case-tag case-tag--study">Master's</span>
@@ -914,7 +934,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <a class="case-index-row" href="#bot-appraisal">
           <span class="case-index-n">04</span>
           <span class="case-index-main">
-            <span class="case-index-t">Model the number, then try to break it</span>
+            <span class="case-index-t">Model, Unmodel, Remodel</span>
             <span class="case-index-d">A board-level appraisal, and the discount-rate error I caught in my own first pass</span>
           </span>
           <span class="case-tag case-tag--study">Master's</span>
@@ -930,7 +950,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <a class="case-index-row" href="#woody-pmbok">
           <span class="case-index-n">06</span>
           <span class="case-index-main">
-            <span class="case-index-t">Six PMBOK domains, one broken project</span>
+            <span class="case-index-t">Failing at failing: How not to Control a Project</span>
             <span class="case-index-d">Working backward from each symptom to the control that was never put in place</span>
           </span>
           <span class="case-tag case-tag--study">Master's</span>
@@ -953,7 +973,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <article class="card case reveal" id="tutor-ratios">
       <div class="case-head">
         <div class="case-head-top"><span class="eyebrow"><span class="idx">CASE</span> / 01</span><img class="case-mark" src="/images/logo-ibt-v2.webp" alt="IBT Education" width="250" height="96" loading="lazy" decoding="async"></div>
-        <h3 class="h3">Finding the real variable</h3>
+        <h3 class="h3">IBT Education - Correlation ≠ Causation</h3>
       </div>
       <div class="case-meta">
         <div><span class="case-meta-k">My role</span><span class="case-meta-v">Academic Program Coordinator</span></div>
@@ -1009,7 +1029,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a class="case-next" href="#anz-reference-set">
         <span>
           <span class="case-next-k">Next case / 02</span>
-          <span class="case-next-t">Building the system that moved the throughput</span>
+          <span class="case-next-t">ANZ - Building accuracy from disparity</span>
           <span class="case-next-d">One structured reference set, built in a regulated bank, that outlived me</span>
         </span>
         <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
@@ -1018,7 +1038,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <article class="card case reveal" id="anz-reference-set">
       <div class="case-head">
         <div class="case-head-top"><span class="eyebrow"><span class="idx">CASE</span> / 02</span><img class="case-mark" src="/images/logo-anz-v2.webp" alt="ANZ" width="305" height="96" loading="lazy" decoding="async"></div>
-        <h3 class="h3">Building the system that moved the throughput</h3>
+        <h3 class="h3">ANZ - Building accuracy from disparity</h3>
       </div>
       <div class="case-meta">
         <div><span class="case-meta-k">My role</span><span class="case-meta-v">Small Business Consultant</span></div>
@@ -1083,7 +1103,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a class="case-next" href="#lxrp-engagement">
         <span>
           <span class="case-next-k">Next case / 03</span>
-          <span class="case-next-t">Did the engagement shape the disruption, or explain it?</span>
+          <span class="case-next-t">Melbourne LXRP: Noble Park - Ignoble Management</span>
           <span class="case-next-d">Separating genuine influence on decisions from documentation of decisions already made</span>
         </span>
         <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
@@ -1092,7 +1112,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <article class="card case reveal" id="lxrp-engagement">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 03</span>
-        <h3 class="h3">Did the engagement shape the disruption, or explain it?</h3>
+        <h3 class="h3">Melbourne LXRP: Noble Park - Ignoble Management</h3>
       </div>
       <div class="case-meta">
         <div><span class="case-meta-k">My role</span><span class="case-meta-v">Overall direction and research design; structure, layout and supervisor liaison</span></div>
@@ -1163,7 +1183,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a class="case-next" href="#bot-appraisal">
         <span>
           <span class="case-next-k">Next case / 04</span>
-          <span class="case-next-t">Model the number, then try to break it</span>
+          <span class="case-next-t">Model, Unmodel, Remodel</span>
           <span class="case-next-d">A board-level appraisal, and the discount-rate error I caught in my own first pass</span>
         </span>
         <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
@@ -1172,7 +1192,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <article class="card case reveal" id="bot-appraisal">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 04</span>
-        <h3 class="h3">Model the number, then try to break it</h3>
+        <h3 class="h3">Model, Unmodel, Remodel</h3>
       </div>
       <div class="case-meta">
         <div><span class="case-meta-k">My role</span><span class="case-meta-v">Sole author: model, appraisal and risk assessment</span></div>
@@ -1307,7 +1327,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <a class="case-next" href="#woody-pmbok">
         <span>
           <span class="case-next-k">Next case / 06</span>
-          <span class="case-next-t">Six PMBOK domains, one broken project</span>
+          <span class="case-next-t">Failing at failing: How not to Control a Project</span>
           <span class="case-next-d">Working backward from each symptom to the control that was never put in place</span>
         </span>
         <span class="case-next-arrow" aria-hidden="true">&rarr;</span>
@@ -1316,7 +1336,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     <article class="card case reveal" id="woody-pmbok">
       <div class="case-head">
         <span class="eyebrow"><span class="idx">CASE</span> / 06</span>
-        <h3 class="h3">Six PMBOK domains, one broken project</h3>
+        <h3 class="h3">Failing at failing: How not to Control a Project</h3>
       </div>
       <div class="case-meta">
         <div><span class="case-meta-k">My role</span><span class="case-meta-v">Sole author</span></div>
