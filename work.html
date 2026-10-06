@@ -362,6 +362,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .case-next-arrow { display: none; }
 }
 .case { scroll-margin-top: 96px; }
+/* Next-case links only on mobile; desktop uses the index at the top */
+@media (min-width: 761px) { .case-next { display: none; } }
 
 .more-writeups { margin-top: var(--space-5); font-family: var(--font-mono); font-size: var(--size-micro); text-transform: uppercase; letter-spacing: var(--track-label); }
 
@@ -1123,7 +1125,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="case-metrics">
         <div class="metric">
           <div class="value">$1.6B</div>
-          <div class="label">Caulfield to Dandenong crossing removals</div>
+          <div class="label">Caulfield&ndash;Dandenong LXRP</div>
           <div class="delta">Noble Park trader precinct, 2016&ndash;2018</div>
         </div>
         <div class="metric">
